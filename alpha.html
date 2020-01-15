@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>phyloseq_object</title>
+<title>alpha</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,27 +13077,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-phyloseq-package">The phyloseq package<a class="anchor-link" href="#The-phyloseq-package">&#182;</a></h1>
+<h1 id="Alpha-diversity">Alpha diversity<a class="anchor-link" href="#Alpha-diversity">&#182;</a></h1>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Phyloseq is a package made for organizing and working with microbiome data in R. With the phyloseq package we can have all our microbiome amplicon sequence data in a single R object. With functions from the phyloseq package, most common operations for preparing data for analysis is possible with few simple commands.</p>
-<p>This document is an overview on how phyloseq objects are organized and how they can be accessed and changed.</p>
-<p>The paper presenting phyloseq:
-<a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0061217">https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0061217</a></p>
-<p>A comprehensive documetation of the phyloseq package:
-<a href="https://joey711.github.io/phyloseq/">https://joey711.github.io/phyloseq/</a></p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>To work with phyloseq objects we first have to load the package</p>
+<p>Alpha diversity is the diversity <strong>within</strong> a sample/community. There are tons of different metrics for estimating alpha diversity, and only a small subset of the metrics will be presented here. <strong>It is crucial that the dataset is not trimmed/pruned prior to calculating the alpha diversity, as many metrics are sensitive to singletons (ASVs only matched by 1 read).</strong></p>
 
 </div>
 </div>
@@ -13107,7 +13094,9 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load phyloseq object and phyloseq package</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
+<span class="nf">load</span><span class="p">(</span><span class="s">&quot;physeq.RData&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13136,14 +13125,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="The-phyloseq-object">The phyloseq object<a class="anchor-link" href="#The-phyloseq-object">&#182;</a></h1>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's load our test dataset, and see how phyloseq is organized.</p>
+<h2 id="Observed-richness">Observed richness<a class="anchor-link" href="#Observed-richness">&#182;</a></h2><p>Richness is the number of different taxa in a community. Observed richness is therefore simply the observed number of different taxa in a sample, the simplest alpha diversity metric.</p>
+<p>In R:</p>
 
 </div>
 </div>
@@ -13153,7 +13136,337 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">load</span><span class="p">(</span><span class="s">&quot;physeq.RData&quot;</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">obs_rich</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="s">&quot;Observed&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">obs_rich</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>Observed</th></tr></thead>
+<tbody>
+	<tr><th scope=row>S_027</th><td>41</td></tr>
+	<tr><th scope=row>S_028</th><td>42</td></tr>
+	<tr><th scope=row>S_031</th><td>38</td></tr>
+	<tr><th scope=row>S_034</th><td>34</td></tr>
+	<tr><th scope=row>S_036</th><td>40</td></tr>
+	<tr><th scope=row>S_038</th><td>36</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or with apply:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">obs_rich</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">obs_rich</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<dl class=dl-horizontal>
+	<dt>S_027</dt>
+		<dd>41</dd>
+	<dt>S_028</dt>
+		<dd>42</dd>
+	<dt>S_031</dt>
+		<dd>38</dd>
+	<dt>S_034</dt>
+		<dd>34</dd>
+	<dt>S_036</dt>
+		<dd>40</dd>
+	<dt>S_038</dt>
+		<dd>36</dd>
+</dl>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p><em>apply</em> in R does something on each row (MARGIN = 1) or column (MARGIN = 2) of a matrix. The otu_table(phy) we give as input contains counts of taxa with one column per sample. We therefore run the function on each sample. sum(x &gt; 0) means that we find all counts that are larger than zero and we sum (count) those. This is the observed richness; the number of taxa that are present (abundance &gt; 0) in a sample.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Shannon-diversity">Shannon diversity<a class="anchor-link" href="#Shannon-diversity">&#182;</a></h2><p>Shannon diversity (AKA Shannon entropy, AKA Shannon index), is a widely used alpha diversity metric. This metric is a combination of the richness (see above) and the evenness in sample, where the evenness is a measure of how equally abundant different taxa are in a sample. If all taxa have the same abundance then evenness is high, if one or few taxa dominates evenness is low.</p>
+<p>Shannon diversity is calcualted as:
+\begin{equation*}
+H' = - \sum_{i=1}^R p_i ln \left( p_i \right) 
+\end{equation*}</p>
+<p>where <em>p</em><sub>i</sub> is the relative abundance of taxa <em>i</em>. <em>ln</em> is the natural log, and R is the richness.</p>
+<p>It was developed as a measure of information, and can be thought of as the uncertainty in whether two random individuals in a sample/community are similar. Therefore, the more different taxa are observed in a sample, and the more even their abundance is, the higher is the Shannon diversity.</p>
+<p>In R:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">shannon</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="s">&quot;Shannon&quot;</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">shannon</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>Shannon</th></tr></thead>
+<tbody>
+	<tr><th scope=row>S_027</th><td>2.551245</td></tr>
+	<tr><th scope=row>S_028</th><td>1.476669</td></tr>
+	<tr><th scope=row>S_031</th><td>0.926933</td></tr>
+	<tr><th scope=row>S_034</th><td>1.821306</td></tr>
+	<tr><th scope=row>S_036</th><td>1.120686</td></tr>
+	<tr><th scope=row>S_038</th><td>1.810183</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>or directly with the formula above:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">shannon</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">shannon</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<dl class=dl-horizontal>
+	<dt>S_027</dt>
+		<dd>2.55124482098489</dd>
+	<dt>S_028</dt>
+		<dd>1.47666912877366</dd>
+	<dt>S_031</dt>
+		<dd>0.926933011834673</dd>
+	<dt>S_034</dt>
+		<dd>1.82130593105905</dd>
+	<dt>S_036</dt>
+		<dd>1.1206861273353</dd>
+	<dt>S_038</dt>
+		<dd>1.81018316028165</dd>
+</dl>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p>As with the observed richness, we apply a function on each column (sample) of the otu_table. The function is the formula above, where x/sum(x) is a way to calculate the relative abundance. The log function will return NA for many taxa if their abundance is 0 (you cannot take the log of zero), and the na.rm = TRUE tells the function to ignore NA's in the final summation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample through the shortest path in the tree.</p>
+<p>In the tree below, the cyan circles marks the taxa present in a given sample. The red line is the path connecting these taxa (usually the root is also included if present). Faith's PD of this sample is then the branch length spanned by the red path; that is, all the red horizontal lines.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><img src="img/PD.png" alt="PD example"></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In R:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># We need the picante package</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">picante</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># PD: Phylogenetic Diversity</span>
+<span class="c1"># SR: Species Richness (aka Observed richness)</span>
+<span class="n">fpd</span> <span class="o">&lt;-</span> <span class="nf">pd</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)),</span> <span class="nf">phy_tree</span><span class="p">(</span><span class="n">phy</span><span class="p">))</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">fpd</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>PD</th><th scope=col>SR</th></tr></thead>
+<tbody>
+	<tr><th scope=row>S_027</th><td>5.790207</td><td>41      </td></tr>
+	<tr><th scope=row>S_028</th><td>6.555121</td><td>42      </td></tr>
+	<tr><th scope=row>S_031</th><td>6.628393</td><td>38      </td></tr>
+	<tr><th scope=row>S_034</th><td>4.683574</td><td>34      </td></tr>
+	<tr><th scope=row>S_036</th><td>5.695487</td><td>40      </td></tr>
+	<tr><th scope=row>S_038</th><td>6.017600</td><td>36      </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p>The <em>pd</em> function of course needs our phylogenetic tree as input, but it also needs the otu_table to know which taxa are present in which samples. The <em>picante</em> package assumes that input tables have samples as rows, we therefore have to transpose our otu_table with the t() function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">&#182;</a></h1><p>We will use the ggplot2 package for plotting.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13164,17 +13477,501 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we print the name of the phyloseq object, we can see what it contains</p>
+<p>First, we will calculate observed richness and shannon diversity in one line, then we will add our sample metadata:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">phy</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">alpha</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Observed&quot;</span><span class="p">,</span> <span class="s">&quot;Shannon&quot;</span><span class="p">))</span>
+<span class="n">alpha</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="nf">sample_data</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="s">&quot;row.names&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <em>alpha</em> data.frame now looks like this:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th scope=col>Row.names</th><th scope=col>Observed</th><th scope=col>Shannon</th><th scope=col>Patient</th><th scope=col>Time</th><th scope=col>Delivery</th></tr></thead>
+<tbody>
+	<tr><td>S_001    </td><td>32       </td><td>0.9229701</td><td>e22      </td><td>1m       </td><td>Normal   </td></tr>
+	<tr><td>S_002    </td><td>29       </td><td>0.9936260</td><td>e57      </td><td>1m       </td><td>Normal   </td></tr>
+	<tr><td>S_003    </td><td>39       </td><td>2.3707236</td><td>389      </td><td>1m       </td><td>Normal   </td></tr>
+	<tr><td>S_004    </td><td>29       </td><td>0.2549708</td><td>87c      </td><td>1m       </td><td>Sectio   </td></tr>
+	<tr><td>S_005    </td><td>29       </td><td>2.0501637</td><td>d7c      </td><td>1m       </td><td>Normal   </td></tr>
+	<tr><td>S_006    </td><td>31       </td><td>2.2676366</td><td>5ef      </td><td>1m       </td><td>Normal   </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Define plot</span>
+<span class="n">plot_alpha</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Observed</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">geom_point</span><span class="p">()</span>
+
+<span class="c1"># Show plot</span>
+<span class="n">plot_alpha</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAANlBMVEUAAAAzMzNNTU1oaGh8
+fHyMjIyampqnp6eysrK9vb3Hx8fQ0NDZ2dnh4eHp6enr6+vw8PD////agy6EAAAACXBIWXMA
+ABJ0AAASdAHeZh94AAAbkElEQVR4nO2djVYbx7oFJwJM/BMuev+XvcgmxCbIB5Tp1u5dVWtF
+tnOO1/pK0xXNtEZiO4rIf2a79gAiDRiSyA4YksgOGJLIDhiSyA4YksgOGJLIDhiSyA7815D+
+L4y4gQYD803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhv
+mq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+a
+riG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpvuxkA4/Hp/4+VdDSgDm
+m6b7oZCe+3l++OcPhhQAzDdN9yMhHY6GlAvMN033Q69IhhQMzDdNd5eQ/jjxjr8u0o+vSGsD
+803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zTdC0LyzoZIWL7btl17hF/5WEi/49omr4kb
+aDAo321LK8mQWiD5bltcSYbUAsnXkCYSN9BgSL6GNJG4gQaD8o3ryJBqYPmmdWRINcB803QN
+qQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2p
+BZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakF
+mG+ariG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWY
+b5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhv
+mq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+a
+riG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5qu
+IbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4h
+tQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1
+APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA
+803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zTd/UISkaOvSKsD803TNaQWYL5puobUAsw3
+TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN
+15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALMN03X
+kFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQ
+WoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15Ba
+gPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALMN03XkFqA
++abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5
+pukaUgss323brj3CrxhSCyjfbUsryZBaIPluW1xJhtQCydeQJhI30GBIvoY0kbiBBoPyjevI
+kGpg+aZ1ZEg1wHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1D
+agHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALL15tWpxE30GBQvn6MYh5xAw2G
+5OsH+yYSN9BgSL6GNJG4gQZD8jWkicQNNBiUb1xHhlQDyzetI0OqAeabpmtILcB803QNqQWY
+b5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdC8J6fDE
+z78aUgIw3zTdC0I6PD8cXv5gSAHAfNN0DakFmG+ariG1APNN090lpD9OvPevi1Tz4c0GX5Gi
+gPmm6V4Qkqd2kcB803QNqQWYb5quIbUA803TNaQWYL5puheE5J0NkcB803QvCeltrm3ymriB
+BsPy9VuEphE30GBQvn6v3TziBhoMyddvWp1I3ECDIfka0kTiBhoMydeQJhI30GBQvnEdGVIN
+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
+alwNozwYAAAAAElFTkSuQmCC"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can plot as boxplots with a black and white theme and with custom labels:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Define plot</span>
+<span class="n">plot_alpha</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">Time</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Observed</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">geom_boxplot</span><span class="p">()</span> <span class="o">+</span>
+    <span class="nf">xlab</span><span class="p">(</span><span class="s">&quot;Time point&quot;</span><span class="p">)</span> <span class="o">+</span>
+    <span class="nf">ylab</span><span class="p">(</span><span class="s">&quot;Observed richness&quot;</span><span class="p">)</span>
+    
+<span class="c1"># Show plot</span>
+<span class="n">plot_alpha</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+DGnGVdvCPDPzVGUY0oyrtuUjZ9763ySexbR7biKGNOOqbflQSNNOsR7IMxvSjKu2xZAAGNKM
+q7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY
+0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQ
+ABjSjKu2xZAAGNKMq7bFkAAY0qurLpHV76VtQZ7ZkNaCdp4DzFOdBnlmQ1oL2nkOME91GuSZ
+DWktaOc5wDzVaZBnNqS1oJ3nAPNUp0Ge2ZDWgnaeA8xTnQZ5ZkNaC9p5DjBPdRrkmQ1pLWjn
+OcA81WmQZzaktaCd58DWT4GdxdZ32t8wpLWgnefA1k2cxdZ32t8wpLWgnefA1k2cxdZ32t8w
+pLWgnecA81SnQZ7ZkNaCdp4DzFOdBnlmQ1oL2nkOME91GuSZDWktaOc5wDzVaZBnNqS1oJ3n
+APNUp0Ge2ZDWgnaeA8xTnQZ5ZkNaC9p5DjBPdRrkmQ1pLWjnOcA81WmQZzaktaCd5wDzVKdB
+ntmQ1oJ2ngPMU50GeWZDWgvaeQ4wT3Ua5JkNaS1o5znAPNVpkGc2pLWgnecA81SnQZ7ZkNaC
+dp4DzFOdBnlmQ1oL2nkOME91GuSZDWktaOc5wDzVaZBnNqS1oJ3nAPNUp0GeuXFIP1jQznMA
+Oco3YN6TMHyPtC7MU50GeebG75E+eP1saOc5wDzVaZBnNqS1oJ3nAPNUp0Ge2ZDWgnaeA8xT
+nQZ5ZkNaC9p5DjBPdRrkmQ1pLWjnOcA81WmQZzaktaCd58DWn+vxLLa+0/6GIa0F7TzVhPka
+0lrQzlNNmK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQ
+zlNNmK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNN
+mK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8h
+rQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXt
+PNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE
++RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrS
+WtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDO
+U02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDOU02Y
+ryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDu6WrCfGm6
+htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6
+htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6
+htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpntOSPtH/vz+9S0xoN3T
+1YT50nTPCGn/65v9y09e3RID2j1dTZgvTdeQuhDmS9M99+9IhkQjzJemOyWkT8/8EInlzJD2
+D75HghHmS9M1pC6E+dJ0zwtpv/zm1S0xoN3T1YT50nTPCmn/+1tDohDmS9M96wnZP74zJAph
+vjTdc55H2v96SYOvbCAR5kvT9bV2XQjzpelODEkkmGkh0aC9h6wmzJera0iXTZgvV9eQLpsw
+X65ut5BENsGQRCZgSCITMCSRCRiSyAQMSWQCfULav/1bOhGm+0A3bhPSnn0/zyZM9wFv3CWk
+Pfz/sCYTpvvAN+4S0ut/B8++1yfwy/L537Ts4f9vPYeXP2DkH26/kPZ/3OON+fVZb1++2fY0
+a2BI6/D7M1jumXf1XPZ/+aY3L55IV0O6UAyJRbuQfn9015vQkLB/toZ0oRgSi2Yhgf82OhlD
+YmFIF0pqSFTTPiFJBoYkMgFDEvkw2NdwGJLIBAxJZAKGJDIBQxKZgCGJTMCQRCZgSEh2Lzz9
++Kwb+PNnd9QHjftgSEgmh3TWTch78B7GMnH9hlSO9zCW/9b/673Sze7m4f5qd/Pz8Zd+ft7t
+Pv/84zfe7K7vn354//Q/3L9cdH+z298e3r9tYZCEdzCWZUg3jzF8vXr85vPjL+2f0rj6/Rsf
+89ntH8P6+fw/PP3ocNHzT28NaQW8g7EsQ/r88PWpia9PP/vy+IOH293dy2+8/vlwffi164fD
+jw4XPf763W7vh3Yr4D2MZRnS/dM3v97VXD3/L48f6v33G/55/KDu6T3U1dNve/7Ry0UPZz9e
+Ie/Be7hcatIAAADLSURBVBjLq78j/fHN70f0/viNv4P570evf10K8R7GYkiXhPcwluMhXe1e
+/cbnD+iu//+h3eJyqcR7GMvxkG6fHk74+lTOr99w/fDzevfl/w82LC6XSryHsRwP6fAo99ND
+DL9+w/XTg94P/3/4+/flvkaoGEPCcjyk5+ddr7///o3314enYV8/Ifvf5XeGVI0hXT5+4AbA
+P4PLx5AA+Gdw+RgSAP8MLh9DAuCfgcgEDElkAoYkMgFDEpmAIYlMwJBEJmBIIhMwJJEJ/Atk
+o8dJwecVJAAAAABJRU5ErkJggg=="
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Statistics">Statistics<a class="anchor-link" href="#Statistics">&#182;</a></h1><p>From the plots above it appears as the richness is higher at 1 year (1y) than the other time points. Can this be supported statistically?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To test if the richness differs between the time points we would run an ANOVA.</p>
+<p>The first step in R is to define the anova model:</p>
+<p><strong>A note on notation:</strong> The left-hand side of the formula (y ~ x) is the response (AKA dependent variable) and the right-hand side are the features (AKA independent variables, AKA covariates)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">aov</span><span class="p">(</span><span class="n">Observed</span> <span class="o">~</span> <span class="n">Time</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can then get a summary of our model, and see that the time variable is highly significant.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13193,12 +13990,11 @@ div#notebook {
 
 
 <div class="output_text output_subarea ">
-<pre>phyloseq-class experiment-level object
-otu_table()   OTU Table:         [ 1428 taxa and 150 samples ]
-sample_data() Sample Data:       [ 150 samples by 3 sample variables ]
-tax_table()   Taxonomy Table:    [ 1428 taxa by 7 taxonomic ranks ]
-phy_tree()    Phylogenetic Tree: [ 1428 tips and 1425 internal nodes ]
-refseq()      DNAStringSet:      [ 1428 reference sequences ]</pre>
+<pre>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
+Time          2  38192   19096   383.2 &lt;2e-16 ***
+Residuals   147   7325      50                   
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
 
 </div>
@@ -13210,34 +14006,17 @@ refseq()      DNAStringSet:      [ 1428 reference sequences ]</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The <em>phy</em> object contains all our data and associated metadata. This is organized in 5 different sub-objects:</p>
-<ul>
-<li><strong>otu_table:</strong> Contains a matrix with the abundance of each taxa (ASV) for each sample</li>
-<li><strong>sample_data:</strong> Contains the metadata for each sample</li>
-<li><strong>tax_table:</strong> Contains the taxonomical annotation for each taxon (ASV)</li>
-<li><strong>phy_tree:</strong> Contains a phylogenetic tree</li>
-<li><strong>refseq:</strong> Contains sequences (16S rRNA gene sequence) for each taxon (ASV)</li>
-</ul>
-<p><em>Note:</em> "<em>phy</em>" is an arbitrary name, it could be anything else</p>
-<p>Below is a section on each of the objects describing what they contain and how to access them.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="otu_table">otu_table<a class="anchor-link" href="#otu_table">&#182;</a></h2><p>The otu_table contains the abundance of each OTU/ASV for each sample. We can see from above that it contains data for 1428 taxa and 150 samples. We can access it with the otu_table() function</p>
+<p>We can also run the Tukey's Honest Significant Different test as a post-hoc test to compare all time points pairwise:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13254,74 +14033,19 @@ refseq()      DNAStringSet:      [ 1428 reference sequences ]</pre>
 
 
 
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>S_027</th><th scope=col>S_028</th><th scope=col>S_031</th><th scope=col>S_034</th><th scope=col>S_036</th><th scope=col>S_038</th><th scope=col>S_039</th><th scope=col>S_040</th><th scope=col>S_041</th><th scope=col>S_042</th><th scope=col>...</th><th scope=col>S_080</th><th scope=col>S_086</th><th scope=col>S_087</th><th scope=col>S_090</th><th scope=col>S_099</th><th scope=col>S_102</th><th scope=col>S_104</th><th scope=col>S_108</th><th scope=col>S_110</th><th scope=col>S_148</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_1</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 3  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_2</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td>19  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_3</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_4</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td>30  </td><td>937 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_5</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_6</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>6   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_7</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_8</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_9</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   7</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_10</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td> 53 </td><td> 0  </td><td>0   </td><td>31  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_11</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>699 </td></tr>
-	<tr><th scope=row>ASV_12</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_13</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_14</th><td>0   </td><td>0   </td><td>13  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_15</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_16</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td>48  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_17</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>  25</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_18</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>688 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>128 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_19</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td>20  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_20</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_21</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_22</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_23</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td>86  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_24</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_25</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>1197</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_26</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_27</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_28</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_29</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td></tr>
-	<tr><th scope=row>ASV_30</th><td>0   </td><td>0   </td><td> 0  </td><td>0   </td><td>25  </td><td>  0 </td><td> 0  </td><td>0   </td><td> 0  </td><td>0   </td><td>... </td><td>  0 </td><td>0   </td><td> 0  </td><td>0   </td><td>   0</td><td>0   </td><td>0   </td><td>  0 </td><td>21  </td><td>  0 </td></tr>
-	<tr><th scope=row>...</th><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>   </td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td><td>...</td></tr>
-	<tr><th scope=row>ASV_1399</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1400</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1401</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1402</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1403</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td> 11 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1404</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1405</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1406</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td>89  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1407</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1408</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1409</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>663 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 6  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1410</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1411</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>119 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1412</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td>17  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1413</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td> 91 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1414</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>163 </td><td>... </td><td>  0 </td><td>1843</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1415</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>116 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1416</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1417</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1418</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1419</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1420</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1421</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1422</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1423</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td>20  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1424</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1425</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1426</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td> 167</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1427</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-	<tr><th scope=row>ASV_1428</th><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>0   </td><td>  0 </td><td>... </td><td>  0 </td><td>   0</td><td> 0  </td><td>0   </td><td>0   </td><td>  0 </td><td> 0  </td><td>  0 </td><td> 0  </td><td>0   </td></tr>
-</tbody>
-</table>
 
+<div class="output_text output_subarea ">
+<pre>  Tukey multiple comparisons of means
+    95% family-wise confidence level
+
+Fit: aov(formula = Observed ~ Time, data = alpha)
+
+$Time
+       diff      lwr      upr     p adj
+1m-1w -3.54 -6.88272 -0.19728 0.0351608
+1y-1w 31.94 28.59728 35.28272 0.0000000
+1y-1m 35.48 32.13728 38.82272 0.0000000
+</pre>
 </div>
 
 </div>
@@ -13333,7 +14057,8 @@ refseq()      DNAStringSet:      [ 1428 reference sequences ]</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Here we can see that ASV_4 was not detected in sample S_034, but that 30 reads from sample S_036 was assigned to ASV_4, and so on.</p>
+<p>This result fits with what we see in plot. The richness at 1 year is higher than at 1 month and 1 week.</p>
+<p>The left-hand side of the output are the pairwise comparisons. Diff is the difference in means. Lwr and upr are lower and upper 95% confidence intervals (of the difference). p adj is the adjusted p-value.</p>
 
 </div>
 </div>
@@ -13341,399 +14066,55 @@ refseq()      DNAStringSet:      [ 1428 reference sequences ]</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can subset specific taxa with the <strong>object</strong>[subset] notation</p>
+<h2 id="Library-size">Library size<a class="anchor-link" href="#Library-size">&#182;</a></h2><p>If the dataset is not rarefied (see notebook on rarefaction for details), we should include the library size (the total number of reads in a given sample) in the model, as this could have substantial effect on the alpha diversity estimation. As the library size is a continuous variable we should run a linear model instead of an anova.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="n">[</span><span class="s">&quot;ASV_3&quot;</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># First we include the library size in our &#39;alpha&#39; data.frame</span>
+<span class="n">libSize</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">LibSize</span> <span class="o">=</span> <span class="nf">sample_sums</span><span class="p">(</span><span class="n">phy</span><span class="p">))</span>
+<span class="n">alpha</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">libSize</span><span class="p">,</span> <span class="n">by.x</span> <span class="o">=</span> <span class="s">&quot;Row.names&quot;</span><span class="p">,</span> <span class="n">by.y</span> <span class="o">=</span> <span class="s">&quot;row.names&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>S_027</th><th scope=col>S_028</th><th scope=col>S_031</th><th scope=col>S_034</th><th scope=col>S_036</th><th scope=col>S_038</th><th scope=col>S_039</th><th scope=col>S_040</th><th scope=col>S_041</th><th scope=col>S_042</th><th scope=col>...</th><th scope=col>S_080</th><th scope=col>S_086</th><th scope=col>S_087</th><th scope=col>S_090</th><th scope=col>S_099</th><th scope=col>S_102</th><th scope=col>S_104</th><th scope=col>S_108</th><th scope=col>S_110</th><th scope=col>S_148</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_3</th><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>...</td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;ASV_2&quot;</span><span class="p">,</span> <span class="s">&quot;ASV_15&quot;</span><span class="p">)</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Then define the new model</span>
+<span class="n">model2</span> <span class="o">&lt;-</span> <span class="nf">lm</span><span class="p">(</span><span class="n">Observed</span> <span class="o">~</span> <span class="n">Time</span> <span class="o">+</span> <span class="nf">log10</span><span class="p">(</span><span class="n">LibSize</span><span class="p">),</span> <span class="n">data</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>S_027</th><th scope=col>S_028</th><th scope=col>S_031</th><th scope=col>S_034</th><th scope=col>S_036</th><th scope=col>S_038</th><th scope=col>S_039</th><th scope=col>S_040</th><th scope=col>S_041</th><th scope=col>S_042</th><th scope=col>...</th><th scope=col>S_080</th><th scope=col>S_086</th><th scope=col>S_087</th><th scope=col>S_090</th><th scope=col>S_099</th><th scope=col>S_102</th><th scope=col>S_104</th><th scope=col>S_108</th><th scope=col>S_110</th><th scope=col>S_148</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_2</th><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>...</td><td>0  </td><td>0  </td><td>19 </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td></tr>
-	<tr><th scope=row>ASV_15</th><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>...</td><td>0  </td><td>0  </td><td> 0 </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td><td>0  </td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Similarly for samples by preceeding a , inside the [ ]. (For the sake of this tutoial, we use head() to only print the first 6 rows)</p>
+<p>In this linear model the time variable is split in three so-called dummy variables, one for each level, the first being the intercept. The interpretation here is that: the intercept represents the 1 week time point. The estimate next to Time1m shows that the richness at 1 month is 3.4 lower than at 1 week. The estimate next to Time1y shows that the richness at 1 year is 32.2 higher than at 1 week. The difference between 1 year and 1 week is significant (p &lt; 2e-16), and so is the difference between 1 week and 1 month (p = 0.01531).
+Furthermore, the log10(LibSize) variable shows that every time the library size gets 10 times larger the richness increases by 4.4, and this is significant (p = 0.00281).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="n">[</span><span class="p">,</span> <span class="s">&quot;S_006&quot;</span><span class="n">]</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>S_006</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_1</th><td>0</td></tr>
-	<tr><th scope=row>ASV_2</th><td>0</td></tr>
-	<tr><th scope=row>ASV_3</th><td>0</td></tr>
-	<tr><th scope=row>ASV_4</th><td>0</td></tr>
-	<tr><th scope=row>ASV_5</th><td>0</td></tr>
-	<tr><th scope=row>ASV_6</th><td>0</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>These operations can be combined:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="n">[</span><span class="s">&quot;ASV_2&quot;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;S_006&quot;</span><span class="p">,</span> <span class="s">&quot;S_144&quot;</span><span class="p">)</span><span class="n">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>S_006</th><th scope=col>S_144</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_2</th><td>0</td><td>0</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="sample_data">sample_data<a class="anchor-link" href="#sample_data">&#182;</a></h2><p>The sample_data object contains metadata for our samples. We can access it with the sample_data() function. (For the sake of this tutoial, we use head() to only print the first 6 rows)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="nf">sample_data</span><span class="p">(</span><span class="n">phy</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>Patient</th><th scope=col>Time</th><th scope=col>Delivery</th></tr></thead>
-<tbody>
-	<tr><th scope=row>S_027</th><td>e22   </td><td>1w    </td><td>Normal</td></tr>
-	<tr><th scope=row>S_028</th><td>e57   </td><td>1w    </td><td>Normal</td></tr>
-	<tr><th scope=row>S_031</th><td>0eb   </td><td>1w    </td><td>Normal</td></tr>
-	<tr><th scope=row>S_034</th><td>2d7   </td><td>1w    </td><td>Normal</td></tr>
-	<tr><th scope=row>S_036</th><td>751   </td><td>1w    </td><td>Normal</td></tr>
-	<tr><th scope=row>S_038</th><td>d7c   </td><td>1w    </td><td>Normal</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>We can subset it in the same way as we did with the otu_table.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">sample_data</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="n">[</span><span class="s">&quot;S_001&quot;</span><span class="p">,</span><span class="n">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>Patient</th><th scope=col>Time</th><th scope=col>Delivery</th></tr></thead>
-<tbody>
-	<tr><th scope=row>S_001</th><td>e22   </td><td>1m    </td><td>Normal</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">sample_data</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;S_002&quot;</span><span class="p">,</span> <span class="s">&quot;S_150&quot;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Patient&quot;</span><span class="p">,</span> <span class="s">&quot;Time&quot;</span><span class="p">)</span><span class="n">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>Patient</th><th scope=col>Time</th></tr></thead>
-<tbody>
-	<tr><th scope=row>S_002</th><td>e57</td><td>1m </td></tr>
-	<tr><th scope=row>S_150</th><td>c42</td><td>1m </td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="tax_table">tax_table<a class="anchor-link" href="#tax_table">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The tax_table contains the taxonomical annotations of our taxa/ASVs. 
-It can optionally also contain other metadata on our taxa/ASVs.
-We can access it with the tax_table() function.</p>
-<p>Subsetting is done as with the other objects</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">tax_table</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;ASV_1&quot;</span><span class="p">,</span> <span class="s">&quot;ASV_10&quot;</span><span class="p">)</span><span class="n">]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>Kingdom</th><th scope=col>Phylum</th><th scope=col>Class</th><th scope=col>Order</th><th scope=col>Family</th><th scope=col>Genus</th><th scope=col>asv_hash</th></tr></thead>
-<tbody>
-	<tr><th scope=row>ASV_1</th><td>Bacteria                        </td><td>Lentisphaerae                   </td><td>Lentisphaeria                   </td><td>Victivallales                   </td><td>Victivallaceae                  </td><td>Victivallis                     </td><td>445e7db900b2da8cd3545bd36e512f51</td></tr>
-	<tr><th scope=row>ASV_10</th><td>Bacteria                        </td><td>Fusobacteria                    </td><td>Fusobacteriia                   </td><td>Fusobacteriales                 </td><td>Fusobacteriaceae                </td><td>Fusobacterium                   </td><td>2ea17744c7eeab459b7f41d4f9e22894</td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="phy_tree">phy_tree<a class="anchor-link" href="#phy_tree">&#182;</a></h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The phy_tree contains our phylogenetic tree, constructed from an aligment of the 16S rRNA gene sequences of our ASVs. We can access it with the phy_tree() function.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">phy_tree</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model2</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13753,14 +14134,26 @@ We can access it with the tax_table() function.</p>
 
 <div class="output_text output_subarea ">
 <pre>
-Phylogenetic tree with 1428 tips and 1425 internal nodes.
+Call:
+lm(formula = Observed ~ Time + log10(LibSize), data = alpha)
 
-Tip labels:
-	ASV_1, ASV_2, ASV_3, ASV_4, ASV_5, ASV_6, ...
-Node labels:
-	root, , 0.860, 0.887, 0.879, 0.994, ...
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-20.8212  -3.8027   0.0014   3.8647  30.4371 
 
-Rooted; includes branch lengths.</pre>
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)      15.282      6.879   2.221  0.02786 *  
+Time1m           -3.374      1.375  -2.454  0.01531 *  
+Time1y           32.166      1.376  23.379  &lt; 2e-16 ***
+log10(LibSize)    4.358      1.434   3.039  0.00281 ** 
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 6.869 on 146 degrees of freedom
+Multiple R-squared:  0.8486,	Adjusted R-squared:  0.8455 
+F-statistic: 272.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16
+</pre>
 </div>
 
 </div>
@@ -13772,443 +14165,32 @@ Rooted; includes branch lengths.</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>This prints some basic info about our tree, which we can access with the $ notation</p>
+<p>If we want to compare 1 month with 1 year, we can test all pairwise time points, as with the TukeyHSD above. We just need to use another function from the multcomp pacage.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># The 10 first labels:</span>
-<span class="nf">phy_tree</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="o">$</span><span class="n">tip.label[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load package</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">multcomp</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<ol class=list-inline>
-	<li>'ASV_1'</li>
-	<li>'ASV_2'</li>
-	<li>'ASV_3'</li>
-	<li>'ASV_4'</li>
-	<li>'ASV_5'</li>
-	<li>'ASV_6'</li>
-	<li>'ASV_7'</li>
-	<li>'ASV_8'</li>
-	<li>'ASV_9'</li>
-	<li>'ASV_10'</li>
-</ol>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>and we can plot it (<em>cex</em> sets the size of the labels):</p>
-
-</div>
-</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="nf">phy_tree</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-RU5ErkJggg=="
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="refseq">refseq<a class="anchor-link" href="#refseq">&#182;</a></h2><p>refseq contains the actual DNA sequences of our ASVs (or alternatively the reference sequences of OTUs). We can access it with the refseq() function.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">refseq</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Run Tukey contrasts on the time variable on our model2</span>
+<span class="nf">summary</span><span class="p">(</span><span class="nf">glht</span><span class="p">(</span><span class="n">model2</span><span class="p">,</span> <span class="n">linfct</span><span class="o">=</span><span class="nf">mcp</span><span class="p">(</span><span class="n">Time</span><span class="o">=</span><span class="s">&quot;Tukey&quot;</span><span class="p">)))</span>
 </pre></div>
 
     </div>
@@ -14227,19 +14209,23 @@ RU5ErkJggg=="
 
 
 <div class="output_text output_subarea ">
-<pre>  A DNAStringSet instance of length 1428
-       width seq                                            names               
-   [1]   237 TGGCGAGCGTTGTTCGGATTTA...GAAAGACGAAAGCATGGGGAG ASV_1
-   [2]   236 TCACAAGCGTTATCCGGATTTA...GAAGCGCGAAAGCGTGGGTAG ASV_2
-   [3]   236 TCACAAGCGTTATCCGGATTTA...GAAGCGCGAAAGCGTGGGTAG ASV_3
-   [4]   236 TCACAAGCGTTATCCGGATTTA...GAAGCGCGAAAGCGTGGGTAG ASV_4
-   [5]   236 TCACAAGCGTTATCCGGATTTA...GAAGCGCGAAAGCGTGGGTAG ASV_5
-   ...   ... ...
-[1424]   237 GGGCAAGCGTTATCCGGATTTA...GAGGCTCGAAAGCGTGGGGAG ASV_1424
-[1425]   237 GGGCAAGCGTTATCCGGATTTA...GAGGCTCGAAAGCGTGGGGAG ASV_1425
-[1426]   237 GGGCAAGCGTTATCCGGATTTA...GAGGCTCGAAAGCGTGGGGAG ASV_1426
-[1427]   237 GGGCAAGCGTTATCCGGATTTA...GAGGCTCGAAAGCGTGGGGAG ASV_1427
-[1428]   237 GGGCAAGCGTTATCCGGATTTA...GAGGCTCGAAAGCGTGGGGAG ASV_1428</pre>
+<pre>
+	 Simultaneous Tests for General Linear Hypotheses
+
+Multiple Comparisons of Means: Tukey Contrasts
+
+
+Fit: lm(formula = Observed ~ Time + log10(LibSize), data = alpha)
+
+Linear Hypotheses:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+1m - 1w == 0   -3.374      1.375  -2.454   0.0404 *  
+1y - 1w == 0   32.166      1.376  23.379   &lt;0.001 ***
+1y - 1m == 0   35.540      1.374  25.866   &lt;0.001 ***
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+(Adjusted p values reported -- single-step method)
+</pre>
 </div>
 
 </div>
@@ -14251,17 +14237,61 @@ RU5ErkJggg=="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Again, we can subset with the [ ] notation</p>
+<p>This result agrees with our first model; 1 month and 1 week have slightly different richness, and at 1 year the richness is higher.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Repeated-measures-(mixed-effect-model)">Repeated measures (mixed-effect model)<a class="anchor-link" href="#Repeated-measures-(mixed-effect-model)">&#182;</a></h2><p>In this dataset we have repeated measurements from the same patients; we have samples from the same children at 1 week, 1 month, and 1 year. We should therefore take this into account in our statistical model. The best way is to include the subject (child) as a random effect (see details in the Statistics notebook).</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">refseq</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="n">[</span><span class="s">&quot;ASV_1&quot;</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load package</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">nlme</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Define model</span>
+<span class="n">model3</span> <span class="o">&lt;-</span> <span class="nf">lme</span><span class="p">(</span><span class="n">Observed</span> <span class="o">~</span> <span class="n">Time</span> <span class="o">+</span> <span class="nf">log10</span><span class="p">(</span><span class="n">LibSize</span><span class="p">),</span> <span class="n">random</span><span class="o">=~</span><span class="m">1</span><span class="o">|</span><span class="n">Patient</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The lme function runs mixed-effect models. The only difference between our previous model and this, is that we have know added Patient as a random intercept.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model3</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14280,9 +14310,34 @@ RU5ErkJggg=="
 
 
 <div class="output_text output_subarea ">
-<pre>  A DNAStringSet instance of length 1
-    width seq                                               names               
-[1]   237 TGGCGAGCGTTGTTCGGATTTAT...CTGAAAGACGAAAGCATGGGGAG ASV_1</pre>
+<pre>Linear mixed-effects model fit by REML
+ Data: alpha 
+       AIC      BIC    logLik
+  1000.583 1018.484 -494.2914
+
+Random effects:
+ Formula: ~1 | Patient
+        (Intercept) Residual
+StdDev:    2.717138 6.308815
+
+Fixed effects: Observed ~ Time + log10(LibSize) 
+                  Value Std.Error DF   t-value p-value
+(Intercept)    16.21992  6.793048 97  2.387724  0.0189
+Time1m         -3.38128  1.262918 97 -2.677359  0.0087
+Time1y         32.15556  1.263893 97 25.441683  0.0000
+log10(LibSize)  4.16028  1.415507 97  2.939075  0.0041
+ Correlation: 
+               (Intr) Time1m Time1y
+Time1m         -0.135              
+Time1y         -0.150  0.501       
+log10(LibSize) -0.990  0.043  0.058
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.81668398 -0.56047080  0.05244971  0.48680848  4.15815919 
+
+Number of Observations: 150
+Number of Groups: 50 </pre>
 </div>
 
 </div>
@@ -14294,48 +14349,10 @@ RU5ErkJggg=="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>To see the entire sequence, convert it to a string ("character" in R jargon)</p>
+<p>We can see that the results are almost similar to our first model (see under Fixed Effects:). Under Random Effects in the output we can see that the standard deviation of the intercept is 2.7. This number tells us that there is some variation in richness across children, independent of Time and Library Size.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">as.character</span><span class="p">(</span><span class="nf">refseq</span><span class="p">(</span><span class="n">phy</span><span class="p">)</span><span class="nf">[c</span><span class="p">(</span><span class="s">&quot;ASV_10&quot;</span><span class="p">,</span> <span class="s">&quot;ASV_2&quot;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<dl class=dl-horizontal>
-	<dt>ASV_10</dt>
-		<dd>'TCACAAGCGTTATCCGGATTTATTGGGCGTAAAGCGCGTCTAGGTGGTTATGTAAGTCTGATGTGAAAATGCAGGGCTCAACTCTGTATTGCGTTGGAAACTGCATGACTAGAGTACTGGAGAGGTAAGCGGAACTACAAGTGTAGAGGTGAAATTCGTAGATATTTGTAGGAATGCCGATGGGGAAGCCAGCTTACTGGACAGATACTGACGCTAAAGCGCGAAAGCGTGGGTAG'</dd>
-	<dt>ASV_2</dt>
-		<dd>'TCACAAGCGTTATCCGGATTTATTGGGCGTAAAGCGCGTCTAGGTGGTTATATAAGTCTGATGTGAAAATGCAGGGCTCAACTCTGTATTGCGTTGGAAACTGTGTAACTAGAGTACTGGAGAGGTAAGCGGAACTACAAGTGTAGAGGTGAAATTCGTAGATATTTGTAGGAATGCCGATGGGGAAGCCAGCTTACTGGACAGATACTGACGCTGAAGCGCGAAAGCGTGGGTAG'</dd>
-</dl>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
