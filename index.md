@@ -7,7 +7,7 @@ This is a collection of notebooks describing the basic analysis workflow for a 1
 * [Preperation of reads and databases - Work in progress](html/preparation.html)
 * [DADA2 - Work in progress](html/dada2.html)
 * [The phyloseq object](html/phyloseq_object.html)
-* [Phyloseq operations - Work in progress](html/phyloseq_operations.html)
+* [Phyloseq operations](html/phyloseq_operations.html)
 * [Compositionality and rarefaction - Work in progress](html/compositionality.html)
 * [Alpha diversity](html/alpha.html)
 * [Beta diversity - Work in progress](html/beta.html)
