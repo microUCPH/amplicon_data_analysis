@@ -3,7 +3,7 @@
 This is a collection of notebooks describing the basic analysis workflow for a 16S rRNA gene amplicon sequencing project - from raw reads to statistics and plots. It is intended for beginners, and therefore includes an introductory section on the R programming language and statistics.
 
 * [Intro to R - Work in progress](html/r_intro.html)
-* [Statistics 101 - Work in progress](html/stats.html)
+* [Statistics 101](html/stats.html)
 * [Preperation of reads and databases - Work in progress](html/preparation.html)
 * [DADA2 - Work in progress](html/dada2.html)
 * [The phyloseq object](html/phyloseq_object.html)
