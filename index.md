@@ -4,7 +4,7 @@ This is a collection of notebooks describing the basic analysis workflow for a 1
 
 * [Intro to R - Work in progress](html/r_intro.html)
 * [Statistics 101](html/stats.html)
-* [Preperation of reads and databases - Work in progress](html/preparation.html)
+* [Preperation of reads and databases](html/prepare.html)
 * [DADA2 - Work in progress](html/dada2.html)
 * [The phyloseq object](html/phyloseq_object.html)
 * [Phyloseq operations](html/phyloseq_operations.html)
