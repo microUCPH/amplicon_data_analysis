@@ -8,7 +8,7 @@ This is a collection of notebooks describing the basic analysis workflow for a 1
 * [DADA2 - Work in progress](html/dada2.html)
 * [The phyloseq object](html/phyloseq_object.html)
 * [Phyloseq operations](html/phyloseq_operations.html)
-* [Compositionality and rarefaction - Work in progress](html/compositionality.html)
+* [Compositionality and rarefaction](html/compositionality.html)
 * [Alpha diversity](html/alpha.html)
 * [Beta diversity - Work in progress](html/beta.html)
 * [Differential abundance - Work in progress](html/diff_abund.html)
