@@ -5,6 +5,7 @@ This is a collection of notebooks describing the basic analysis workflow for a 1
 Only for KU students:
 * [Intro to ERDA and RStudio](html/Rstudio.html)
 
+Analysis workflow:
 * [Intro to R programming language](html/R.html)
 * [Statistics 101](html/stats.html)
 * [Statistics 102](html/stats2.html)
@@ -18,10 +19,12 @@ Only for KU students:
 * [Differential abundance - Work in progress](html/diff_abund.html)
 * [Extra plotting with ggplot2 - Work in progress](html/ggplot2.html)
 
-### Workflows
+### Extra analysis
 This section contains notebooks for more specific and/or advanced data preparations or analyses. 
+* [Venn diagram of shared taxa](html/venn.html)
+* [PERMANOVA effect sizes](html/omegasq.html)
 
-### Extra
+### Info
 * [Software versions](html/versions.html)
 
 
