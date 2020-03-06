@@ -13086,7 +13086,19 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Look-at-reads">Look at reads<a class="anchor-link" href="#Look-at-reads">&#182;</a></h2><p>We have 2 samples as an example dataset in a directory called Seqs. For each sample we have two fastq files, one for the forward reads (_1), and one for the reverse reads (_2)</p>
+<h1 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h1><ul>
+<li><a href="#reads">Look at reads</a></li>
+<li><a href="#primers">Remove primers</a></li>
+<li><a href="#tax">Taxonomic database</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Look-at-reads">Look at reads<a class="anchor" id="reads" /><a class="anchor-link" href="#Look-at-reads">&#182;</a></h2><p>We have 2 samples as an example dataset in a directory called Seqs. For each sample we have two fastq files, one for the forward reads (_1), and one for the reverse reads (_2)</p>
 
 </div>
 </div>
@@ -13186,7 +13198,7 @@ A1&gt;AABDDFBAAEEGEECEGGCHFHA1AF/111AA//A/BE//2D00//B1F2D@1//EE?/AG1E//&gt;EE?EC
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Remove-primers">Remove primers<a class="anchor-link" href="#Remove-primers">&#182;</a></h2><p>First step of preparation is to remove the primers from the sequences, as these give problems in the downstream analysis. Furthermore, if we cannot find the primer sequence in a read it is likely noisy and should be removed. Luckly there is a tool which does all this for us, cutadapt:</p>
+<h2 id="Remove-primers">Remove primers<a class="anchor" id="primers" /><a class="anchor-link" href="#Remove-primers">&#182;</a></h2><p>First step of preparation is to remove the primers from the sequences, as these give problems in the downstream analysis. Furthermore, if we cannot find the primer sequence in a read it is likely noisy and should be removed. Luckly there is a tool which does all this for us, cutadapt:</p>
 
 </div>
 </div>
@@ -13303,7 +13315,7 @@ SRX2198606
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Taxonomic-database">Taxonomic database<a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a></p>
+<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a></p>
 
 </div>
 </div>

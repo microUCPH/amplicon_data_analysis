@@ -13107,7 +13107,21 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Observed-richness">Observed richness<a class="anchor-link" href="#Observed-richness">&#182;</a></h2><p>Richness is the number of different taxa in a community. Observed richness is therefore simply the observed number of different taxa in a sample, the simplest alpha diversity metric.</p>
+<h1 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h1><ul>
+<li><a href="#o">Observed richness</a></li>
+<li><a href="#s">Shannon diversity</a></li>
+<li><a href="#pd">Phylogenetic diversity</a></li>
+<li><a href="#plot">Plotting</a></li>
+<li><a href="#stats">Statistics</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Observed-richness">Observed richness<a class="anchor" id="o" /><a class="anchor-link" href="#Observed-richness">&#182;</a></h2><p>Richness is the number of different taxa in a community. Observed richness is therefore simply the observed number of different taxa in a sample, the simplest alpha diversity metric.</p>
 <p>In R:</p>
 
 </div>
@@ -13223,7 +13237,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Shannon-diversity">Shannon diversity<a class="anchor-link" href="#Shannon-diversity">&#182;</a></h2><p>Shannon diversity (AKA Shannon entropy, AKA Shannon index), is a widely used alpha diversity metric. This metric is a combination of the richness (see above) and the evenness in sample, where the evenness is a measure of how equally abundant different taxa are in a sample. If all taxa have the same abundance then evenness is high, if one or few taxa dominates evenness is low.</p>
+<h2 id="Shannon-diversity">Shannon diversity<a class="anchor" id="s" /><a class="anchor-link" href="#Shannon-diversity">&#182;</a></h2><p>Shannon diversity (AKA Shannon entropy, AKA Shannon index), is a widely used alpha diversity metric. This metric is a combination of the richness (see above) and the evenness in sample, where the evenness is a measure of how equally abundant different taxa are in a sample. If all taxa have the same abundance then evenness is high, if one or few taxa dominates evenness is low.</p>
 <p>Shannon diversity is calcualted as:
 \begin{equation*}
 H' = - \sum_{i=1}^R p_i ln \left( p_i \right) 
@@ -13401,7 +13415,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample through the shortest path in the tree.</p>
+<h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor" id="pd" /><a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample through the shortest path in the tree.</p>
 <p>In the tree below, the cyan circles marks the taxa present in a given sample. The red line is the path connecting these taxa (usually the root is also included if present). Faith's PD of this sample is then the branch length spanned by the red path; that is, all the red horizontal lines.</p>
 
 </div>
@@ -13464,7 +13478,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Plotting">Plotting<a class="anchor-link" href="#Plotting">&#182;</a></h1><p>We will use the ggplot2 package for plotting.</p>
+<h1 id="Plotting">Plotting<a class="anchor" id="plot" /><a class="anchor-link" href="#Plotting">&#182;</a></h1><p>We will use the ggplot2 package for plotting.</p>
 
 </div>
 </div>
@@ -13575,7 +13589,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Statistics">Statistics<a class="anchor-link" href="#Statistics">&#182;</a></h1><p>From the plots above it appears as the richness is higher at 1 year (1y) than the other time points. Can this be supported statistically?</p>
+<h1 id="Statistics">Statistics<a class="anchor" id="stats" /><a class="anchor-link" href="#Statistics">&#182;</a></h1><p>From the plots above it appears as the richness is higher at 1 year (1y) than the other time points. Can this be supported statistically?</p>
 
 </div>
 </div>
@@ -13821,19 +13835,6 @@ Furthermore, the log10(LibSize) variable shows that every time the library size 
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div>
     </div>
   </div>
