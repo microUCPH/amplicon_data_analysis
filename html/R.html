@@ -13078,7 +13078,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="R---statistical-programming">R - statistical programming<a class="anchor-link" href="#R---statistical-programming">&#182;</a></h1><p>This is a short introduction to the basic syntax of the R programming language. This notebook contains the basics for understanding most of the amplicon data analysis workflow.</p>
-<h3 id="Install">Install<a class="anchor-link" href="#Install">&#182;</a></h3><p>It is advised to run RStudio through <a href="http://www.erda.dk/">ERDA</a>, where all the packages are already pre-installed. However, if you want to run R locally on your laptop, you have to install it first.</p>
+<h3 id="Install">Install<a class="anchor-link" href="#Install">&#182;</a></h3><p>If you are a KU student, it is advised to run RStudio through <a href="http://www.erda.dk/">ERDA</a>, where all the packages are already pre-installed. However, if you want to run R locally on your laptop, you have to install it first.</p>
 <ul>
 <li><a href="https://www.r-project.org/">First install R</a></li>
 <li><a href="https://rstudio.com/products/rstudio/download/">Then install RStudio</a></li>
@@ -13116,7 +13116,7 @@ div#notebook {
 <h2 id="Working-directory">Working directory<a class="anchor-link" href="#Working-directory">&#182;</a></h2><p>The working directory is the place where R will read and write files/plots to and from.</p>
 <p>It is easiest if this is the same place as where the script is located.</p>
 <p>In Rstudio, set this by clicking "Session" then "Set Working Directory" then "To Source File Location".</p>
-<p>Now R knows where to find datafiles and save plots.</p>
+<p>Now R looks for datafiles and saves plots in the same location as where your script is located.</p>
 
 </div>
 </div>
@@ -15170,8 +15170,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages">Packages<a class="anchor-link" href="#Packages">&#182;</a></h2><p>Load packages</p>
-<p>These contain convenient functions.</p>
+<h2 id="Packages">Packages<a class="anchor-link" href="#Packages">&#182;</a></h2><h4 id="Load-packages">Load packages<a class="anchor-link" href="#Load-packages">&#182;</a></h4><p>These contain convenient functions.</p>
 <p>When library(package name) is run, we can use functions from the package</p>
 <p>It has to be run each time we start up R</p>
 
@@ -15213,7 +15212,37 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>Make similar scatterplot as above, but with ggplot2</p>
+<h4 id="Install-packages">Install packages<a class="anchor-link" href="#Install-packages">&#182;</a></h4><p>Packages are usually installed with install.packages("PackageName"). This only has to be done one time.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;car&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above only works for packages on <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">CRAN</a>. However, some bioinformatics packages are on <a href="https://www.bioconductor.org/install/">BioConductor</a>, which has to be installed differently (see link). Some packages are only on GitHub and has to be installed through there (see for example <a href="https://github.com/Russel88/MicEco">this one</a>).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>ggplot2 is a great packages for making neat plots. There is a notebook on the details of ggplot2, but below is described how to make a simple plot.</p>
+<p>Let's make a similar scatterplot as above, but with ggplot2</p>
 <p>A ggplot is always made by starting with the ggplot(data, aes(...)) line</p>
 <ul>
 <li>data is a data.frame that contains the data to plot.</li>
