@@ -10,7 +10,7 @@ Analysis workflow:
 * [Statistics 101](html/stats.html)
 * [Statistics 102](html/stats2.html)
 * [Preperation of reads and databases](html/prepare.html)
-* [DADA2 - Work in progress](html/dada2.html)
+* [DADA2 - ASV inference](html/dada2.html)
 * [The phyloseq object](html/phyloseq_object.html)
 * [Phyloseq operations](html/phyloseq_operations.html)
 * [Compositionality and rarefaction](html/compositionality.html)
