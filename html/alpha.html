@@ -13084,14 +13084,14 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Alpha diversity is the diversity <strong>within</strong> a sample/community. There are tons of different metrics for estimating alpha diversity, and only a small subset of the metrics will be presented here. <strong>It is crucial that the dataset is not trimmed/pruned prior to calculating the alpha diversity, as many metrics are sensitive to singletons (ASVs only matched by 1 read).</strong></p>
+<p>Alpha diversity is the diversity <strong>within</strong> a sample/community. There are tons of different metrics for estimating alpha diversity, and only a small subset of the metrics will be presented here. <strong>It is crucial that the dataset is not trimmed/pruned prior to calculating the alpha diversity.</strong></p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load phyloseq object and phyloseq package</span>
@@ -13100,24 +13100,6 @@ div#notebook {
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Warning message:
-&#34;package &#39;phyloseq&#39; was built under R version 3.6.2&#34;</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13133,7 +13115,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_rich</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="s">&quot;Observed&quot;</span><span class="p">)</span>
@@ -13185,7 +13167,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">obs_rich</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">))</span>
@@ -13248,6 +13230,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 \end{equation*}</p>
 <p>where <em>p</em><sub>i</sub> is the relative abundance of taxa <em>i</em>. <em>ln</em> is the natural log, and R is the richness.</p>
 <p>It was developed as a measure of information, and can be thought of as the uncertainty in whether two random individuals in a sample/community are similar. Therefore, the more different taxa are observed in a sample, and the more even their abundance is, the higher is the Shannon diversity.</p>
+<h5 id="Effective-number-of-taxa">Effective number of taxa<a class="anchor-link" href="#Effective-number-of-taxa">&#182;</a></h5><p>From the Shannon diversity we can calculate the effective number of taxa, also called true diversity of order 1 (<sup>1</sup>D), as follows: <sup>1</sup>D=exp(H'). The <sup>1</sup>D can be seen as an abundance-corrected observed richness, based on the assumption that microbial communities with high evenness are effectively more diverse than communities with low evenness due to a supposed higher stability. The observed richness is true diversity of order 0 (<sup>0</sup>D), since it is ignoring relative abundance altogether. There are diveristy indices of higher orders than 1, which weigh the relative abundance more than Shannon diversity, effectively weighing the common (as opposed to the rare) taxa even more.</p>
 <p>In R:</p>
 
 </div>
@@ -13255,7 +13238,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">shannon</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="s">&quot;Shannon&quot;</span><span class="p">)</span>
@@ -13307,7 +13290,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">shannon</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy</span><span class="p">),</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
@@ -13363,6 +13346,61 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Calculate effective number of taxa:</strong></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">D1</span> <span class="o">=</span> <span class="nf">exp</span><span class="p">(</span><span class="n">shannon</span><span class="p">)</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">D1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<dl class=dl-horizontal>
+	<dt>S_027</dt>
+		<dd>12.8230562611374</dd>
+	<dt>S_028</dt>
+		<dd>4.37833768673102</dd>
+	<dt>S_031</dt>
+		<dd>2.52674777611238</dd>
+	<dt>S_034</dt>
+		<dd>6.17992373673337</dd>
+	<dt>S_036</dt>
+		<dd>3.06695780512743</dd>
+	<dt>S_038</dt>
+		<dd>6.11156672600528</dd>
+</dl>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample through the shortest path in the tree.</p>
 <p>In the tree below, the cyan circles marks the taxa present in a given sample. The red line is the path connecting these taxa (usually the root is also included if present). Faith's PD of this sample is then the branch length spanned by the red path; that is, all the red horizontal lines.</p>
 
@@ -13387,7 +13425,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># We need the picante package</span>
@@ -13401,7 +13439,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># PD: Phylogenetic Diversity</span>
@@ -13411,36 +13449,6 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th></th><th scope=col>PD</th><th scope=col>SR</th></tr></thead>
-<tbody>
-	<tr><th scope=row>S_027</th><td>5.790207</td><td>41      </td></tr>
-	<tr><th scope=row>S_028</th><td>6.555121</td><td>42      </td></tr>
-	<tr><th scope=row>S_031</th><td>6.628393</td><td>38      </td></tr>
-	<tr><th scope=row>S_034</th><td>4.683574</td><td>34      </td></tr>
-	<tr><th scope=row>S_036</th><td>5.695487</td><td>40      </td></tr>
-	<tr><th scope=row>S_038</th><td>6.017600</td><td>36      </td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13463,7 +13471,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
@@ -13484,7 +13492,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">alpha</span> <span class="o">&lt;-</span> <span class="nf">estimate_richness</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">measures</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Observed&quot;</span><span class="p">,</span> <span class="s">&quot;Shannon&quot;</span><span class="p">))</span>
@@ -13506,7 +13514,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">head</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
@@ -13516,40 +13524,10 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<table>
-<thead><tr><th scope=col>Row.names</th><th scope=col>Observed</th><th scope=col>Shannon</th><th scope=col>Patient</th><th scope=col>Time</th><th scope=col>Delivery</th></tr></thead>
-<tbody>
-	<tr><td>S_001    </td><td>32       </td><td>0.9229701</td><td>e22      </td><td>1m       </td><td>Normal   </td></tr>
-	<tr><td>S_002    </td><td>29       </td><td>0.9936260</td><td>e57      </td><td>1m       </td><td>Normal   </td></tr>
-	<tr><td>S_003    </td><td>39       </td><td>2.3707236</td><td>389      </td><td>1m       </td><td>Normal   </td></tr>
-	<tr><td>S_004    </td><td>29       </td><td>0.2549708</td><td>87c      </td><td>1m       </td><td>Sectio   </td></tr>
-	<tr><td>S_005    </td><td>29       </td><td>2.0501637</td><td>d7c      </td><td>1m       </td><td>Normal   </td></tr>
-	<tr><td>S_006    </td><td>31       </td><td>2.2676366</td><td>5ef      </td><td>1m       </td><td>Normal   </td></tr>
-</tbody>
-</table>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Define plot</span>
@@ -13564,160 +13542,6 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAANlBMVEUAAAAzMzNNTU1oaGh8
-fHyMjIyampqnp6eysrK9vb3Hx8fQ0NDZ2dnh4eHp6enr6+vw8PD////agy6EAAAACXBIWXMA
-ABJ0AAASdAHeZh94AAAbkElEQVR4nO2djVYbx7oFJwJM/BMuev+XvcgmxCbIB5Tp1u5dVWtF
-tnOO1/pK0xXNtEZiO4rIf2a79gAiDRiSyA4YksgOGJLIDhiSyA4YksgOGJLIDhiSyA7815D+
-L4y4gQYD803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhv
-mq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+a
-riG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpvuxkA4/Hp/4+VdDSgDm
-m6b7oZCe+3l++OcPhhQAzDdN9yMhHY6GlAvMN033Q69IhhQMzDdNd5eQ/jjxjr8u0o+vSGsD
-803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zTdC0LyzoZIWL7btl17hF/5WEi/49omr4kb
-aDAo321LK8mQWiD5bltcSYbUAsnXkCYSN9BgSL6GNJG4gQaD8o3ryJBqYPmmdWRINcB803QN
-qQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2p
-BZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakF
-mG+ariG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWY
-b5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhv
-mq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+a
-riG1APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5qu
-IbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4h
-tQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1
-APNN0zWkFmC+abqG1ALMN03XkFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA
-803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zTd/UISkaOvSKsD803TNaQWYL5puobUAsw3
-TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN
-15BagPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALMN03X
-kFqA+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQ
-WoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15Ba
-gPmm6RpSCzDfNF1DagHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALMN03XkFqA
-+abpGlILMN80XUNqAeabpmtILcB803QNqQWYb5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5
-pukaUgss323brj3CrxhSCyjfbUsryZBaIPluW1xJhtQCydeQJhI30GBIvoY0kbiBBoPyjevI
-kGpg+aZ1ZEg1wHzTdA2pBZhvmq4htQDzTdM1pBZgvmm6htQCzDdN15BagPmm6RpSCzDfNF1D
-agHmm6ZrSC3AfNN0DakFmG+ariG1APNN0zWkFmC+abqG1ALL15tWpxE30GBQvn6MYh5xAw2G
-5OsH+yYSN9BgSL6GNJG4gQZD8jWkicQNNBiUb1xHhlQDyzetI0OqAeabpmtILcB803QNqQWY
-b5quIbUA803TNaQWYL5puobUAsw3TdeQWoD5pukaUgsw3zRdQ2oB5puma0gtwHzTdC8J6fDE
-z78aUgIw3zTdC0I6PD8cXv5gSAHAfNN0DakFmG+ariG1APNN090lpD9OvPevi1Tz4c0GX5Gi
-gPmm6V4Qkqd2kcB803QNqQWYb5quIbUA803TNaQWYL5puheE5J0NkcB803QvCeltrm3ymriB
-BsPy9VuEphE30GBQvn6v3TziBhoMyddvWp1I3ECDIfka0kTiBhoMydeQJhI30GBQvnEdGVIN
-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
-alwNozwYAAAAAElFTkSuQmCC"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13729,7 +13553,7 @@ alwNozwYAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Define plot</span>
@@ -13744,185 +13568,6 @@ alwNozwYAAAAAElFTkSuQmCC"
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-DGnGVdvCPDPzVGUY0oyrtuUjZ9763ySexbR7biKGNOOqbflQSNNOsR7IMxvSjKu2xZAAGNKM
-q7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY
-0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQABjSjKu2xZAAGNKMq7bFkAAY0oyrtsWQ
-ABjSjKu2xZAAGNKMq7bFkAAY0qurLpHV76VtQZ7ZkNaCdp4DzFOdBnlmQ1oL2nkOME91GuSZ
-DWktaOc5wDzVaZBnNqS1oJ3nAPNUp0Ge2ZDWgnaeA8xTnQZ5ZkNaC9p5DjBPdRrkmQ1pLWjn
-OcA81WmQZzaktaCd58DWT4GdxdZ32t8wpLWgnefA1k2cxdZ32t8wpLWgnefA1k2cxdZ32t8w
-pLWgnecA81SnQZ7ZkNaCdp4DzFOdBnlmQ1oL2nkOME91GuSZDWktaOc5wDzVaZBnNqS1oJ3n
-APNUp0Ge2ZDWgnaeA8xTnQZ5ZkNaC9p5DjBPdRrkmQ1pLWjnOcA81WmQZzaktaCd5wDzVKdB
-ntmQ1oJ2ngPMU50GeWZDWgvaeQ4wT3Ua5JkNaS1o5znAPNVpkGc2pLWgnecA81SnQZ7ZkNaC
-dp4DzFOdBnlmQ1oL2nkOME91GuSZDWktaOc5wDzVaZBnNqS1oJ3nAPNUp0GeuXFIP1jQznMA
-Oco3YN6TMHyPtC7MU50GeebG75E+eP1saOc5wDzVaZBnNqS1oJ3nAPNUp0Ge2ZDWgnaeA8xT
-nQZ5ZkNaC9p5DjBPdRrkmQ1pLWjnOcA81WmQZzaktaCd58DWn+vxLLa+0/6GIa0F7TzVhPka
-0lrQzlNNmK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQ
-zlNNmK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNN
-mK8hrQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8h
-rQXtPNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXt
-PNWE+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE
-+RrSWtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrS
-WtDOU02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDO
-U02YryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDOU02Y
-ryGtBe081YT5GtJa0M5TTZivIa0F7TzVhPka0lrQzlNNmK8hrQXtPNWE+RrSWtDu6WrCfGm6
-htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6
-htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6
-htSFMF+ariF1IcyXpmtIXQjzpekaUhfCfGm6htSFMF+ariF1IcyXpntOSPtH/vz+9S0xoN3T
-1YT50nTPCGn/65v9y09e3RID2j1dTZgvTdeQuhDmS9M99+9IhkQjzJemOyWkT8/8EInlzJD2
-D75HghHmS9M1pC6E+dJ0zwtpv/zm1S0xoN3T1YT50nTPCmn/+1tDohDmS9M96wnZP74zJAph
-vjTdc55H2v96SYOvbCAR5kvT9bV2XQjzpelODEkkmGkh0aC9h6wmzJera0iXTZgvV9eQLpsw
-X65ut5BENsGQRCZgSCITMCSRCRiSyAQMSWQCfULav/1bOhGm+0A3bhPSnn0/zyZM9wFv3CWk
-Pfz/sCYTpvvAN+4S0ut/B8++1yfwy/L537Ts4f9vPYeXP2DkH26/kPZ/3OON+fVZb1++2fY0
-a2BI6/D7M1jumXf1XPZ/+aY3L55IV0O6UAyJRbuQfn9015vQkLB/toZ0oRgSi2Yhgf82OhlD
-YmFIF0pqSFTTPiFJBoYkMgFDEvkw2NdwGJLIBAxJZAKGJDIBQxKZgCGJTMCQRCZgSEh2Lzz9
-+Kwb+PNnd9QHjftgSEgmh3TWTch78B7GMnH9hlSO9zCW/9b/673Sze7m4f5qd/Pz8Zd+ft7t
-Pv/84zfe7K7vn354//Q/3L9cdH+z298e3r9tYZCEdzCWZUg3jzF8vXr85vPjL+2f0rj6/Rsf
-89ntH8P6+fw/PP3ocNHzT28NaQW8g7EsQ/r88PWpia9PP/vy+IOH293dy2+8/vlwffi164fD
-jw4XPf763W7vh3Yr4D2MZRnS/dM3v97VXD3/L48f6v33G/55/KDu6T3U1dNve/7Ry0UPZz9e
-Ie/Be7hcatIAAADLSURBVBjLq78j/fHN70f0/viNv4P570evf10K8R7GYkiXhPcwluMhXe1e
-/cbnD+iu//+h3eJyqcR7GMvxkG6fHk74+lTOr99w/fDzevfl/w82LC6XSryHsRwP6fAo99ND
-DL9+w/XTg94P/3/4+/flvkaoGEPCcjyk5+ddr7///o3314enYV8/Ifvf5XeGVI0hXT5+4AbA
-P4PLx5AA+Gdw+RgSAP8MLh9DAuCfgcgEDElkAoYkMgFDEpmAIYlMwJBEJmBIIhMwJJEJ/Atk
-o8dJwecVJAAAAABJRU5ErkJggg=="
->
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -13947,7 +13592,7 @@ o8dJwecVJAAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">model</span> <span class="o">&lt;-</span> <span class="nf">aov</span><span class="p">(</span><span class="n">Observed</span> <span class="o">~</span> <span class="n">Time</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">)</span>
@@ -13968,37 +13613,13 @@ o8dJwecVJAAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>             Df Sum Sq Mean Sq F value Pr(&gt;F)    
-Time          2  38192   19096   383.2 &lt;2e-16 ***
-Residuals   147   7325      50                   
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14013,43 +13634,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>  Tukey multiple comparisons of means
-    95% family-wise confidence level
-
-Fit: aov(formula = Observed ~ Time, data = alpha)
-
-$Time
-       diff      lwr      upr     p adj
-1m-1w -3.54 -6.88272 -0.19728 0.0351608
-1y-1w 31.94 28.59728 35.28272 0.0000000
-1y-1m 35.48 32.13728 38.82272 0.0000000
-</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14073,7 +13664,7 @@ $Time
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># First we include the library size in our &#39;alpha&#39; data.frame</span>
@@ -14088,7 +13679,7 @@ $Time
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Then define the new model</span>
@@ -14111,53 +13702,13 @@ Furthermore, the log10(LibSize) variable shows that every time the library size 
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model2</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>
-Call:
-lm(formula = Observed ~ Time + log10(LibSize), data = alpha)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--20.8212  -3.8027   0.0014   3.8647  30.4371 
-
-Coefficients:
-               Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)      15.282      6.879   2.221  0.02786 *  
-Time1m           -3.374      1.375  -2.454  0.01531 *  
-Time1y           32.166      1.376  23.379  &lt; 2e-16 ***
-log10(LibSize)    4.358      1.434   3.039  0.00281 ** 
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-
-Residual standard error: 6.869 on 146 degrees of freedom
-Multiple R-squared:  0.8486,	Adjusted R-squared:  0.8455 
-F-statistic: 272.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16
-</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14172,7 +13723,7 @@ F-statistic: 272.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load package</span>
@@ -14186,7 +13737,7 @@ F-statistic: 272.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Run Tukey contrasts on the time variable on our model2</span>
@@ -14194,42 +13745,6 @@ F-statistic: 272.9 on 3 and 146 DF,  p-value: &lt; 2.2e-16
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>
-	 Simultaneous Tests for General Linear Hypotheses
-
-Multiple Comparisons of Means: Tukey Contrasts
-
-
-Fit: lm(formula = Observed ~ Time + log10(LibSize), data = alpha)
-
-Linear Hypotheses:
-             Estimate Std. Error t value Pr(&gt;|t|)    
-1m - 1w == 0   -3.374      1.375  -2.454   0.0404 *  
-1y - 1w == 0   32.166      1.376  23.379   &lt;0.001 ***
-1y - 1m == 0   35.540      1.374  25.866   &lt;0.001 ***
----
-Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-(Adjusted p values reported -- single-step method)
-</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -14252,7 +13767,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load package</span>
@@ -14266,7 +13781,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Define model</span>
@@ -14288,60 +13803,13 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">summary</span><span class="p">(</span><span class="n">model3</span><span class="p">)</span>
 </pre></div>
 
     </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>Linear mixed-effects model fit by REML
- Data: alpha 
-       AIC      BIC    logLik
-  1000.583 1018.484 -494.2914
-
-Random effects:
- Formula: ~1 | Patient
-        (Intercept) Residual
-StdDev:    2.717138 6.308815
-
-Fixed effects: Observed ~ Time + log10(LibSize) 
-                  Value Std.Error DF   t-value p-value
-(Intercept)    16.21992  6.793048 97  2.387724  0.0189
-Time1m         -3.38128  1.262918 97 -2.677359  0.0087
-Time1y         32.15556  1.263893 97 25.441683  0.0000
-log10(LibSize)  4.16028  1.415507 97  2.939075  0.0041
- Correlation: 
-               (Intr) Time1m Time1y
-Time1m         -0.135              
-Time1y         -0.150  0.501       
-log10(LibSize) -0.990  0.043  0.058
-
-Standardized Within-Group Residuals:
-        Min          Q1         Med          Q3         Max 
--2.81668398 -0.56047080  0.05244971  0.48680848  4.15815919 
-
-Number of Observations: 150
-Number of Groups: 50 </pre>
-</div>
-
-</div>
-
 </div>
 </div>
 

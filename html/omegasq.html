@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>omega</title>
+<title>omegasq</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PERMANOVA-effect-sizes">PERMANOVA effect sizes<a class="anchor-link" href="#PERMANOVA-effect-sizes">&#182;</a></h1><p>In the typical output of PERMANOVA you get R2 values (also called Eta-squared). These can be interpreted as variance explained. They are calculated from the Sum of Squares for the variables. However, these values can be biased, especially with small sample sizes, and they are not always comparable between variables with different degrees of freedom (dfs), as more dfs give higher Sum of Squares and therefore higher R2 values.</p>
+<h1 id="PERMANOVA-effect-sizes">PERMANOVA effect sizes<a class="anchor-link" href="#PERMANOVA-effect-sizes">&#182;</a></h1><p>In the typical output of PERMANOVA you get R2 values (also called Eta-squared). These can be interpreted as variance explained. They are calculated from the Sum of Squares for the variables. However, these values can be biased, especially with small sample sizes, and they are not always comparable between variables with different degrees of freedom, as more degrees of freedom give higher Sum of Squares and therefore higher R2 values.</p>
 <p>In this notebook we will see how to calculate (partial) Omega-squared values, which are unbiased estimators of effect sizes.  The Omega-squared values can be interpreted as the Eta-squared (R2).</p>
 
 </div>
@@ -13086,7 +13086,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The "partial" in partial Omega-squared is optional, and is way to account for the effects sizes for other variables in the models. It has no effect on models with 1 variable, but is recommended for models with more than 1 variable.</p>
+<p>The "partial" in partial Omega-squared is optional, and is a way to account for the effects sizes for other variables in the models. It has no effect on models with 1 variable, but is recommended for models with more than 1 variable. It is akin to adjusted R2 in a linear model, in that there is a penalty for each added degree of freedom.</p>
 
 </div>
 </div>

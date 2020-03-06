@@ -13077,10 +13077,9 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Compositionality-and-rarefaction">Compositionality and rarefaction<a class="anchor-link" href="#Compositionality-and-rarefaction">&#182;</a></h1><p>Amplicon data is relative, AKA compositional. The number of reads for a given taxa in a given sample is in itself arbitrary and can only be interpreted relative to the rest of the taxa in the sample. Unless you have some quantitative measure on microbial cells for your samples, for example by qPCR, flow cytometry, or an added reference culture, this compositional nature of the data has to be accounted for in the analysis.</p>
+<h1 id="Compositionality-and-rarefaction">Compositionality and rarefaction<a class="anchor-link" href="#Compositionality-and-rarefaction">&#182;</a></h1><p>Amplicon data is relative, AKA compositional. The number of reads for a given taxa in a given sample is in itself arbitrary and can only be interpreted relative to the rest of the taxa in the sample. Unless you have some quantitative estimate on microbial cells for your samples, for example by qPCR, flow cytometry, or an added reference culture in each sample, this compositional nature of the data has to be accounted for in the analysis.</p>
 <p>The issue of varying read depth (AKA library size) in different samples gives rise to two separate problems:</p>
-<h3 id="1)-Abundance-estimation">1) Abundance estimation<a class="anchor-link" href="#1)-Abundance-estimation">&#182;</a></h3><h5 id="1.1)-The-problem-with-relative-data">1.1) The problem with relative data<a class="anchor-link" href="#1.1)-The-problem-with-relative-data">&#182;</a></h5><p>Let's assume 200 reads are assigned to taxa A in a sample 1 and 200 reads are assigned to taxa A in sample 2. Taxa A is not necessarily equally abundant in these two samples, unless the read depth is similar in the two samples. The easy solution to this problem is to normalize (for example divide by) the total read depth of the sample. However, a taxa assigned to 10 out of 1000 reads has a relative abundance of 1%. A taxa assigned to 100 reads out of 10000 reads has a relative abundance of 1%. The first measure is much more prone to noise due to lower counts.</p>
-<h5 id="1.2)-The-problem-with-count-data">1.2) The problem with count data<a class="anchor-link" href="#1.2)-The-problem-with-count-data">&#182;</a></h5><p>Variance increases with the number of read counts (AKA heteroscdasticity), which is a problem for common statistical analysis (see notebook Statistics 101).</p>
+<h3 id="1)-Abundance-estimation">1) Abundance estimation<a class="anchor-link" href="#1)-Abundance-estimation">&#182;</a></h3><p>Let's assume 200 reads are assigned to taxa A in sample 1 and 200 reads are assigned to taxa A in sample 2. Taxa A is not necessarily equally abundant in these two samples, unless the read depth is similar in the two samples. The easy solution to this problem is to normalize (for example divide by) the total read depth of the sample.</p>
 <h3 id="2)-Detection-threshold">2) Detection threshold<a class="anchor-link" href="#2)-Detection-threshold">&#182;</a></h3><p>We will almost never detect all taxa in a given sample; if they are too rare they will go undetected. Samples with higher read depth will be more likely to include the rare taxa. Therefore, especially if we are interested in the presence/absence of certain taxa, varying read depth across samples can have a large impact.</p>
 
 </div>
@@ -13096,10 +13095,10 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load phyloseq object</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Load phyloseq object and packages</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 <span class="nf">load</span><span class="p">(</span><span class="s">&quot;physeq.RData&quot;</span><span class="p">)</span>
@@ -13120,7 +13119,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MicEco</span><span class="p">)</span>
@@ -13131,35 +13130,18 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>  |======================================================================| 100%</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In this plot below, each sample is a line. We do see that most samples seem to reach a platau, however, some are still rising until the end. The lines end at different number of reads due to their varying read depth</p>
+<p>In this plot below, each sample is a line. We see that most samples seem to reach a platau, however, some are still rising until the end. The lines end at different number of reads due to their varying read depth</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">rc_data</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Reads</span><span class="p">,</span> <span class="n">Richness</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">))</span> <span class="o">+</span>
@@ -13605,32 +13587,120 @@ AAAAAElFTkSuQmCC"
 <li>2) Include read depth in statistical analysis</li>
 <li>3) Compositional normalization</li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="1)-Rarefy-data">1) Rarefy data<a class="anchor-link" href="#1)-Rarefy-data">&#182;</a></h3><p>Rarefying data is very popular in the literature and is a way to normalize the data. Basically, you choose a common read depth across all samples. All samples that have fewer reads than this threshold are thrown away. For all samples that have more reads than the threshold you randomly subsample the chosen common read depth (as with the rarefaction curve above).</p>
 <p><strong>Advantages:</strong> Simple. "Solves" both the presence/absence and relative abundance problems stated above.</p>
-<p><strong>Disadvantages:</strong> Removing valuable data. Relative abundances become less precise (as per 1.2 above). Producing false zeroes: After rarefying some taxa are suddenly not present in a sample anymore, because the reads were removed, even though these taxa were actually detected. <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531">There are strong opponents against rarefying data</a> (Disclaimer: Including this author).</p>
-<h3 id="2)-Include-read-depth-in-statistical-analysis">2) Include read depth in statistical analysis<a class="anchor-link" href="#2)-Include-read-depth-in-statistical-analysis">&#182;</a></h3><p>With this method you let the statistical analysis correct for the biases which varying read depth creates. For example, for alpha diversity you would include log10(read depth) in your ANOVA or linear model. For differential abundance there are multiple methods which accounts for read depth without discarding data (See for example the link above, or the notebook Differential abundance).</p>
-<p><strong>Advantanges:</strong> Accurate analyses. Estimate effect of read depth on alpha diversity</p>
-<p><strong>Disadvantages:</strong> Can be more tedious. No simple solution for beta diversity</p>
-<h3 id="3)-Compositional-normalization">3) Compositional normalization<a class="anchor-link" href="#3)-Compositional-normalization">&#182;</a></h3><p>With this method we normalize the data to remove the compositional biases. Here three different methods will be covered:</p>
-<h4 id="3.1)-Total-sum-scaling-(TSS)">3.1) Total sum scaling (TSS)<a class="anchor-link" href="#3.1)-Total-sum-scaling-(TSS)">&#182;</a></h4><p>Simply divide the read count with the total number of reads for the sample.</p>
-<p><strong>Advantanges:</strong> Simple. Log-transformation after TSS often works well for Differential abundance. Works well prior to common beta diversity calculations, e.g. Bray-Curtis or weighted UniFrac.</p>
-<p><strong>Disadvantages:</strong> Does not solve the problem of heteroscedasticity (although log-transformation partially solves this)</p>
-<h4 id="3.2)-Centered-log-ratio-transformation-(CLR)">3.2) Centered log-ratio transformation (CLR)<a class="anchor-link" href="#3.2)-Centered-log-ratio-transformation-(CLR)">&#182;</a></h4><p>A dedicated compositional transformation, which will not be explained in detail here.</p>
-<p><strong>Advantanges:</strong> Normalizes data, such that common statistical analyses tools can be applied.</p>
-<p><strong>Disadvantages:</strong> Does not work well with any zeroes in the dataset, unless pseudocounts are added (change zeroes to an arbitrary small number)</p>
-<h4 id="3.3)-Variance-stabilizing-transformation-(VST)">3.3) Variance stabilizing transformation (VST)<a class="anchor-link" href="#3.3)-Variance-stabilizing-transformation-(VST)">&#182;</a></h4><p>Transformation to solve problem of heteroscedasticity. Used in the DESeq2 method (More on this in the Differential abundance notebook)</p>
-<p><strong>Advantanges:</strong> Normalizes data, such that common statistical analyses tools can be applied.</p>
-<p><strong>Disadvantages:</strong> Does not work well with many zeroes in the dataset, unless pseudocounts are added (change zeroes to an arbitrary small number)</p>
-
+<p><strong>Disadvantages:</strong> Removing valuable data. Relative abundances become less precise. Producing false zeroes: After rarefying some taxa are suddenly not present in a sample anymore, because the reads were removed, even though these taxa were actually detected. <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1003531">There are strong opponents against rarefying data</a> (Disclaimer: Including this author).</p>
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">phy_r</span> <span class="o">&lt;-</span> <span class="nf">rarefy_even_depth</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">sample.size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span> <span class="n">rngseed</span><span class="o">=</span><span class="m">42</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>`set.seed(42)` was used to initialize repeatable random subsampling.
+Please record this for your records so others can reproduce.
+Try `set.seed(42); .Random.seed` for the full vector
+...
+10 samples removedbecause they contained fewer reads than `sample.size`.
+Up to first five removed samples are: 
+
+S_027S_039S_054S_059S_014
+...
+5OTUs were removed because they are no longer 
+present in any sample after random subsampling
+
+...
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="2)-Include-read-depth-in-statistical-analysis">2) Include read depth in statistical analysis<a class="anchor-link" href="#2)-Include-read-depth-in-statistical-analysis">&#182;</a></h3><p>With this method you let the statistical analysis correct for the biases which varying read depth creates. For example, for alpha diversity you would include log10(read depth) in your ANOVA or linear model. For differential abundance there are multiple methods which accounts for read depth without discarding data (See for example the link above, or the notebook Differential abundance).</p>
+<p><strong>Advantanges:</strong> Accurate analyses. Estimate effect of read depth on alpha diversity</p>
+<p><strong>Disadvantages:</strong> Can be more tedious. No simple solution for beta diversity</p>
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4><p>See notebooks on Alpha diversity and Differential Abundance analysis</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="3)-Compositional-normalization">3) Compositional normalization<a class="anchor-link" href="#3)-Compositional-normalization">&#182;</a></h3><p>With this method we normalize the data to remove the compositional biases. Here just two different methods will be covered:</p>
+<h4 id="3.1)-Total-sum-scaling-(TSS)">3.1) Total sum scaling (TSS)<a class="anchor-link" href="#3.1)-Total-sum-scaling-(TSS)">&#182;</a></h4><p>Simply divide the read count with the total number of reads for the sample.</p>
+<p><strong>Advantanges:</strong> Simple. Log-transformation after TSS often works well for Differential abundance. Works well prior to common beta diversity calculations, e.g. Bray-Curtis or weighted UniFrac.</p>
+<p><strong>Disadvantages:</strong> Does not solve the problem of heterogeneity of variance (although log-transformation might solves this).</p>
+<h5 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">phy_r</span> <span class="o">&lt;-</span> <span class="nf">transform_sample_counts</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="3.2)-Centered-log-ratio-transformation-(CLR)">3.2) Centered log-ratio transformation (CLR)<a class="anchor-link" href="#3.2)-Centered-log-ratio-transformation-(CLR)">&#182;</a></h4><p>A dedicated compositional transformation, which uses log-ratio to the geometric mean of the relative abundance.</p>
+<p><strong>Advantanges:</strong> Normalizes data, such that common statistical analyses tools can be applied.</p>
+<p><strong>Disadvantages:</strong> Does not work well with any zeroes in the dataset, unless pseudocounts are added (change zeroes to an arbitrary small number)</p>
+<h5 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h5>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Multiplicative replacement of zeroes:</span>
+<span class="c1"># If there is a 0, insert a 1</span>
+<span class="c1"># All non-zero values are corrected such that log-ratios before and after correction are the same</span>
+<span class="n">phy_zc</span> <span class="o">&lt;-</span> <span class="nf">transform_sample_counts</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="m">0</span><span class="p">)</span><span class="o">*</span><span class="m">1</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">*</span><span class="n">x</span><span class="p">)))</span>
+                                                          
+<span class="c1"># CLR transform</span>
+<span class="n">phy_clr</span> <span class="o">&lt;-</span> <span class="nf">transform_sample_counts</span><span class="p">(</span><span class="n">phy_zc</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="nf">exp</span><span class="p">(</span><span class="nf">mean</span><span class="p">(</span><span class="nf">log</span><span class="p">(</span><span class="n">x</span><span class="p">)))))</span>
 </pre></div>
 
     </div>
