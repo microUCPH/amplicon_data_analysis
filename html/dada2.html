@@ -15089,7 +15089,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">track[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="n">]</span> <span class="o">/</span><span class="n">track[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span> <span class="o">*</span> <span class="m">100</span>
@@ -15151,7 +15151,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">taxa</span> <span class="o">&lt;-</span> <span class="nf">assignTaxonomy</span><span class="p">(</span><span class="n">seqtab.nochim</span><span class="p">,</span> <span class="s">&quot;gtdb_trim.fa.gz&quot;</span><span class="p">)</span>
@@ -15172,7 +15172,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">taxa[1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">]</span>
@@ -15220,10 +15220,10 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Extract sequences (too save them)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Extract sequences (to save them)</span>
 <span class="n">seqs</span> <span class="o">&lt;-</span> <span class="n">Biostrings</span><span class="o">::</span><span class="nf">DNAStringSet</span><span class="p">(</span><span class="nf">getSequences</span><span class="p">(</span><span class="n">seqtab.nochim</span><span class="p">))</span>
 </pre></div>
 
@@ -15234,7 +15234,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># New names</span>
@@ -15248,7 +15248,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Put in the new names for all objects</span>
@@ -15272,7 +15272,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">taxa[1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="n">]</span>
@@ -15328,7 +15328,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">seq.dna</span> <span class="o">&lt;-</span> <span class="nf">as.DNAbin</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span>
@@ -15350,7 +15350,7 @@ Sample 2 - 18660 reads in 1663 unique sequences.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">image</span><span class="p">(</span><span class="n">align</span><span class="p">)</span>
@@ -15989,7 +15989,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[39]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">table</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">seqs</span><span class="p">)))</span>
@@ -16032,7 +16032,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[41]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">names</span><span class="p">(</span><span class="n">seqs</span><span class="p">)</span><span class="nf">[nchar</span><span class="p">(</span><span class="nf">as.character</span><span class="p">(</span><span class="n">seqs</span><span class="p">))</span> <span class="o">&lt;</span> <span class="m">200</span><span class="n">]</span>
@@ -16080,7 +16080,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">taxa</span><span class="nf">[is.na</span><span class="p">(</span><span class="n">taxa[</span><span class="p">,</span> <span class="s">&quot;Phylum&quot;</span><span class="n">]</span><span class="p">),</span> <span class="n">]</span>
@@ -16132,7 +16132,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[44]:</div>
+<div class="prompt input_prompt">In&nbsp;[31]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Get names of bad ASVs</span>
@@ -16151,7 +16151,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
+<div class="prompt input_prompt">In&nbsp;[32]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Redo alignment</span>
@@ -16166,7 +16166,7 @@ ACIBKIBIAAogEoACiASgwM+OX1ZGbjcPkwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[33]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Plot alignment</span>
@@ -16767,7 +16767,7 @@ MBAJBgF+MnP0iW9sTQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># We save the alignment as a fasta file</span>
@@ -16781,7 +16781,7 @@ MBAJBgF+MnP0iW9sTQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[48]:</div>
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># FastTree is also an external software that we run from within R</span>
@@ -16795,7 +16795,7 @@ MBAJBgF+MnP0iW9sTQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[49]:</div>
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Read the tree that FastTree made and plot it</span>
@@ -17181,7 +17181,7 @@ ICEJ0YCEJEQDEpIQDUhIQjQgIQnRgIQkRAP/A7yoTaAIydUIAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="prompt input_prompt">In&nbsp;[37]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">campy_asvs</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">taxa</span><span class="p">)</span><span class="n">[taxa[</span><span class="p">,</span> <span class="s">&quot;Phylum&quot;</span><span class="n">]</span> <span class="o">==</span> <span class="s">&quot;Campylobacterota&quot;</span><span class="n">]</span>
@@ -17194,7 +17194,7 @@ ICEJ0YCEJEQDEpIQDUhIQjQgIQnRgIQkRAP/A7yoTaAIydUIAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[65]:</div>
+<div class="prompt input_prompt">In&nbsp;[38]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Root</span>
@@ -17208,7 +17208,7 @@ ICEJ0YCEJEQDEpIQDUhIQjQgIQnRgIQkRAP/A7yoTaAIydUIAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[66]:</div>
+<div class="prompt input_prompt">In&nbsp;[39]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Plot</span>
@@ -17609,7 +17609,7 @@ SXpS+Ye7AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[71]:</div>
+<div class="prompt input_prompt">In&nbsp;[41]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Read sample data</span>
@@ -17646,6 +17646,132 @@ SRX2198606 Airway       B 20150205
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>If it cannot assign a certain taxonomic level it will write NA in the taxonomy table. NAs are a problem in the later analysis, expecially for tax agglomoration, and we therefore want to replace NAs with the most specific known taxonomic level.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[42]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">taxa</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="nf">apply</span><span class="p">(</span><span class="n">taxa</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> 
+    <span class="nf">if</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="o">&gt;</span><span class="m">0</span><span class="p">){</span>
+        <span class="nf">c</span><span class="p">(</span><span class="n">x[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> 
+          <span class="nf">paste</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">taxa</span><span class="p">)</span><span class="nf">[max</span><span class="p">(</span><span class="nf">which</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="n">]</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="n">x</span><span class="nf">[max</span><span class="p">(</span><span class="nf">which</span><span class="p">(</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">)))</span><span class="n">]</span><span class="p">,</span> <span class="nf">sum</span><span class="p">(</span><span class="nf">is.na</span><span class="p">(</span><span class="n">x</span><span class="p">))),</span> <span class="n">sep</span><span class="o">=</span><span class="s">&quot;_&quot;</span><span class="p">))}</span> 
+    <span class="n">else</span><span class="p">{</span><span class="n">x</span><span class="p">}))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now we have a final taxonomic table:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[43]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">taxa</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<tbody>
+	<tr><th scope=row>59220fa2a44ac51f2cb31b68a2e2ca90</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Genus_Streptococcus                            </td></tr>
+	<tr><th scope=row>a9e6fcda282cc26c0f9df33b908dcc17</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Staphylococcaceae                              </td><td>Staphylococcus                                 </td><td>Genus_Staphylococcus                           </td></tr>
+	<tr><th scope=row>86da44252df24bfdd187eeb0b0839bbc</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Gemellaceae                                    </td><td>Gemella                                        </td><td>Gemella_morbillorum(RS_GCF_900476045.1)        </td></tr>
+	<tr><th scope=row>116baf6accde73ae581dd5712be3ea54</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Mycobacteriales                                </td><td>Mycobacteriaceae                               </td><td>Corynebacterium                                </td><td>Corynebacterium_propinquum(RS_GCF_000375525.1) </td></tr>
+	<tr><th scope=row>c8ddf38e1bd6da7b0195674843f3e5ca</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Micrococcaceae                                 </td><td>Rothia                                         </td><td>Rothia_mucilaginosa(RS_GCF_000175615.1)        </td></tr>
+	<tr><th scope=row>8e07fe4b6e4e60417bc851c2bfb26ace</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Carnobacteriaceae                              </td><td>Family_Carnobacteriaceae                       </td><td>Family_Carnobacteriaceae                       </td></tr>
+	<tr><th scope=row>863d2f1f3be1881e4d81e0c8f25cdb3c</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Phylum_Proteobacteria                          </td><td>Phylum_Proteobacteria                          </td><td>Phylum_Proteobacteria                          </td><td>Phylum_Proteobacteria                          </td><td>Phylum_Proteobacteria                          </td></tr>
+	<tr><th scope=row>5e414eb0c58c2713959cdd8389e2365b</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Burkholderiales                                </td><td>Neisseriaceae                                  </td><td>Neisseria                                      </td><td>Neisseria_perflava(RS_GCF_002847985.1)         </td></tr>
+	<tr><th scope=row>76153252d53e23f38245371c203c8fb0</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Genus_Streptococcus                            </td></tr>
+	<tr><th scope=row>65ad7f40898432867ad5c89c4d00eacd</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Genus_Streptococcus                            </td></tr>
+	<tr><th scope=row>f6d7af2d233c03589964e073f7ef4db9</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Mycobacteriales                                </td><td>Mycobacteriaceae                               </td><td>Corynebacterium                                </td><td>Corynebacterium_sp000478175(RS_GCF_000478175.1)</td></tr>
+	<tr><th scope=row>ed70899ac215395026a1c3682cb32da6</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Gemellaceae                                    </td><td>Gemella                                        </td><td>Gemella_morbillorum(RS_GCF_900476045.1)        </td></tr>
+	<tr><th scope=row>6a41d9bd1a74554f390f368d656ffdfc</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Enterobacterales                               </td><td>Pasteurellaceae                                </td><td>Haemophilus                                    </td><td>Genus_Haemophilus                              </td></tr>
+	<tr><th scope=row>c4db60525fdf82e14915da21b6e5708e</th><td>Bacteria                                       </td><td>Firmicutes_C                                   </td><td>Negativicutes                                  </td><td>Veillonellales                                 </td><td>Veillonellaceae                                </td><td>F0422                                          </td><td>F0422_sp001553345(RS_GCF_001553345.1)          </td></tr>
+	<tr><th scope=row>635e927075bb00379a690569bdcf833b</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Lactobacillaceae                               </td><td>Lactobacillus                                  </td><td>Lactobacillus_crispatus(RS_GCF_002088015.1)    </td></tr>
+	<tr><th scope=row>f2cc0a573c2f0c83dd38af6de05a7b24</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Staphylococcaceae                              </td><td>Staphylococcus                                 </td><td>Genus_Staphylococcus                           </td></tr>
+	<tr><th scope=row>b06b16c1b752f4b54cf5415de45733e9</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Gemellaceae                                    </td><td>Gemella                                        </td><td>Gemella_morbillorum(RS_GCF_900476045.1)        </td></tr>
+	<tr><th scope=row>7779089c2297b45efc17daaef1562eae</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Enterobacterales                               </td><td>Enterobacteriaceae                             </td><td>Escherichia                                    </td><td>Genus_Escherichia                              </td></tr>
+	<tr><th scope=row>b81674dd710957a9892b7d88c73cc3c4</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Staphylococcales                               </td><td>Gemellaceae                                    </td><td>Gemella                                        </td><td>Gemella_morbillorum(RS_GCF_900476045.1)        </td></tr>
+	<tr><th scope=row>97fb36c45da15e52e8eefd3c67e6335c</th><td>Bacteria                                       </td><td>Fusobacteriota                                 </td><td>Fusobacteriia                                  </td><td>Fusobacteriales                                </td><td>Fusobacteriaceae                               </td><td>Fusobacterium                                  </td><td>Fusobacterium_polymorphum(RS_GCF_001457555.1)  </td></tr>
+	<tr><th scope=row>af6d1b0fc47087d746f5170b4dfcaa46</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Enterobacterales                               </td><td>Pasteurellaceae                                </td><td>Aggregatibacter                                </td><td>Aggregatibacter_sp000466335(RS_GCF_000466335.1)</td></tr>
+	<tr><th scope=row>60831b2e8e37bdec3874f46b9949d27b</th><td>Bacteria                                       </td><td>Firmicutes_C                                   </td><td>Negativicutes                                  </td><td>Veillonellales                                 </td><td>Veillonellaceae                                </td><td>Veillonella                                    </td><td>Veillonella_sp002959755(RS_GCF_002959755.1)    </td></tr>
+	<tr><th scope=row>b8a65a71566f4da4100f0c4a9b47ee24</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Mycobacteriales                                </td><td>Mycobacteriaceae                               </td><td>Corynebacterium                                </td><td>Corynebacterium_propinquum(RS_GCF_000375525.1) </td></tr>
+	<tr><th scope=row>b90f71389fce291287f46f3ca2ef0747</th><td>Bacteria                                       </td><td>Fusobacteriota                                 </td><td>Fusobacteriia                                  </td><td>Fusobacteriales                                </td><td>Fusobacteriaceae                               </td><td>Fusobacterium                                  </td><td>Fusobacterium_polymorphum(RS_GCF_001457555.1)  </td></tr>
+	<tr><th scope=row>a8d2b371dd0b05611fe3e3e827b4d1d6</th><td>Bacteria                                       </td><td>Firmicutes_A                                   </td><td>Clostridia                                     </td><td>Clostridiales                                  </td><td>Clostridiaceae                                 </td><td>Clostridium                                    </td><td>Clostridium_paraputrificum(RS_GCF_900447045.1) </td></tr>
+	<tr><th scope=row>f028255e7ec2a25c8ab91b8e1e6d5feb</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Genus_Streptococcus                            </td></tr>
+	<tr><th scope=row>068459b847683936637173828c8a8335</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Pseudomonadales                                </td><td>Moraxellaceae                                  </td><td>Moraxella                                      </td><td>Moraxella_catarrhalis(RS_GCF_001632285.1)      </td></tr>
+	<tr><th scope=row>9a570609b25b41c6b45f1e162321dec9</th><td>Bacteria                                       </td><td>Fusobacteriota                                 </td><td>Fusobacteriia                                  </td><td>Fusobacteriales                                </td><td>Fusobacteriaceae                               </td><td>Fusobacterium                                  </td><td>Fusobacterium_polymorphum(RS_GCF_001457555.1)  </td></tr>
+	<tr><th scope=row>1c9f84095d51d1304c779f26ad67a076</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Aerococcaceae                                  </td><td>Granulicatella                                 </td><td>Granulicatella_elegans(RS_GCF_000162475.2)     </td></tr>
+	<tr><th scope=row>8826e4107a5e521678483364e9c897b6</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Genus_Streptococcus                            </td></tr>
+	<tr><th scope=row>be4a4d8de8e1293a420544443962f6cf</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Micrococcaceae                                 </td><td>Micrococcus                                    </td><td>Micrococcus_luteus(RS_GCF_000023205.1)         </td></tr>
+	<tr><th scope=row>883e949248f928b91fa17e7bfbf88e5e</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Bacteroidales                                  </td><td>Porphyromonadaceae                             </td><td>Porphyromonas                                  </td><td>Genus_Porphyromonas                            </td></tr>
+	<tr><th scope=row>8b229e09e83ac74ff9979d18f1fed6f0</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Burkholderiales                                </td><td>Neisseriaceae                                  </td><td>Neisseria                                      </td><td>Neisseria_perflava(RS_GCF_002847985.1)         </td></tr>
+	<tr><th scope=row>9c27d2d75560598c816a2c8f1373cb66</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Burkholderiales                                </td><td>Neisseriaceae                                  </td><td>Neisseria                                      </td><td>Genus_Neisseria                                </td></tr>
+	<tr><th scope=row>a3ba533e5c624d750c52b6434098f3d9</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Micrococcaceae                                 </td><td>Rothia                                         </td><td>Rothia_mucilaginosa(RS_GCF_000175615.1)        </td></tr>
+	<tr><th scope=row>41a67de3226a694b8afed03b76c8ddc5</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Mycobacteriales                                </td><td>Mycobacteriaceae                               </td><td>Corynebacterium                                </td><td>Corynebacterium_sp000478175(RS_GCF_000478175.1)</td></tr>
+	<tr><th scope=row>5b4de3d47bac1b400e865c5ef0c91ce8</th><td>Bacteria                                       </td><td>Firmicutes_A                                   </td><td>Clostridia                                     </td><td>Class_Clostridia                               </td><td>Class_Clostridia                               </td><td>Class_Clostridia                               </td><td>Class_Clostridia                               </td></tr>
+	<tr><th scope=row>deb7b05edd27bb0738a74a466da225b1</th><td>Bacteria                                       </td><td>Fusobacteriota                                 </td><td>Fusobacteriia                                  </td><td>Fusobacteriales                                </td><td>Fusobacteriaceae                               </td><td>Fusobacterium                                  </td><td>Genus_Fusobacterium                            </td></tr>
+	<tr><th scope=row>a8f1e84066c6cd3198b2da2f99c18d46</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Flavobacteriales                               </td><td>Weeksellaceae                                  </td><td>Chryseobacterium                               </td><td>Genus_Chryseobacterium                         </td></tr>
+	<tr><th scope=row>f35ad08d437446b5ec4d54b8fce1963f</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Enterobacterales                               </td><td>Pasteurellaceae                                </td><td>Aggregatibacter                                </td><td>Genus_Aggregatibacter                          </td></tr>
+	<tr><th scope=row>9628394c60a37190e13a58e5bc5d619d</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Alphaproteobacteria                            </td><td>Sphingomonadales                               </td><td>Sphingomonadaceae                              </td><td>Blastomonas                                    </td><td>Genus_Blastomonas                              </td></tr>
+	<tr><th scope=row>c10698841b8254071a980bb1dd2e7f1c</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Bacteroidales                                  </td><td>Bacteroidaceae                                 </td><td>Prevotella                                     </td><td>Prevotella_fusca(RS_GCF_001262015.1)           </td></tr>
+	<tr><th scope=row>07dc6d4120e600331c45d5c303db9cf2</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Class_Gammaproteobacteria                      </td><td>Class_Gammaproteobacteria                      </td><td>Class_Gammaproteobacteria                      </td><td>Class_Gammaproteobacteria                      </td></tr>
+	<tr><th scope=row>7f053e967026f8d4d193ef56570df5d7</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Bacteroidales                                  </td><td>Bacteroidaceae                                 </td><td>Prevotella                                     </td><td>Prevotella_sp000163055(RS_GCF_000163055.2)     </td></tr>
+	<tr><th scope=row>e3d14ad7a536b525b59ce834747724b4</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Alphaproteobacteria                            </td><td>Rhodobacterales                                </td><td>Rhodobacteraceae                               </td><td>Paracoccus                                     </td><td>Genus_Paracoccus                               </td></tr>
+	<tr><th scope=row>d558cc48cfdadce2de07e6528e8f9dec</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Burkholderiales                                </td><td>Burkholderiaceae                               </td><td>Family_Burkholderiaceae                        </td><td>Family_Burkholderiaceae                        </td></tr>
+	<tr><th scope=row>62c0535f3185014432800dcc769deea9</th><td>Bacteria                                       </td><td>Firmicutes                                     </td><td>Bacilli                                        </td><td>Lactobacillales                                </td><td>Streptococcaceae                               </td><td>Streptococcus                                  </td><td>Streptococcus_salivarius(RS_GCF_000785515.1)   </td></tr>
+	<tr><th scope=row>04bf641b9edbf6aff94573e26c98a671</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Bifidobacteriaceae                             </td><td>Scardovia                                      </td><td>Scardovia_wiggsiae(RS_GCF_000269605.1)         </td></tr>
+	<tr><th scope=row>52aed0212e3860b37fafd2326330cbfc</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Flavobacteriales                               </td><td>Flavobacteriaceae                              </td><td>Capnocytophaga                                 </td><td>Capnocytophaga_leadbetteri(RS_GCF_003054025.1) </td></tr>
+	<tr><th scope=row>793647161405b0c55a674e2a4b8b283b</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Bacteroidales                                  </td><td>Bacteroidaceae                                 </td><td>Prevotella                                     </td><td>Prevotella_conceptionensis(RS_GCF_000312305.1) </td></tr>
+	<tr><th scope=row>237ab206b54232ee0939b84cbe43640a</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Gammaproteobacteria                            </td><td>Enterobacterales                               </td><td>Alteromonadaceae                               </td><td>Rheinheimera                                   </td><td>Rheinheimera_sp001513785(RS_GCF_001513785.1)   </td></tr>
+	<tr><th scope=row>53cac6eb1e12feb79af42bd416242835</th><td>Bacteria                                       </td><td>Campylobacterota                               </td><td>Campylobacteria                                </td><td>Campylobacterales                              </td><td>Campylobacteraceae                             </td><td>Campylobacter_A                                </td><td>Genus_Campylobacter_A                          </td></tr>
+	<tr><th scope=row>8b3a6e686233573da5eed0db44f2fddd</th><td>Bacteria                                       </td><td>Proteobacteria                                 </td><td>Alphaproteobacteria                            </td><td>Sphingomonadales                               </td><td>Sphingomonadaceae                              </td><td>Sphingomonas                                   </td><td>Genus_Sphingomonas                             </td></tr>
+	<tr><th scope=row>1dba26afd5b4b5c8c41147bb753dd538</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Bifidobacteriaceae                             </td><td>Bifidobacterium                                </td><td>Bifidobacterium_saguini(RS_GCF_000741715.1)    </td></tr>
+	<tr><th scope=row>0327fc569806f72ddff578e5a7ab08b4</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Actinomycetaceae                               </td><td>Winkia                                         </td><td>Winkia_sp002849225(RS_GCF_002849225.1)         </td></tr>
+	<tr><th scope=row>487a1c8878a3890f993689934fbfdf8e</th><td>Bacteria                                       </td><td>Actinobacteriota                               </td><td>Actinobacteria                                 </td><td>Actinomycetales                                </td><td>Micrococcaceae                                 </td><td>Rothia                                         </td><td>Rothia_mucilaginosa(RS_GCF_000175615.1)        </td></tr>
+	<tr><th scope=row>73e9ed99e67d102c0e483db9998c7958</th><td>Bacteria                                       </td><td>Bacteroidota                                   </td><td>Bacteroidia                                    </td><td>Bacteroidales                                  </td><td>Bacteroidaceae                                 </td><td>Bacteroides                                    </td><td>Bacteroides_ovatus(RS_GCF_001314995.1)         </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <p>Put it all together</p>
 
 </div>
@@ -17653,7 +17779,7 @@ SRX2198606 Airway       B 20150205
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[72]:</div>
+<div class="prompt input_prompt">In&nbsp;[44]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Collect everything in a phyloseq object</span>
@@ -17707,7 +17833,7 @@ refseq()      DNAStringSet:      [ 57 reference sequences ]</pre>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[73]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Save phyloseq object for later analysis</span>
