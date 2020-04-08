@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Prepare-reads-and-database">Prepare reads and database<a class="anchor-link" href="#Prepare-reads-and-database">&#182;</a></h1><p>Before we can cluster our reads into Amplicon Sequence Variants (ASVs) or Operational Taxonomical Units (OTUs) we have prepare a few things. First, we have to remove the primer sequences from the reads. Second, we have to download</p>
+<h1 id="Prepare-reads-and-database">Prepare reads and database<a class="anchor-link" href="#Prepare-reads-and-database">&#182;</a></h1><p>Before we can cluster our reads into Amplicon Sequence Variants (ASVs) or Operational Taxonomical Units (OTUs) we have prepare a few things. First, we have to remove the primer sequences from the reads. Second, we have to download the taxonomic database.</p>
 <p><strong>Note</strong> that the following code is run in shell, not in R. The '%' or '!' means that it is a shell command. If this was actually run through a terminal these prefixes would not be needed.</p>
 
 </div>
@@ -13098,7 +13098,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Look-at-reads">Look at reads<a class="anchor" id="reads" /><a class="anchor-link" href="#Look-at-reads">&#182;</a></h2><p>We have 2 samples as an example dataset in a directory called Seqs. For each sample we have two fastq files, one for the forward reads (_1), and one for the reverse reads (_2)</p>
+<h2 id="Look-at-reads">Look at reads<a class="anchor" id="reads" /><a class="anchor-link" href="#Look-at-reads">&#182;</a></h2><p>We have 2 samples as an example dataset in a directory called Seqs. For each sample we have two fastq files, one for the forward reads (_1), and one for the reverse reads (_2).</p>
+<p><code>ls</code> lists the files:</p>
 
 </div>
 </div>
@@ -13292,7 +13293,7 @@ SRX2198606
 <li>The sequence after -g is the forward primer</li>
 <li>The sequence after -G is the reverse primer</li>
 <li>--discard-untrimmed tells the software to remove reads if the primer was not found</li>
-<li>The rest tells the software where to safe the trimmed reads, and where to find the raw reads</li>
+<li>The rest tells the software where to save the trimmed reads, and where to find the raw reads</li>
 </ul>
 <p>The output gives detailed information on how many reads were kept and where it found the primers in the reads. Here we save the output report in a file called cutadapt_SAMPLE.log</p>
 
@@ -13315,7 +13316,8 @@ SRX2198606
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a></p>
+<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a>.</p>
+<p>First we download the database:</p>
 
 </div>
 </div>
@@ -13441,7 +13443,7 @@ Reads written (passing filters):         8,469 (46.2%)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The database is just a fasta file with sequences and names with the taxonomic assignments (it is compressed, which is why we run gzip -dc to look at it)</p>
+<p>The database is just a fasta file with sequences and names with the taxonomic assignments (it is compressed, which is why we run <code>gzip -dc</code> to look at it)</p>
 
 </div>
 </div>

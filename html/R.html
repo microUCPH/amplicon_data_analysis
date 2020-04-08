@@ -13083,7 +13083,7 @@ div#notebook {
 <li><a href="https://www.r-project.org/">First install R</a></li>
 <li><a href="https://rstudio.com/products/rstudio/download/">Then install RStudio</a></li>
 </ul>
-<h3 id="Learn-R">Learn R<a class="anchor-link" href="#Learn-R">&#182;</a></h3><p>There are many ways to learn R:</p>
+<h3 id="Learn-R,-beyond-this-notebook">Learn R, beyond this notebook<a class="anchor-link" href="#Learn-R,-beyond-this-notebook">&#182;</a></h3><p>There are many ways to learn R:</p>
 <ul>
 <li><a href="https://www.datacamp.com/">DataCamp</a></li>
 <li><a href="https://www.codecademy.com/learn/learn-r">Code academy</a></li>
@@ -13093,7 +13093,32 @@ div#notebook {
 <li><p><strong>But most importantly:</strong> Experiment! It takes many(!) hours to become a confindent R user. The most efficient way to get there, is playing around, experimenting.</p>
 </li>
 </ul>
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
+<li><a href="#comment">Comments</a></li>
+<li><a href="#workdir">Working directory</a></li>
+<li><a href="#types">Basic data types</a></li>
+<li><a href="#arithmetics">Arithmetics</a></li>
+<li><a href="#objects">Objects</a></li>
+<li><a href="#functions">Functions</a></li>
+<li><a href="#vectors">Vectors</a></li>
+<li><a href="#factors">Factors</a></li>
+<li><a href="#convert">Convert between types</a></li>
+<li><a href="#missing">Missing data</a></li>
+<li><a href="#lists">Lists</a></li>
+<li><a href="#dataframes">Dataframes</a></li>
+<li><a href="#saving">Saving data</a></li>
+<li><a href="#plot">Simple plotting</a></li>
+<li><a href="#packages">Packages</a></li>
+<li><a href="#ggplot">Simple ggplotting</a></li>
+</ul>
 
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Comments">Comments<a class="anchor" id="comment" /><a class="anchor-link" href="#Comments">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -13113,7 +13138,16 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Working-directory">Working directory<a class="anchor-link" href="#Working-directory">&#182;</a></h2><p>The working directory is the place where R will read and write files/plots to and from.</p>
+<p><strong>You should have MANY comments in your code!</strong></p>
+<p>Comments will not only help yourself when you look at the code later, but also if/when you share your code with others. It is always better to comment too much than too little.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Working-directory">Working directory<a class="anchor" id="workdir" /><a class="anchor-link" href="#Working-directory">&#182;</a></h2><p>The working directory is the place where R will read and write files/plots to and from.</p>
 <p>It is easiest if this is the same place as where the script is located.</p>
 <p>In Rstudio, set this by clicking "Session" then "Set Working Directory" then "To Source File Location".</p>
 <p>Now R looks for datafiles and saves plots in the same location as where your script is located.</p>
@@ -13124,7 +13158,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Basic-data-types">Basic data types<a class="anchor-link" href="#Basic-data-types">&#182;</a></h2><ul>
+<h2 id="Basic-data-types">Basic data types<a class="anchor" id="types" /><a class="anchor-link" href="#Basic-data-types">&#182;</a></h2><ul>
 <li><strong>Numerics:</strong> Numbers, e.g 1, 2, 1e3, 0.7, -5.4</li>
 <li><strong>Characters:</strong> Strings, e.g. "Hello", "world"</li>
 <li><strong>Logicals:</strong> Boolean, TRUE or FALSE</li>
@@ -13136,7 +13170,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Simple-arithmetics">Simple arithmetics<a class="anchor-link" href="#Simple-arithmetics">&#182;</a></h2><p>R understands simple arithmetics</p>
+<h2 id="Simple-arithmetics">Simple arithmetics<a class="anchor" id="arithmetics" /><a class="anchor-link" href="#Simple-arithmetics">&#182;</a></h2><p>R understands simple arithmetics</p>
 
 </div>
 </div>
@@ -13208,7 +13242,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Objects">Objects<a class="anchor-link" href="#Objects">&#182;</a></h2><p>We can save things in objects (in this case x and y)</p>
+<h2 id="Objects">Objects<a class="anchor" id="objects" /><a class="anchor-link" href="#Objects">&#182;</a></h2><p>We can save things in objects (in this case x and y)</p>
 
 </div>
 </div>
@@ -13396,7 +13430,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Functions">Functions<a class="anchor-link" href="#Functions">&#182;</a></h2><p>Functions take the form of functionName(inputToFunction).</p>
+<h2 id="Functions">Functions<a class="anchor" id="functions" /><a class="anchor-link" href="#Functions">&#182;</a></h2><p>Functions take the form of functionName(inputToFunction).</p>
 <p>You can always find help on how a function works by typing ?functionName</p>
 
 </div>
@@ -13418,7 +13452,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Vectors">Vectors<a class="anchor-link" href="#Vectors">&#182;</a></h2><p>We can make vectors with more than one number, character, or logical</p>
+<h2 id="Vectors">Vectors<a class="anchor" id="vectors" /><a class="anchor-link" href="#Vectors">&#182;</a></h2><p>We can make vectors with more than one number, character, or logical</p>
 
 </div>
 </div>
@@ -13716,7 +13750,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Factors">Factors<a class="anchor-link" href="#Factors">&#182;</a></h2><p>Factors are a special type of vector. In a factor the strings/numbers are given "levels" which by default are alphabetical. These levels for example determine the order categorical variables are plotted (as we will see later), and changing this order, means changing the factor levels</p>
+<h2 id="Factors">Factors<a class="anchor" id="factors" /><a class="anchor-link" href="#Factors">&#182;</a></h2><p>Factors are a special type of vector. In a factor the strings/numbers are given "levels" which by default are alphabetical. These levels for example determine the order categorical variables are plotted (as we will see later), and changing this order, means changing the factor levels</p>
 
 </div>
 </div>
@@ -13832,7 +13866,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Convert-between-types">Convert between types<a class="anchor-link" href="#Convert-between-types">&#182;</a></h2><p>You can convert between types with as.type. Always check the output! Converting might do something unexpected, and is not always reversible</p>
+<h2 id="Convert-between-types">Convert between types<a class="anchor" id="convert" /><a class="anchor-link" href="#Convert-between-types">&#182;</a></h2><p>You can convert between types with as.type. Always check the output! Converting might do something unexpected, and is not always reversible</p>
 
 </div>
 </div>
@@ -14189,7 +14223,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Missing-data">Missing data<a class="anchor-link" href="#Missing-data">&#182;</a></h2><p>Missing data is represented by NA. NAs can be mixed with any data type</p>
+<h2 id="Missing-data">Missing data<a class="anchor" id="missing" /><a class="anchor-link" href="#Missing-data">&#182;</a></h2><p>Missing data is represented by NA. NAs can be mixed with any data type</p>
 
 </div>
 </div>
@@ -14284,7 +14318,446 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Lists">Lists<a class="anchor-link" href="#Lists">&#182;</a></h2><p>We can make lists, which can contain both numbers, strings, and anything else in the same list</p>
+<h2 id="Comparisons">Comparisons<a class="anchor" id="compare" /><a class="anchor-link" href="#Comparisons">&#182;</a></h2><p>We can compare variables to check if they are identical or not.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">11</span><span class="p">,</span> <span class="m">12</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Test if equal to (note that there are 2 equal signs!):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">==</span> <span class="m">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>TRUE</li>
+	<li>FALSE</li>
+	<li>FALSE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Test if not equal to:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">!=</span> <span class="m">10</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>FALSE</li>
+	<li>TRUE</li>
+	<li>TRUE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Larger than:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">11</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>FALSE</li>
+	<li>FALSE</li>
+	<li>TRUE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Smaller than or equal:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">&lt;=</span> <span class="m">11</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>TRUE</li>
+	<li>TRUE</li>
+	<li>FALSE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Compare vectors of equal size:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span> <span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;K&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>FALSE</li>
+	<li>TRUE</li>
+	<li>FALSE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Check which elements are in a vector:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span> <span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>FALSE</li>
+	<li>FALSE</li>
+	<li>TRUE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All logicals can be negated:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="o">!</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;A&quot;</span><span class="p">,</span> <span class="s">&quot;B&quot;</span> <span class="p">,</span><span class="s">&quot;C&quot;</span><span class="p">)</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;C&quot;</span><span class="p">,</span> <span class="s">&quot;D&quot;</span><span class="p">,</span> <span class="s">&quot;E&quot;</span><span class="p">,</span> <span class="s">&quot;F&quot;</span><span class="p">,</span> <span class="s">&quot;G&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>TRUE</li>
+	<li>TRUE</li>
+	<li>FALSE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All logicals can be combined, with and (&amp;) and or (|):</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">x</span> <span class="o">==</span> <span class="m">10</span> <span class="o">|</span> <span class="n">x</span> <span class="o">==</span> <span class="m">11</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>TRUE</li>
+	<li>TRUE</li>
+	<li>FALSE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Several logical operations can be combined with parentheses:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">y</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">9</span><span class="p">,</span> <span class="kc">NA</span><span class="p">,</span> <span class="m">12</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="p">(</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="m">10</span> <span class="o">&amp;</span> <span class="n">y</span> <span class="o">&gt;</span> <span class="m">10</span> <span class="o">&amp;</span> <span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="o">|</span> <span class="p">(</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="m">10</span> <span class="o">&amp;</span> <span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<ol class=list-inline>
+	<li>FALSE</li>
+	<li>FALSE</li>
+	<li>TRUE</li>
+</ol>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Lists">Lists<a class="anchor" id="lists" /><a class="anchor-link" href="#Lists">&#182;</a></h2><p>We can make lists, which can contain both numbers, strings, and anything else in the same list</p>
 
 </div>
 </div>
@@ -14383,7 +14856,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Matrix">Matrix<a class="anchor-link" href="#Matrix">&#182;</a></h2><p>A matrix is a two-dimensional array. A bit like an excel spreadsheet with rows and columns. However, all the cells has to contain the same type of data. Either all are numerics, all are characters, or all are logicals.</p>
+<h2 id="Matrix">Matrix<a class="anchor" id="matrix" /><a class="anchor-link" href="#Matrix">&#182;</a></h2><p>A matrix is a two-dimensional array. A bit like an excel spreadsheet with rows and columns. However, all the cells has to contain the same type of data. Either all are numerics, all are characters, or all are logicals.</p>
 
 </div>
 </div>
@@ -14431,7 +14904,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Dataframes">Dataframes<a class="anchor-link" href="#Dataframes">&#182;</a></h2><p>Dataframes are objects with columns and rows like a matrix. However, in a data.frame the columns can contain different data.types. This is a very common way to store data, where each row is a sample, and each column is a variable.</p>
+<h2 id="Dataframes">Dataframes<a class="anchor" id="dataframes" /><a class="anchor-link" href="#Dataframes">&#182;</a></h2><p>Dataframes are objects with columns and rows like a matrix. However, in a data.frame the columns can contain different data.types. This is a very common way to store data, where each row is a sample, and each column is a variable.</p>
 
 </div>
 </div>
@@ -14889,7 +15362,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Saving-data">Saving data<a class="anchor-link" href="#Saving-data">&#182;</a></h2><p>When you click Ctrl+s or you go to File -&gt; Save, you only save the script</p>
+<h2 id="Saving-data">Saving data<a class="anchor" id="saving" /><a class="anchor-link" href="#Saving-data">&#182;</a></h2><p>When you click Ctrl+s or you go to File -&gt; Save, you only save the script</p>
 <p>You don't save the data (what you see in the upper right corner of RStudio)</p>
 <p>If you have run an analysis that took a long time to run, it is nice to save the results so you don't have to rerun the whole thing again.</p>
 
@@ -14927,7 +15400,7 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Simple-plots">Simple plots<a class="anchor-link" href="#Simple-plots">&#182;</a></h2>
+<h2 id="Simple-plots">Simple plots<a class="anchor" id="plot" /><a class="anchor-link" href="#Simple-plots">&#182;</a></h2>
 </div>
 </div>
 </div>
@@ -15250,7 +15723,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages">Packages<a class="anchor-link" href="#Packages">&#182;</a></h2><h4 id="Load-packages">Load packages<a class="anchor-link" href="#Load-packages">&#182;</a></h4><p>These contain convenient functions.</p>
+<h2 id="Packages">Packages<a class="anchor" id="packages" /><a class="anchor-link" href="#Packages">&#182;</a></h2><h4 id="Load-packages">Load packages<a class="anchor-link" href="#Load-packages">&#182;</a></h4><p>These contain convenient functions.</p>
 <p>When library(package name) is run, we can use functions from the package</p>
 <p>It has to be run each time we start up R</p>
 
@@ -15292,6 +15765,14 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p>We sometimes get warnings that the package is not build for our specific version of R (as above). This is usually not a problem, but if you experience problems this could be the cause, and it can be solved by installing the latest version of R and installing the package again.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Install-packages">Install packages<a class="anchor-link" href="#Install-packages">&#182;</a></h4><p>Packages are usually installed with install.packages("PackageName"). This only has to be done one time.</p>
 
 </div>
@@ -15321,7 +15802,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>ggplot2 is a great packages for making neat plots. There is a notebook on the details of ggplot2, but below is described how to make a simple plot.</p>
+<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor" id="ggplot" /><a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>ggplot2 is a great packages for making neat plots. There is a notebook on the details of ggplot2, but below is described how to make a simple plot.</p>
 <p>Let's make a similar scatterplot as above, but with ggplot2</p>
 <p>A ggplot is always made by starting with the ggplot(data, aes(...)) line</p>
 <ul>
