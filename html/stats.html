@@ -13156,10 +13156,10 @@ div#notebook {
 <span class="n">nSamples</span> <span class="o">&lt;-</span> <span class="m">10</span>
 <span class="c1"># Build data.frame with random measurements</span>
 <span class="n">pairedData</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">sampletime</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="s">&quot;before&quot;</span><span class="p">,</span> <span class="n">nSamples</span><span class="p">),</span> <span class="nf">rep</span><span class="p">(</span><span class="s">&quot;after&quot;</span><span class="p">,</span> <span class="n">nSamples</span><span class="p">)),</span>
-                        <span class="n">subject</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="n">nSamples]</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span>
+                        <span class="n">subject</span> <span class="o">=</span> <span class="nf">rep</span><span class="p">(</span><span class="kc">LETTERS</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="n">nSamples</span><span class="p">],</span> <span class="m">2</span><span class="p">),</span>
                          <span class="n">measurement</span> <span class="o">=</span> <span class="nf">rnorm</span><span class="p">(</span><span class="n">nSamples</span> <span class="o">*</span> <span class="m">2</span><span class="p">))</span>
 <span class="c1"># Shuffle data.frame</span>
-<span class="n">pairedData</span> <span class="o">&lt;-</span> <span class="n">pairedData</span><span class="nf">[sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">pairedData</span><span class="p">)),</span> <span class="n">]</span>
+<span class="n">pairedData</span> <span class="o">&lt;-</span> <span class="n">pairedData</span><span class="p">[</span><span class="nf">sample</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">pairedData</span><span class="p">)),</span> <span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13190,7 +13190,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">disp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">facet_grid</span><span class="p">(</span><span class="n">am</span> <span class="o">~</span> <span class="n">.)</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">disp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">facet_grid</span><span class="p">(</span><span class="n">am</span> <span class="o">~</span> <span class="n">.</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13590,7 +13590,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">pairedDataOrder</span> <span class="o">&lt;-</span> <span class="n">pairedData</span><span class="nf">[order</span><span class="p">(</span><span class="n">pairedData</span><span class="o">$</span><span class="n">subject</span><span class="p">),</span> <span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">pairedDataOrder</span> <span class="o">&lt;-</span> <span class="n">pairedData</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">pairedData</span><span class="o">$</span><span class="n">subject</span><span class="p">),</span> <span class="p">]</span>
 <span class="n">pairedDataOrder</span>
 </pre></div>
 
@@ -13655,8 +13655,8 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">before</span> <span class="o">&lt;-</span> <span class="n">pairedDataOrder[pairedDataOrder</span><span class="o">$</span><span class="n">sampletime</span> <span class="o">==</span> <span class="s">&quot;before&quot;</span><span class="p">,</span> <span class="s">&quot;measurement&quot;</span><span class="n">]</span>
-<span class="n">after</span> <span class="o">&lt;-</span> <span class="n">pairedDataOrder[pairedDataOrder</span><span class="o">$</span><span class="n">sampletime</span> <span class="o">==</span> <span class="s">&quot;after&quot;</span><span class="p">,</span> <span class="s">&quot;measurement&quot;</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">before</span> <span class="o">&lt;-</span> <span class="n">pairedDataOrder</span><span class="p">[</span><span class="n">pairedDataOrder</span><span class="o">$</span><span class="n">sampletime</span> <span class="o">==</span> <span class="s">&quot;before&quot;</span><span class="p">,</span> <span class="s">&quot;measurement&quot;</span><span class="p">]</span>
+<span class="n">after</span> <span class="o">&lt;-</span> <span class="n">pairedDataOrder</span><span class="p">[</span><span class="n">pairedDataOrder</span><span class="o">$</span><span class="n">sampletime</span> <span class="o">==</span> <span class="s">&quot;after&quot;</span><span class="p">,</span> <span class="s">&quot;measurement&quot;</span><span class="p">]</span>
 
 <span class="nf">t.test</span><span class="p">(</span><span class="n">after</span><span class="p">,</span> <span class="n">before</span><span class="p">,</span> <span class="n">paired</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
@@ -13810,7 +13810,7 @@ sample estimates:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Correlation-">Correlation <a class="anchor" id="correlation" /><a class="anchor-link" href="#Correlation-">&#182;</a></h1><p>It is advised to read <a href="https://www.nature.com/articles/nmeth.3587">this excellent introduction to the difference between correlation, association, and causation</a>.</p>
 <p>As the above paper states: <em>two variables are correlated when they display an increasing or decreasing trend</em></p>
-<p>Correlation values range between 1 for perfect positive trend, 0 for no trend, to -1 for perfect negative trend. There are two types of correlation metrics that are typically used. Pearson's <em>r</em> and and Spearman's <em>rho</em>. Pearsons is used for linear trends, and Spearmans is used for monotonic trends. See the below graph from the Wikipedia page on Spearmans correlation:</p>
+<p>Correlation values range between 1 for perfect positive trend, 0 for no trend, to -1 for perfect negative trend. There are two types of correlation metrics that are typically used. Pearson's <em>r</em> and and Spearman's <em>rho</em>. Pearsons is used for linear trends. See collection of scatter plots and associated pearson correlations:</p>
 
 </div>
 </div>
@@ -13818,7 +13818,9 @@ sample estimates:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="../img/spearman_pearson.png" alt="Pearson vs Spearman"></p>
+<p><img src="../img/pearson.png" alt="Pearson">
+and Spearmans is used for monotonic trends. See the below graph from the Wikipedia page on Spearmans correlation:
+<img src="../img/spearman_pearson.png" alt="Pearson vs Spearman"></p>
 
 </div>
 </div>

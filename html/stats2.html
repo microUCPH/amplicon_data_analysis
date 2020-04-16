@@ -13116,7 +13116,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Example-datasets">Example datasets<a class="anchor" id="data" /><a class="anchor-link" href="#Example-datasets">&#182;</a></h1><p><strong>iris:</strong> Data on plant characteristics</p>
+<h1 id="Example-datasets">Example datasets<a class="anchor" id="data" /><a class="anchor-link" href="#Example-datasets">&#182;</a></h1><p><strong>iris:</strong> Data on Iris plant characteristics. A data.frame</p>
 
 </div>
 </div>
@@ -13168,7 +13168,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>phy:</strong> Our simulated gut microbiome dataset</p>
+<p><strong>phy:</strong> Our simulated gut microbiome dataset. A phyloseq object</p>
 
 </div>
 </div>
@@ -13215,14 +13215,15 @@ refseq()      DNAStringSet:      [ 1417 reference sequences ]</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA-">PCA <a class="anchor" id="pca" /><a class="anchor-link" href="#PCA-">&#182;</a></h1><p>Principle component analysis (PCA) is a way of projecting your high-dimensional data into lower dimensions. While this sounds obscure, it is extremely powerful. Imagine a dataset with 20 samples and 1000 variables (e.g. ASVs), how would you make a plot showing whether your samples are different? PCA transforms the data, and creates new axes (known as principle components (PCs)), these PCs are created such that PC1 spans as much variation as posssible in the dataset, PC2 spans as much variance as possible while being orthogonal (90 degree angle) to PC1, PC3 spans as much variance as possible while being orthogonal to PC1 and PC2, and so on.</p>
+<h1 id="PCA-">PCA <a class="anchor" id="pca" /><a class="anchor-link" href="#PCA-">&#182;</a></h1><p>How would you display 4 axes on a graph? What about 1000 axes? Microbiome datasets are high-dimensional, with maybe hundreds of samples and thousands of taxa. But our vision 3-dimensional, and we use 2-dimensional screens and paper, which limits our view of this data.
+Principle component analysis (PCA) is a way of projecting your high-dimensional data into lower dimensions. While this sounds obscure, it is extremely powerful. Imagine a dataset with 20 samples and 1000 variables (e.g. ASVs), how would you make a plot showing whether your samples are different? PCA transforms the data, and creates new axes (known as principle components (PCs)), these PCs are created such that PC1 spans as much variation as posssible in the dataset, PC2 spans as much variance as possible while being orthogonal (90 degree angle) to PC1, PC3 spans as much variance as possible while being orthogonal to PC1 and PC2, and so on.</p>
 <p>The output from running a PCA is:</p>
 <ul>
 <li>The PCs, the new axes</li>
 <li>Eigenvalues for each PC, which denote how much variation each PC span</li>
 <li>Loadings (Eigenvectors): How much does each variable contribute to each PC</li>
 </ul>
-<p>Is it confusing?:</p>
+<p>Is it still confusing?:</p>
 <ul>
 <li><a href="https://stats.stackexchange.com/questions/2691/making-sense-of-principal-component-analysis-eigenvectors-eigenvalues/140579#140579">Read the first answer to this Stack Exchange question</a></li>
 <li><a href="https://www.nature.com/articles/nmeth.4346">or read this excellent article</a></li>
@@ -13238,7 +13239,7 @@ refseq()      DNAStringSet:      [ 1417 reference sequences ]</pre>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># We only use the first 4 columns</span>
-<span class="n">iris_sub</span> <span class="o">&lt;-</span> <span class="n">iris[</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="n">]</span>
+<span class="n">iris_sub</span> <span class="o">&lt;-</span> <span class="n">iris</span><span class="p">[,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span>
 <span class="c1"># Always set center and scale. to TRUE</span>
 <span class="n">pca</span> <span class="o">&lt;-</span> <span class="nf">prcomp</span><span class="p">(</span><span class="n">iris_sub</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">scale.</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
 </pre></div>
@@ -13682,7 +13683,7 @@ DCASQAYQCSADiASQAUQCyAAiAWQAkQAy8H+bD6rtFTY2cAAAAABJRU5ErkJggg=="
 <div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">eigen</span> <span class="o">&lt;-</span> <span class="n">pca</span><span class="o">$</span><span class="n">sdev^2</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">eigen</span> <span class="o">&lt;-</span> <span class="n">pca</span><span class="o">$</span><span class="n">sdev</span><span class="o">^</span><span class="m">2</span>
 <span class="n">eigen</span>
 </pre></div>
 
@@ -13777,8 +13778,8 @@ DCASQAYQCSADiASQAUQCyAAiAWQAkQAy8H+bD6rtFTY2cAAAAABJRU5ErkJggg=="
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">p</span> <span class="o">+</span> 
-    <span class="nf">xlab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC1 (&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="m">100</span><span class="o">*</span><span class="n">ve[1]</span><span class="p">),</span> <span class="s">&quot;%)&quot;</span><span class="p">))</span> <span class="o">+</span>
-    <span class="nf">ylab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC2 (&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="m">100</span><span class="o">*</span><span class="n">ve[2]</span><span class="p">),</span> <span class="s">&quot;%)&quot;</span><span class="p">))</span>
+    <span class="nf">xlab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC1 (&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="m">100</span><span class="o">*</span><span class="n">ve</span><span class="p">[</span><span class="m">1</span><span class="p">]),</span> <span class="s">&quot;%)&quot;</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">ylab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PC2 (&quot;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="m">100</span><span class="o">*</span><span class="n">ve</span><span class="p">[</span><span class="m">2</span><span class="p">]),</span> <span class="s">&quot;%)&quot;</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -14058,7 +14059,7 @@ ASQAkQASgEgACUAkgAQgEkAC/gcqN4m9z1zvsQAAAABJRU5ErkJggg=="
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">dd</span><span class="p">)</span><span class="n">[1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">as.matrix</span><span class="p">(</span><span class="n">dd</span><span class="p">)[</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span><span class="m">1</span><span class="o">:</span><span class="m">5</span><span class="p">]</span>
 </pre></div>
 
     </div>
@@ -14104,8 +14105,8 @@ ASQAkQASgEgACUAkgAQgEkAC/gcqN4m9z1zvsQAAAABJRU5ErkJggg=="
 <span class="n">pcoa_data</span> <span class="o">&lt;-</span> <span class="nf">cmdscale</span><span class="p">(</span><span class="n">dd</span><span class="p">,</span> <span class="n">eig</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 
 <span class="c1"># Collect in data.frame</span>
-<span class="n">pcoa_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">PC1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">pcoa_data</span><span class="o">$</span><span class="n">points[</span><span class="p">,</span><span class="m">1</span><span class="n">]</span><span class="p">),</span>
-                      <span class="n">PC2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">pcoa_data</span><span class="o">$</span><span class="n">points[</span><span class="p">,</span><span class="m">2</span><span class="n">]</span><span class="p">),</span>
+<span class="n">pcoa_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">PC1</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">pcoa_data</span><span class="o">$</span><span class="n">points</span><span class="p">[,</span><span class="m">1</span><span class="p">]),</span>
+                      <span class="n">PC2</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">pcoa_data</span><span class="o">$</span><span class="n">points</span><span class="p">[,</span><span class="m">2</span><span class="p">]),</span>
                       <span class="n">Species</span> <span class="o">=</span> <span class="n">iris</span><span class="o">$</span><span class="n">Species</span><span class="p">)</span>
 </pre></div>
 
@@ -14126,8 +14127,8 @@ ASQAkQASgEgACUAkgAQgEkAC/gcqN4m9z1zvsQAAAABJRU5ErkJggg=="
 <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">pcoa_df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">PC1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">PC2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="n">Species</span><span class="p">))</span> <span class="o">+</span>
     <span class="nf">theme_bw</span><span class="p">()</span> <span class="o">+</span>
     <span class="nf">geom_point</span><span class="p">()</span> <span class="o">+</span>
-    <span class="nf">xlab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA 1 (&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">ve[1]</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="s">&quot;%)&quot;</span><span class="p">))</span> <span class="o">+</span>
-    <span class="nf">ylab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA 2 (&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">ve[2]</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="s">&quot;%)&quot;</span><span class="p">))</span>
+    <span class="nf">xlab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA 1 (&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">ve</span><span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="s">&quot;%)&quot;</span><span class="p">))</span> <span class="o">+</span>
+    <span class="nf">ylab</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PCoA 2 (&quot;</span><span class="p">,</span><span class="nf">round</span><span class="p">(</span><span class="n">ve</span><span class="p">[</span><span class="m">2</span><span class="p">]</span><span class="o">*</span><span class="m">100</span><span class="p">,</span><span class="m">1</span><span class="p">),</span><span class="s">&quot;%)&quot;</span><span class="p">))</span>
 <span class="n">p</span>
 </pre></div>
 
@@ -15133,7 +15134,7 @@ AUKCACFBwD/9qH7tNaMbHwAAAABJRU5ErkJggg=="
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;Original p-value:&quot;</span><span class="p">)</span>
 <span class="n">ttest_sig</span>
 <span class="nf">print</span><span class="p">(</span><span class="s">&quot;FDR-adjusted p-value:&quot;</span><span class="p">)</span>
-<span class="n">adjusted_pvals_plus1</span><span class="nf">[length</span><span class="p">(</span><span class="n">adjusted_pvals_plus1</span><span class="p">)</span><span class="n">]</span>
+<span class="n">adjusted_pvals_plus1</span><span class="p">[</span><span class="nf">length</span><span class="p">(</span><span class="n">adjusted_pvals_plus1</span><span class="p">)]</span>
 </pre></div>
 
     </div>

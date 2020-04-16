@@ -15,12 +15,12 @@ Background material:
 * [Extra plotting with ggplot2 - Work in progress](html/ggplot2.html)
 
 Bioinformatic workflow:
-* [Preperation of reads and databases](html/prepare.html)
+* [Preparation of reads and databases](html/prepare.html)
 * [DADA2 - ASV inference](html/dada2.html)
 
 Analysis workflow:
 * [Alpha diversity](html/alpha.html)
-* [Beta diversity - Work in progress](html/beta.html)
+* [Beta diversity](html/beta.html)
 * [Differential abundance - Work in progress](html/diff_abund.html)
 
 ### Extra analysis
