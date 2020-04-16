@@ -27,6 +27,7 @@ Analysis workflow:
 This section contains notebooks for more specific and/or advanced data preparations or analyses. 
 * [Venn diagram of shared taxa](html/venn.html)
 * [PERMANOVA effect sizes](html/omegasq.html)
+* [Pretty heatmaps](html/pheatmap.html)
 
 ### Info
 * [Software versions](html/versions.html)
