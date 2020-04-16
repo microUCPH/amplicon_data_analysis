@@ -12,7 +12,7 @@ Background material:
 * [The phyloseq object](html/phyloseq_object.html)
 * [Phyloseq operations](html/phyloseq_operations.html)
 * [Compositionality and rarefaction](html/compositionality.html)
-* [Extra plotting with ggplot2 - Work in progress](html/ggplot2.html)
+* [Extra plotting with ggplot2](html/ggplot2.html)
 
 Bioinformatic workflow:
 * [Preparation of reads and databases](html/prepare.html)
@@ -21,7 +21,7 @@ Bioinformatic workflow:
 Analysis workflow:
 * [Alpha diversity](html/alpha.html)
 * [Beta diversity](html/beta.html)
-* [Differential abundance - Work in progress](html/diff_abund.html)
+* [Differential abundance](html/diff_abund.html)
 
 ### Extra analysis
 This section contains notebooks for more specific and/or advanced data preparations or analyses. 
