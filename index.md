@@ -32,6 +32,7 @@ This section contains notebooks for more specific and/or advanced data preparati
 * [Pretty heatmaps](html/pheatmap.html)
 
 ### Info
+* [Install packages](html/packages.html)
 * [Software versions](html/versions.html)
 
 
