@@ -23,7 +23,7 @@ Bioinformatic workflow:
 Analysis workflow:
 * [Alpha diversity](html/alpha.html)
 * [Beta diversity](html/beta.html)
-* [Differential abundance](html/diff_abund.html)
+* [Differential abundance](html/da.html)
 
 ### Extra analysis
 This section contains notebooks for more specific and/or advanced data preparations or analyses. 
