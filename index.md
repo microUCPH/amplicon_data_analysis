@@ -23,12 +23,16 @@ Bioinformatic workflow:
 Analysis workflow:
 * [Alpha diversity](html/alpha.html)
 * [Beta diversity](html/beta.html)
-* [Differential abundance](html/da.html)
+* [Differential abundance - Basics](html/da.html)
 
 ### Extra analysis
-This section contains notebooks for more specific and/or advanced data preparations or analyses. 
-* [Venn diagram of shared taxa](html/venn.html)
+This section contains notebooks for more specific and/or advanced data presentations or analyses. 
+
+##### Analysis
 * [PERMANOVA effect sizes](html/omegasq.html)
+
+##### Plotting
+* [Venn diagram of shared taxa](html/venn.html)
 * [Pretty heatmaps](html/pheatmap.html)
 
 ### Info
