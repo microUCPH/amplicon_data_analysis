@@ -13125,7 +13125,8 @@ div#notebook {
     <span class="s">&quot;minpack.lm&quot;</span><span class="p">,</span>
     <span class="s">&quot;ips&quot;</span><span class="p">,</span>
     <span class="s">&quot;BiocManager&quot;</span><span class="p">,</span>
-    <span class="s">&quot;multcomp&quot;</span>
+    <span class="s">&quot;multcomp&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ggrepel&quot;</span>
 <span class="p">),</span> <span class="n">repos</span><span class="o">=</span><span class="s">&#39;http://mirrors.dotsrc.org/cran/&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -13178,6 +13179,7 @@ div#notebook {
 <div class=" highlight hl-r"><pre><span></span><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;Russel88/DAtest&quot;</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span><span class="p">)</span>
 <span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;Russel88/MicEco&quot;</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span><span class="p">)</span>
 <span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;Russel88/COEF&quot;</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span><span class="p">)</span>
+<span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&quot;zdk123/SpiecEasi&quot;</span><span class="p">,</span> <span class="n">force</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">upgrade</span> <span class="o">=</span> <span class="s">&quot;never&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13237,7 +13239,9 @@ div#notebook {
     <span class="s">&quot;COEF&quot;</span><span class="p">,</span>
     <span class="s">&quot;ips&quot;</span><span class="p">,</span>
     <span class="s">&quot;DESeq2&quot;</span><span class="p">,</span>
-    <span class="s">&quot;multcomp&quot;</span><span class="p">)</span>
+    <span class="s">&quot;multcomp&quot;</span><span class="p">,</span>
+    <span class="s">&quot;ggrepel&quot;</span><span class="p">,</span>
+    <span class="s">&quot;SpiecEasi&quot;</span><span class="p">)</span>
 
 <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="n">pkgs</span><span class="p">){</span>
     <span class="nf">requireNamespace</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>

@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>versions</title>
+<title>network</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13074,24 +13074,97 @@ div#notebook {
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
 
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Microbial-association-networks">Microbial association networks<a class="anchor-link" href="#Microbial-association-networks">&#182;</a></h1><p>With a large set of samples we can infer co-occurrence and co-exclusion patterns between taxa. The interpretation of these associations depends on the experimental design. Say we include oral and fecal samples from human subjects, then the associations would largely be dominated by the environmental preference of the taxa, and the network would likely have two clusters; an oral cluster and a fecal cluster. These networks are often created to infer microbial interactions, but to ensure that the patterns are driven by microbial interactions one would need: Small-scale samples, at a scale where we think the microbes could affect the abundance of the other microbes at that scale. And we would need either samples from similar environments or from many different environments, to ensure the associations are independent of environment.</p>
+<h2 id="Types-of-networks">Types of networks<a class="anchor-link" href="#Types-of-networks">&#182;</a></h2><h4 id="Correlation-network">Correlation network<a class="anchor-link" href="#Correlation-network">&#182;</a></h4><p>Networks can be based on correlations where we calculate the correlation between each pair of taxa, independent of all the other taxa. These correlations are not affected by which taxa we include in the network, except that the p-value multiple correction is affected by the number of included taxa.</p>
+<p>Examples of correlation network methods:</p>
+<ul>
+<li>Spearman on relative abundance</li>
+<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004075">Proportionality</a></li>
+<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1002687">SparCC</a></li>
+</ul>
+<h4 id="Inverse-covariance-network">Inverse covariance network<a class="anchor-link" href="#Inverse-covariance-network">&#182;</a></h4><p>With inverse covariance we seek to remove indirect associations. Say that taxa A has a positive effect of taxa B, and taxa B has a positive effect on taxa C, but taxa A has no effect on taxa C, and vice versa. Taxa A and C would look to be associated, but this is an indirect effect, mediated by taxa B. Inverse covariance seeks to remove these, and all associations are therefore contingent on which taxa are included in the network</p>
+<p>Examples of inverse covariance methods:</p>
+<ul>
+<li><a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004226">SPIEC-EASI with glasso</a></li>
+</ul>
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents">&#182;</a></h2><ul>
+<li><a href="#spearman">Spearman</a></li>
+<li><a href="#prop">Proportionality</a></li>
+<li><a href="#sparcc">SparCC</a></li>
+<li><a href="#spiec">SPEIC-EASI with glasso</a></li>
+</ul>
+<h2 id="Data">Data<a class="anchor-link" href="#Data">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DAtest</span><span class="p">)</span>
+<span class="nf">load</span><span class="p">(</span><span class="s">&quot;../data/physeq.RData&quot;</span><span class="p">)</span>
+
+<span class="c1"># Agglomorate to Genus level</span>
+<span class="n">phy_genus</span> <span class="o">&lt;-</span> <span class="nf">tax_glom</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="s">&quot;Genus&quot;</span><span class="p">)</span>
+
+<span class="c1"># Only keep genera present in at least 10 samples</span>
+<span class="n">phy_genus_pre</span> <span class="o">&lt;-</span> <span class="nf">preDA</span><span class="p">(</span><span class="n">phy_genus</span><span class="p">,</span> <span class="n">min.samples</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+
+<span class="c1"># Extract count table:</span>
+<span class="n">otu</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="nf">otu_table</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>DAtest version 2.7.15
+213 features grouped as &#39;Others&#39; in the output
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Spearman">Spearman<a class="anchor" id="spearman" /><a class="anchor-link" href="#Spearman">&#182;</a></h2><p>The simplest network is to run spearman correlations on all pairs of taxa on relative abundances.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Transform to relative abundances</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">DESeq2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">multcomp</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">DAtest</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">MicEco</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">dada2</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ips</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">nlme</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">picante</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">ggrepel</span><span class="p">)</span>
-<span class="nf">library</span><span class="p">(</span><span class="n">SpiecEasi</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">otu_rel</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">otu</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13099,12 +13172,128 @@ div#notebook {
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Calculate correlations</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">sessionInfo</span><span class="p">()</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">net</span> <span class="o">&lt;-</span> <span class="nf">cor</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">otu_rel</span><span class="p">),</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;spearman&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Set redundant correlations to NA</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">net</span><span class="p">[</span><span class="nf">lower.tri</span><span class="p">(</span><span class="n">net</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="kc">NA</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Transform the correlation matrix to a data.frame:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remove correlations between similar taxa, and the redundant ones:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="n">net_df</span><span class="o">$</span><span class="n">Var1</span> <span class="o">!=</span> <span class="n">net_df</span><span class="o">$</span><span class="n">Var2</span> <span class="o">&amp;</span> <span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">),</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Remove correlations below 0.3. (Usually this should be set at 0.6 or similar, but this example data has no strong correlations)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.3</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This data.frame can then be used to plot the network in for example Gephi, CytoScape, or with ggnet2 in R</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">colnames</span><span class="p">(</span><span class="n">net_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Source&quot;</span><span class="p">,</span> <span class="s">&quot;Target&quot;</span><span class="p">,</span> <span class="s">&quot;Cor&quot;</span><span class="p">)</span>
+<span class="n">net_df</span><span class="o">$</span><span class="n">Weight</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">net_df</span><span class="o">$</span><span class="n">Sign</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Positive&quot;</span><span class="p">,</span> <span class="s">&quot;Negative&quot;</span><span class="p">)</span>
+<span class="n">net_df</span>
 </pre></div>
 
     </div>
@@ -13121,82 +13310,29 @@ div#notebook {
 
 
 
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>Source</th><th scope=col>Target</th><th scope=col>Cor</th><th scope=col>Weight</th><th scope=col>Sign</th></tr></thead>
+<tbody>
+	<tr><th scope=row>1622</th><td>ASV_20   </td><td>ASV_120  </td><td>0.3028239</td><td>0.3028239</td><td>Positive </td></tr>
+	<tr><th scope=row>4482</th><td>ASV_344  </td><td>ASV_431  </td><td>0.3325956</td><td>0.3325956</td><td>Positive </td></tr>
+	<tr><th scope=row>6086</th><td>ASV_101  </td><td>ASV_521  </td><td>0.3230301</td><td>0.3230301</td><td>Positive </td></tr>
+	<tr><th scope=row>7705</th><td>ASV_92   </td><td>ASV_653  </td><td>0.3124427</td><td>0.3124427</td><td>Positive </td></tr>
+	<tr><th scope=row>8248</th><td>ASV_120  </td><td>ASV_678  </td><td>0.3198945</td><td>0.3198945</td><td>Positive </td></tr>
+	<tr><th scope=row>9650</th><td>ASV_691  </td><td>ASV_775  </td><td>0.3066593</td><td>0.3066593</td><td>Positive </td></tr>
+	<tr><th scope=row>9734</th><td>ASV_124  </td><td>ASV_777  </td><td>0.3033164</td><td>0.3033164</td><td>Positive </td></tr>
+	<tr><th scope=row>10128</th><td>ASV_22   </td><td>ASV_802  </td><td>0.3140431</td><td>0.3140431</td><td>Positive </td></tr>
+	<tr><th scope=row>11515</th><td>ASV_467  </td><td>ASV_941  </td><td>0.3145360</td><td>0.3145360</td><td>Positive </td></tr>
+	<tr><th scope=row>11806</th><td>ASV_672  </td><td>ASV_952  </td><td>0.3007031</td><td>0.3007031</td><td>Positive </td></tr>
+	<tr><th scope=row>13690</th><td>ASV_626  </td><td>ASV_1103 </td><td>0.3108115</td><td>0.3108115</td><td>Positive </td></tr>
+	<tr><th scope=row>15431</th><td>ASV_483  </td><td>ASV_1226 </td><td>0.3144590</td><td>0.3144590</td><td>Positive </td></tr>
+	<tr><th scope=row>16003</th><td>ASV_777  </td><td>ASV_1252 </td><td>0.3000040</td><td>0.3000040</td><td>Positive </td></tr>
+	<tr><th scope=row>16607</th><td>ASV_20   </td><td>ASV_1307 </td><td>0.3175703</td><td>0.3175703</td><td>Positive </td></tr>
+	<tr><th scope=row>17289</th><td>ASV_62   </td><td>ASV_1373 </td><td>0.3590512</td><td>0.3590512</td><td>Positive </td></tr>
+	<tr><th scope=row>17359</th><td>ASV_848  </td><td>ASV_1373 </td><td>0.3318028</td><td>0.3318028</td><td>Positive </td></tr>
+</tbody>
+</table>
 
-<div class="output_text output_subarea ">
-<pre>R version 3.6.3 (2020-02-29)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
-
-Matrix products: default
-
-locale:
-[1] LC_COLLATE=Danish_Denmark.1252  LC_CTYPE=Danish_Denmark.1252   
-[3] LC_MONETARY=Danish_Denmark.1252 LC_NUMERIC=C                   
-[5] LC_TIME=Danish_Denmark.1252    
-
-attached base packages:
-[1] parallel  stats4    stats     graphics  grDevices utils     datasets 
-[8] methods   base     
-
-other attached packages:
- [1] SpiecEasi_1.0.7             ggrepel_0.8.2              
- [3] picante_1.8.1               nlme_3.1-145               
- [5] ips_0.0.11                  ape_5.3                    
- [7] dada2_1.14.1                Rcpp_1.0.4.6               
- [9] MicEco_0.9.9                DAtest_2.7.15              
-[11] vegan_2.5-6                 lattice_0.20-41            
-[13] permute_0.9-5               phyloseq_1.30.0            
-[15] multcomp_1.4-13             TH.data_1.0-10             
-[17] MASS_7.3-51.5               survival_3.1-11            
-[19] mvtnorm_1.1-0               ggplot2_3.3.0              
-[21] DESeq2_1.26.0               SummarizedExperiment_1.16.1
-[23] DelayedArray_0.12.3         BiocParallel_1.20.1        
-[25] matrixStats_0.56.0          Biobase_2.46.0             
-[27] GenomicRanges_1.38.0        GenomeInfoDb_1.22.1        
-[29] IRanges_2.20.2              S4Vectors_0.24.4           
-[31] BiocGenerics_0.32.0        
-
-loaded via a namespace (and not attached):
-  [1] uuid_0.1-2               snow_0.4-3               backports_1.1.6         
-  [4] fastmatch_1.1-0          Hmisc_4.4-0              VGAM_1.1-2              
-  [7] plyr_1.8.6               igraph_1.2.5             repr_0.19.2             
- [10] splines_3.6.3            digest_0.6.25            foreach_1.5.0           
- [13] htmltools_0.4.0          fansi_0.4.1              magrittr_1.5            
- [16] checkmate_2.0.0          memoise_1.1.0            cluster_2.1.0           
- [19] doParallel_1.0.15        Biostrings_2.54.0        annotate_1.64.0         
- [22] RcppParallel_5.0.0       sandwich_2.5-1           bdsmatrix_1.3-4         
- [25] jpeg_0.1-8.1             colorspace_1.4-1         blob_1.2.1              
- [28] xfun_0.13                dplyr_0.8.5              crayon_1.3.4            
- [31] RCurl_1.98-1.1           jsonlite_1.6.1           genefilter_1.68.0       
- [34] lme4_1.1-21              phangorn_2.5.5           zoo_1.8-7               
- [37] iterators_1.0.12         glue_1.4.0               gtable_0.3.0            
- [40] zlibbioc_1.32.0          XVector_0.26.0           Rhdf5lib_1.8.0          
- [43] abind_1.4-5              scales_1.1.0             pheatmap_1.0.12         
- [46] DBI_1.1.0                xtable_1.8-4             htmlTable_1.13.3        
- [49] foreign_0.8-76           bit_1.1-15.2             Formula_1.2-3           
- [52] htmlwidgets_1.5.1        pulsar_0.3.6             RColorBrewer_1.1-2      
- [55] acepack_1.4.1            ellipsis_0.3.0           pkgconfig_2.0.3         
- [58] XML_3.99-0.3             nnet_7.3-13              locfit_1.5-9.4          
- [61] tidyselect_1.0.0         rlang_0.4.5              reshape2_1.4.3          
- [64] AnnotationDbi_1.48.0     munsell_0.5.0            tools_3.6.3             
- [67] cli_2.0.2                RSQLite_2.2.0            ade4_1.7-15             
- [70] evaluate_0.14            biomformat_1.14.0        stringr_1.4.0           
- [73] knitr_1.28               bit64_0.9-7              purrr_0.3.3             
- [76] compiler_3.6.3           rstudioapi_0.11          png_0.1-7               
- [79] huge_1.3.4.1             tibble_3.0.0             geneplotter_1.64.0      
- [82] stringi_1.4.6            IRdisplay_0.7.0          Matrix_1.2-18           
- [85] nloptr_1.2.2.1           multtest_2.42.0          vctrs_0.2.4             
- [88] pillar_1.4.3             lifecycle_0.2.0          eulerr_6.1.0            
- [91] data.table_1.12.8        cowplot_1.0.0            bitops_1.0-6            
- [94] hwriter_1.3.2            R6_2.4.1                 latticeExtra_0.6-29     
- [97] ShortRead_1.44.3         gridExtra_2.3            codetools_0.2-16        
-[100] boot_1.3-24              assertthat_0.2.1         rhdf5_2.30.1            
-[103] withr_2.1.2              Rsamtools_2.2.3          GenomicAlignments_1.22.1
-[106] GenomeInfoDbData_1.2.2   mgcv_1.8-31              doSNOW_1.0.18           
-[109] quadprog_1.5-8           grid_3.6.3               rpart_4.1-15            
-[112] IRkernel_0.8.15          minqa_1.2.4              pbdZMQ_0.3-3            
-[115] bbmle_1.0.23.1           pROC_1.16.2              numDeriv_2016.8-1.1     
-[118] base64enc_0.1-3         </pre>
 </div>
 
 </div>
@@ -13204,6 +13340,404 @@ loaded via a namespace (and not attached):
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The weight can be used for clustering algorithms, for example Force Atlas in Gephi. In Gephi, negative weights are not supported, so we set all negative correlations to zero (they have no influence on clustering).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Proportionality">Proportionality<a class="anchor" id="prop" /><a class="anchor-link" href="#Proportionality">&#182;</a></h2><p>Proportionality is a correlation method specifically developed for compositional microbial data. It is included in the MicEco package and can be run directly on a phyloseq object:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MicEco</span><span class="p">)</span>
+<span class="n">net</span> <span class="o">&lt;-</span> <span class="nf">proportionality</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We can then run the same steps as for the Spearman correlation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="n">net_df</span><span class="o">$</span><span class="n">Var1</span> <span class="o">!=</span> <span class="n">net_df</span><span class="o">$</span><span class="n">Var2</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.3</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As for the Spearman correaltion, you can choose to just set an arbitrary correlation cut-off for including correlations, for example 0.6. It is also possible to calculate p-values through permutations if this is prefered.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">colnames</span><span class="p">(</span><span class="n">net_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Source&quot;</span><span class="p">,</span> <span class="s">&quot;Target&quot;</span><span class="p">,</span> <span class="s">&quot;Cor&quot;</span><span class="p">)</span>
+<span class="n">net_df</span><span class="o">$</span><span class="n">Weight</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="n">net_df</span><span class="o">$</span><span class="n">Sign</span> <span class="o">&lt;-</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Cor</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="s">&quot;Positive&quot;</span><span class="p">,</span> <span class="s">&quot;Negative&quot;</span><span class="p">)</span>
+<span class="n">net_df</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table>
+<thead><tr><th></th><th scope=col>Source</th><th scope=col>Target</th><th scope=col>Cor</th><th scope=col>Weight</th><th scope=col>Sign</th></tr></thead>
+<tbody>
+	<tr><th scope=row>303</th><td>ASV_430  </td><td>ASV_22   </td><td>0.3142544</td><td>0.3142544</td><td>Positive </td></tr>
+	<tr><th scope=row>496</th><td>ASV_981  </td><td>ASV_24   </td><td>0.3035461</td><td>0.3035461</td><td>Positive </td></tr>
+	<tr><th scope=row>1209</th><td>ASV_1373 </td><td>ASV_62   </td><td>0.3239744</td><td>0.3239744</td><td>Positive </td></tr>
+	<tr><th scope=row>1396</th><td>ASV_521  </td><td>ASV_101  </td><td>0.3232395</td><td>0.3232395</td><td>Positive </td></tr>
+	<tr><th scope=row>2215</th><td>ASV_626  </td><td>ASV_143  </td><td>0.3667985</td><td>0.3667985</td><td>Positive </td></tr>
+	<tr><th scope=row>3544</th><td>ASV_431  </td><td>ASV_344  </td><td>0.3312334</td><td>0.3312334</td><td>Positive </td></tr>
+	<tr><th scope=row>3825</th><td>ASV_516  </td><td>ASV_353  </td><td>0.4125093</td><td>0.4125093</td><td>Positive </td></tr>
+	<tr><th scope=row>4323</th><td>ASV_22   </td><td>ASV_430  </td><td>0.3142544</td><td>0.3142544</td><td>Positive </td></tr>
+	<tr><th scope=row>4482</th><td>ASV_344  </td><td>ASV_431  </td><td>0.3312334</td><td>0.3312334</td><td>Positive </td></tr>
+	<tr><th scope=row>5353</th><td>ASV_952  </td><td>ASV_467  </td><td>0.3006734</td><td>0.3006734</td><td>Positive </td></tr>
+	<tr><th scope=row>5969</th><td>ASV_353  </td><td>ASV_516  </td><td>0.4125093</td><td>0.4125093</td><td>Positive </td></tr>
+	<tr><th scope=row>5998</th><td>ASV_653  </td><td>ASV_516  </td><td>0.3030857</td><td>0.3030857</td><td>Positive </td></tr>
+	<tr><th scope=row>6086</th><td>ASV_101  </td><td>ASV_521  </td><td>0.3232395</td><td>0.3232395</td><td>Positive </td></tr>
+	<tr><th scope=row>6694</th><td>ASV_848  </td><td>ASV_535  </td><td>0.3407589</td><td>0.3407589</td><td>Positive </td></tr>
+	<tr><th scope=row>6702</th><td>ASV_950  </td><td>ASV_535  </td><td>0.3442057</td><td>0.3442057</td><td>Positive </td></tr>
+	<tr><th scope=row>7219</th><td>ASV_685  </td><td>ASV_616  </td><td>0.3629121</td><td>0.3629121</td><td>Positive </td></tr>
+	<tr><th scope=row>7307</th><td>ASV_143  </td><td>ASV_626  </td><td>0.3667985</td><td>0.3667985</td><td>Positive </td></tr>
+	<tr><th scope=row>7740</th><td>ASV_516  </td><td>ASV_653  </td><td>0.3030857</td><td>0.3030857</td><td>Positive </td></tr>
+	<tr><th scope=row>8559</th><td>ASV_616  </td><td>ASV_685  </td><td>0.3629121</td><td>0.3629121</td><td>Positive </td></tr>
+	<tr><th scope=row>8875</th><td>ASV_1090 </td><td>ASV_702  </td><td>0.3390034</td><td>0.3390034</td><td>Positive </td></tr>
+	<tr><th scope=row>9682</th><td>ASV_1072 </td><td>ASV_775  </td><td>0.3101569</td><td>0.3101569</td><td>Positive </td></tr>
+	<tr><th scope=row>10580</th><td>ASV_535  </td><td>ASV_848  </td><td>0.3407589</td><td>0.3407589</td><td>Positive </td></tr>
+	<tr><th scope=row>11605</th><td>ASV_1379 </td><td>ASV_941  </td><td>0.3057805</td><td>0.3057805</td><td>Positive </td></tr>
+	<tr><th scope=row>11660</th><td>ASV_535  </td><td>ASV_950  </td><td>0.3442057</td><td>0.3442057</td><td>Positive </td></tr>
+	<tr><th scope=row>11785</th><td>ASV_467  </td><td>ASV_952  </td><td>0.3006734</td><td>0.3006734</td><td>Positive </td></tr>
+	<tr><th scope=row>12154</th><td>ASV_24   </td><td>ASV_981  </td><td>0.3035461</td><td>0.3035461</td><td>Positive </td></tr>
+	<tr><th scope=row>12273</th><td>ASV_1304 </td><td>ASV_981  </td><td>0.3189079</td><td>0.3189079</td><td>Positive </td></tr>
+	<tr><th scope=row>13032</th><td>ASV_775  </td><td>ASV_1072 </td><td>0.3101569</td><td>0.3101569</td><td>Positive </td></tr>
+	<tr><th scope=row>13431</th><td>ASV_702  </td><td>ASV_1090 </td><td>0.3390034</td><td>0.3390034</td><td>Positive </td></tr>
+	<tr><th scope=row>16561</th><td>ASV_981  </td><td>ASV_1304 </td><td>0.3189079</td><td>0.3189079</td><td>Positive </td></tr>
+	<tr><th scope=row>17289</th><td>ASV_62   </td><td>ASV_1373 </td><td>0.3239744</td><td>0.3239744</td><td>Positive </td></tr>
+	<tr><th scope=row>17501</th><td>ASV_941  </td><td>ASV_1379 </td><td>0.3057805</td><td>0.3057805</td><td>Positive </td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SparCC">SparCC<a class="anchor" id="sparcc" /><a class="anchor-link" href="#SparCC">&#182;</a></h2><p>SparCC is a correlation method which is using various compositional transformations and bootstrapping methods to give reliable correlations on compositional data. The original implemetation is in python, but it is included in the SPIEC-EASI R package.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">SpiecEasi</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Registered S3 methods overwritten by &#39;huge&#39;:
+  method    from
+  plot.roc  pROC
+  print.roc pROC
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>SparCC bootstraps (be patient..., it is best to use 1000 or 10000 bootstraps, but it takes too long for this example)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">sparcc_boot</span> <span class="o">&lt;-</span> <span class="nf">sparccboot</span><span class="p">(</span><span class="nf">t</span><span class="p">(</span><span class="n">otu</span><span class="p">),</span> <span class="n">R</span> <span class="o">=</span> <span class="m">100</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>SparCC p-values</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">sparcc_pval</span> <span class="o">&lt;-</span> <span class="nf">pval.sparccboot</span><span class="p">(</span><span class="n">sparcc_boot</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Turn into a data.frame with taxa names</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Correlation data.frame</span>
+<span class="n">net</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">otu</span><span class="p">),</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">otu</span><span class="p">))</span>
+<span class="n">net</span><span class="p">[</span><span class="nf">upper.tri</span><span class="p">(</span><span class="n">net</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="n">sparcc_pval</span><span class="o">$</span><span class="n">cors</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">net</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">net</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">otu</span><span class="p">)</span>
+<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+
+<span class="c1"># P-value data.frame</span>
+<span class="n">netp</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="kc">NA</span><span class="p">,</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">otu</span><span class="p">),</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">otu</span><span class="p">))</span>
+<span class="n">netp</span><span class="p">[</span><span class="nf">upper.tri</span><span class="p">(</span><span class="n">netp</span><span class="p">,</span> <span class="n">diag</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)]</span> <span class="o">&lt;-</span> <span class="n">sparcc_pval</span><span class="o">$</span><span class="n">pval</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">netp</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">netp</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">otu</span><span class="p">)</span>
+<span class="n">netp_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">netp</span><span class="p">)</span>
+
+<span class="c1"># Combine</span>
+<span class="n">sparcc_df</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">net_df</span><span class="p">,</span> <span class="n">netp_df</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Var1&quot;</span><span class="p">,</span> <span class="s">&quot;Var2&quot;</span><span class="p">))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">sparcc_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Source&quot;</span><span class="p">,</span> <span class="s">&quot;Target&quot;</span><span class="p">,</span> <span class="s">&quot;Cor&quot;</span><span class="p">,</span> <span class="s">&quot;Pval&quot;</span><span class="p">)</span>
+
+<span class="c1"># Remove redundant</span>
+<span class="n">sparcc_df</span> <span class="o">&lt;-</span> <span class="n">sparcc_df</span><span class="p">[</span><span class="o">!</span><span class="nf">is.na</span><span class="p">(</span><span class="n">sparcc_df</span><span class="o">$</span><span class="n">Cor</span><span class="p">),</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Add adjusted p-values</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">sparcc_df</span><span class="o">$</span><span class="n">Pval_adj</span> <span class="o">&lt;-</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">sparcc_df</span><span class="o">$</span><span class="n">Pval</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;fdr&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Keep only significant</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">sparcc_df</span> <span class="o">&lt;-</span> <span class="n">sparcc_df</span><span class="p">[</span><span class="n">sparcc_df</span><span class="o">$</span><span class="n">Pval_adj</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="SPIEC-EASI">SPIEC-EASI<a class="anchor" id="speic" /><a class="anchor-link" href="#SPIEC-EASI">&#182;</a></h2><p>SPIEC-EASI is a method based on graphical model inference developed specifically for microbial sequence data. There are 3 steps in the SPIEC-EASI analysis: data transformation, graphical model inference, model selection.</p>
+<p>SPIEC-EASI might at first seem much more complicated than the other methods, but it has a big strength in that one does not have to choose an arbitrary correlation or p-value cut-off for determning inclusion of edges, SPIEC-EASI tries to estimate this for us automatically.</p>
+<h3 id="Data-transformation">Data transformation<a class="anchor-link" href="#Data-transformation">&#182;</a></h3><p>Data are CLR-transformed, similar to what is done prior to calculating Proportionality.</p>
+<h3 id="Graphical-model-inference">Graphical model inference<a class="anchor-link" href="#Graphical-model-inference">&#182;</a></h3><p>The graphical model can be inferred through either neighborhood selection (mb) or inverse covariance selection (glasso). Inverse covariance is in itself simple to estimate, but since we are usually having many more taxa than samples, we cannot infer inverse covariance through the usual calculations. We therefore use methods for sparse inverse covariance estimation, relying on the assumption that most covariances are small or zero. The amount of sparsity is controlled with a lambda parameter. Both the mb and the glasso methods estimate models over a range of lambda values, and we need a way to pick the final model to use.</p>
+<h3 id="Model-selection">Model selection<a class="anchor-link" href="#Model-selection">&#182;</a></h3><p>SPIEC-EASI uses the (bounded) stars criterion for model selection, to choose the lambda parameter which produces the best graphical model.</p>
+<h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">se</span> <span class="o">&lt;-</span> <span class="nf">spiec.easi</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&#39;glasso&#39;</span><span class="p">,</span> <span class="n">lambda.min.ratio</span><span class="o">=</span><span class="m">1e-3</span><span class="p">,</span> <span class="n">nlambda</span><span class="o">=</span><span class="m">30</span><span class="p">,</span>
+               <span class="n">sel.criterion</span><span class="o">=</span><span class="s">&#39;bstars&#39;</span><span class="p">,</span> <span class="n">pulsar.select</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span> <span class="n">pulsar.params</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">rep.num</span><span class="o">=</span><span class="m">50</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="m">42</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Applying data transformations...
+Selecting model with pulsar using bstars...
+Fitting final estimate with glasso...
+done
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># Get covariances and transform to correlations</span>
+<span class="n">netc</span> <span class="o">&lt;-</span> <span class="nf">cov2cor</span><span class="p">(</span><span class="nf">as.matrix</span><span class="p">(</span><span class="nf">getOptCov</span><span class="p">(</span><span class="n">se</span><span class="p">)))</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">netc</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">netc</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">taxa_names</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">)</span>
+<span class="n">netc_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">netc</span><span class="p">)</span>
+
+<span class="c1"># Get chosen edges</span>
+<span class="n">net</span> <span class="o">&lt;-</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">getRefit</span><span class="p">(</span><span class="n">se</span><span class="p">))</span>
+<span class="nf">rownames</span><span class="p">(</span><span class="n">net</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">net</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">taxa_names</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">)</span>
+<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
+
+<span class="c1"># Combine</span>
+<span class="n">se_df</span> <span class="o">&lt;-</span> <span class="nf">merge</span><span class="p">(</span><span class="n">netc_df</span><span class="p">,</span> <span class="n">net_df</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Var1&quot;</span><span class="p">,</span> <span class="s">&quot;Var2&quot;</span><span class="p">))</span>
+<span class="nf">colnames</span><span class="p">(</span><span class="n">se_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Source&quot;</span><span class="p">,</span> <span class="s">&quot;Target&quot;</span><span class="p">,</span> <span class="s">&quot;Cor&quot;</span><span class="p">,</span> <span class="s">&quot;Selected&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Subset to only the chosen edges</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">se_df</span> <span class="o">&lt;-</span> <span class="n">se_df</span><span class="p">[</span><span class="n">se_df</span><span class="o">$</span><span class="n">Selected</span> <span class="o">==</span> <span class="m">1</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that since the covariances are penalized, they are much smaller than from the other methods, and not directly comparable. They can, however, still be used as weights when plotting the network.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>

@@ -30,6 +30,7 @@ This section contains notebooks for more specific and/or advanced data presentat
 
 ##### Analysis
 * [PERMANOVA effect sizes](html/omegasq.html)
+* [Microbial association networks](html/network.html)
 
 ##### Plotting
 * [Venn diagram of shared taxa](html/venn.html)
