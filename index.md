@@ -30,6 +30,7 @@ This section contains notebooks for more specific and/or advanced data presentat
 
 ##### Analysis
 * [PERMANOVA effect sizes](html/omegasq.html)
+* [Differential abundance - Extended](html/da2.html)
 * [Microbial association networks](html/network.html)
 
 ##### Plotting
