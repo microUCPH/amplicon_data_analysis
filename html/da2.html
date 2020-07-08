@@ -13084,7 +13084,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The notebook on 'Differential abundance - Basics' only explained two different methods for doing DA analysis. There are however many different methods, and choosing the best is not a simple task. Benchmark studies have shown that different methods have different strengths, and the choice of methods therefore in part relies on the specific dataset in question. The <a href="https://github.com/russel88/datest">DAtest package</a> tries to solve this problem by testing a lot if different methods on your own dataset and provide some statistics on their performance. The details can be found in the <a href="https://github.com/russel88/datest/wiki">wiki</a>, but the basic idea is that the predictor if interest (e.g. treatment/control) is shuffled. Then some random features (ASVs) we multiply the abundance of with some number (e.g. 5), AKA spiked, but only for the shuffled treatment samples. We then apply the diferent DA methods and check if they can find the ASVs which were increased in abundance for the shuffled predictor. The predictor is shuffled to remove any true effect present in the dataset. This procedure is repeated several times, by default 20, to evaluate the consistency of the performance.</p>
+<p>The notebook on 'Differential abundance - Basics' only explained two different methods for doing DA analysis. There are however many different methods, and choosing the best is not a simple task. Benchmark studies have shown that different methods have different strengths, and the choice of method therefore in part relies on the specific dataset in question. The <a href="https://github.com/russel88/datest">DAtest package</a> tries to solve this problem by testing a lot if different methods on your own dataset and provide some statistics on their performance. The details can be found in the <a href="https://github.com/russel88/datest/wiki">wiki</a>, but the basic idea is that the predictor of interest (e.g. treatment/control) is shuffled. Then for some random features (ASVs) we multiply the abundance with some number (e.g. 5), but only for the shuffled treatment samples. We then apply the diferent DA methods and check if they can find the ASVs which were increased in abundance for the shuffled predictor. The predictor is shuffled to remove any true effect present in the dataset. This procedure is repeated several times, by default 20, to evaluate the consistency of the performance.</p>
 <p>Another feature of DAtest is that it is easy to run several different methods and compare their output. One could for example run 3 methods known to perform well, and then use their combined results for a less biased DA analysis.</p>
 
 </div>
@@ -13209,7 +13209,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">testDA</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">,</span> <span class="n">predictor</span> <span class="o">=</span> <span class="s">&quot;Delivery&quot;</span><span class="p">)</span>
@@ -13219,49 +13219,7 @@ div#notebook {
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>Running on 7 cores
-predictor is assumed to be a categorical variable with 2 levels: Normal, Sectio
-</pre>
 </div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Running 25 methods 20 times...
-  |======================================================================| 100%</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>ds2x, erq2, ere2 were excluded due to failure
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
@@ -13987,7 +13945,7 @@ CEhEAgGJSKD/DwViEgU9NdoXAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Argh! Doesn't look too good. 8 features are significant with a negative log fold change, but 3 features have a positive log fold change with ds2 and erq but negative with zig. If the signs are not matching, then we would not know in which group the features have the highest abundance.</p>
+<p>Argh! Doesn't look too good. 3 features have a positive log fold change with ds2 and erq but negative with zig, and 8 features are negative with zig but positive with erq. If the signs are not matching, then we would not know in which group the features have the highest abundance.</p>
 
 </div>
 </div>
