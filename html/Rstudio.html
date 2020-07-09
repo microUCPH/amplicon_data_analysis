@@ -13077,58 +13077,15 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Running-R-and-RStudio-on-ERDA-Jupyter-server">Running R and RStudio on ERDA Jupyter server<a class="anchor-link" href="#Running-R-and-RStudio-on-ERDA-Jupyter-server">&#182;</a></h1><h2 id="Sign-up---First-time-only">Sign-up - First time only<a class="anchor-link" href="#Sign-up---First-time-only">&#182;</a></h2><p>All data analysis will be run in R (<a href="https://www.r-project.org">https://www.r-project.org</a>) through the ERDA servers. If you have not used ERDA before you first have to sign-up by following the sign-up procedure on <a href="http://www.erda.dk/">http://www.erda.dk/</a>. Use your KU credentials to sign-up (xyz123 and associated password). Do not use your email as the username only the credientials. If you experience problems with logging on to ERDA it usually helps to clear the browser history and try again.</p>
-<h2 id="Import-scripts-and-data">Import scripts and data<a class="anchor-link" href="#Import-scripts-and-data">&#182;</a></h2><p>First, login to <a href="http://www.erda.dk/">http://www.erda.dk/</a></p>
-<p>Before each analysis, you need to import the pre-made scripts and the data.</p>
-<p>1) <strong>First you create a folder where the scripts and data will go.</strong></p>
-<ul>
-<li>Right-click in the left box and click Create Folder:
-<img src="../img/erda1.png" alt="ERDA1"></li>
-<li>Give it a fitting name, click Ok:
-<img src="../img/erda2.png" alt="ERDA2"></li>
+<h1 id="R-and-RStudio">R and RStudio<a class="anchor-link" href="#R-and-RStudio">&#182;</a></h1><p>R is a free and open source statistical programming language. The main advantage of using R is it's large community and many statistical packages. R packages are collections of functions which can greatly simplify analyses. Almost any statistical analysis you can think of will be in an R package, which also makes R optimal for amplicon data analysis.</p>
+<p>RStudio is a great interface for running R, and gives a good overview of both your script, environment, console, plots, and much more.</p>
+<h3 id="Install">Install<a class="anchor-link" href="#Install">&#182;</a></h3><ul>
+<li><a href="https://www.r-project.org/">First install R</a></li>
+<li><a href="https://rstudio.com/products/rstudio/download/">Then install RStudio</a></li>
 </ul>
-<p>2) <strong>Import data.</strong></p>
-<ul>
-<li>Right-click on your new folder, press Share Link -&gt; Import:
-<img src="../img/erda3.png" alt="ERDA3"></li>
-<li>Enter the appropriate Share Link ID (<a href="https://absalon.ku.dk/courses/39115/pages/data-analysis-share-links?module_item_id=951957">see absalon for link IDs for the different analyses</a>), click Ok:
-<img src="../img/erda4.png" alt="ERDA4"></li>
-</ul>
-<h2 id="Start-RStudio-through-ERDA">Start RStudio through ERDA<a class="anchor-link" href="#Start-RStudio-through-ERDA">&#182;</a></h2><p>First, login to <a href="http://www.erda.dk/">http://www.erda.dk/</a></p>
-<p>RStudio is a software which simplifies analyses with R.</p>
-<p>To run R-Studio, you first have to start a Jupyter server. This server will have both R, R-Studio, and all relevant R packages pre-installed.</p>
-<p>1) <strong>Start your own Jupyter server</strong></p>
-<ul>
-<li>Click Jupyter in the left menu:
-<img src="../img/erda5.png" alt="ERDA5"></li>
-<li>Click Start DAG:
-<img src="../img/erda6.png" alt="ERDA6"></li>
-<li>Click Start My Server.</li>
-<li><p>Under Select a notebook image choose Bio Notebook:
-<img src="../img/erda7.png" alt="ERDA7"></p>
-</li>
-<li><p>Click Spawn.</p>
-</li>
-<li><p>Now you have access to your own server. Here you can run R, RStudio, Python, and much more. If the server is inactive for 2 hours it will be terminated, which means that everything that is not saved will be lost, and you will have to start a new server.</p>
-</li>
-</ul>
-<p>2) <strong>Start RStudio.</strong></p>
-<ul>
-<li>Click RStudio -&gt; Launch RStudio.
-<img src="../img/erda8.png" alt="ERDA8"></li>
-</ul>
-<p>3) <strong>Find the imported scripts and data.</strong></p>
-<ul>
-<li><p>In the bottom right corner click <em>work</em>.
-<img src="../img/erda9.png" alt="ERDA9"></p>
-</li>
-<li><p>Click the name of the folder you imported the data into.</p>
-</li>
-<li>Click the name of the script you want to open (E.g. Intro.R).</li>
-<li>You are now ready to start analysing with R! </li>
-<li>You can save your script by clicking File -&gt; Save (Save As…).</li>
-</ul>
-<h2 id="Rstudio-overview">Rstudio overview<a class="anchor-link" href="#Rstudio-overview">&#182;</a></h2><p><img src="../img/erda10.png" alt="Rstudio"></p>
+<h3 id="Getting-help">Getting help<a class="anchor-link" href="#Getting-help">&#182;</a></h3><p>Just search your problem or question on your favorite search engine and you will find multiple websites with the answer. Stack Overflow and R-bloggers, just to name a few examples, are great places to find help.</p>
+<h3 id="Rstudio-overview">Rstudio overview<a class="anchor-link" href="#Rstudio-overview">&#182;</a></h3><p>A more detailed overview can be found in this <a href="https://www.r-bloggers.com/a-tour-of-rstudio/">blog</a></p>
+<p><img src="../img/erda10.png" alt="Rstudio"></p>
 
 </div>
 </div>

@@ -2,12 +2,15 @@
 
 This is a collection of notebooks describing the basic analysis workflow for a 16S rRNA gene amplicon sequencing project - from raw reads to statistics and plots. It is intended for beginners, and therefore includes an introductory section on the R programming language and statistics.
 
+If you find errors/typos or you would like a notebook/section on a specific topic, make a [github issue](https://github.com/Russel88/amplicon_data_analysis/issues) or throw me an email: russel (at) biostat (dot) xyz
+
 The notebooks uses an example dataset, which is a simulated dataset, which is supposed to look like an infant gut microbiome dataset. It is available for download [here](https://github.com/Russel88/amplicon_data_analysis/raw/master/data/physeq.RData).
 
-Mostly for KU students:
-* [Intro to ERDA and RStudio](html/Rstudio.html)
+Only for KU students:
+* [Intro to ERDA](html/ERDA.html)
 
 Background material:
+* [Intro to R and RStudio](html/Rstudio.html)
 * [Intro to R programming language](html/R.html)
 * [Statistics 101](html/stats.html)
 * [Statistics 102](html/stats2.html)
