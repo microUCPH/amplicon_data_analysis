@@ -33,9 +33,10 @@ Analysis workflow:
 This section contains notebooks for more specific and/or advanced data presentations or analyses. 
 
 ##### Analysis
-* [PERMANOVA effect sizes](html/omegasq.html)
 * [Differential abundance - Extended](html/da2.html)
 * [Microbial association networks](html/network.html)
+* [Supervised machine learning](html/superlearn.html)
+* [PERMANOVA effect sizes](html/omegasq.html)
 
 ##### Plotting
 * [Venn diagram of shared taxa](html/venn.html)
