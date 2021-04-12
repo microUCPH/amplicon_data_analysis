@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Microbial-association-networks">Microbial association networks<a class="anchor-link" href="#Microbial-association-networks">&#182;</a></h1><p>With a large set of samples we can infer co-occurrence and co-exclusion patterns between taxa. The interpretation of these associations depends on the experimental design. Say we include oral and fecal samples from human subjects, then the associations would largely be dominated by the environmental preference of the taxa, and the network would likely have two clusters; an oral cluster and a fecal cluster. These networks are often created to infer microbial interactions, but to ensure that the patterns are driven by microbial interactions one would need: Small-scale samples, at a scale where we think the microbes could affect the abundance of the other microbes at that scale. And we would need either samples from similar environments or from many different environments, to ensure the associations are independent of environment.</p>
+<h1 id="Microbial-association-networks">Microbial association networks<a class="anchor-link" href="#Microbial-association-networks">&#182;</a></h1><p>With a large set of samples we can infer co-occurrence and co-exclusion patterns between taxa. The interpretation of these associations depends on the experimental design. Say we include oral and fecal samples from human subjects, then the associations would largely be dominated by the environmental preference of the taxa, and the network would likely have two clusters; an oral cluster and a fecal cluster. These networks are often created to infer microbial interactions, but it is difficult to dicern between the effects of interactions on co-occurrence and the effect of shared environment (microbes preferring the same nutrients or aboitic condititions are likely to co-exist). Association networks can probably only be used to infer interactions if great care is taken in the experimental design. Read more <a href="https://www.nature.com/articles/s41396-019-0463-3">here</a>.</p>
 <h2 id="Types-of-networks">Types of networks<a class="anchor-link" href="#Types-of-networks">&#182;</a></h2><h4 id="Correlation-network">Correlation network<a class="anchor-link" href="#Correlation-network">&#182;</a></h4><p>Networks can be based on correlations where we calculate the correlation between each pair of taxa, independent of all the other taxa. These correlations are not affected by which taxa we include in the network, except that the p-value multiple correction is affected by the number of included taxa.</p>
 <p>Examples of correlation network methods:</p>
 <ul>
@@ -13133,8 +13133,8 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>DAtest version 2.7.15
-213 features grouped as &#39;Others&#39; in the output
+<pre>DAtest version 2.7.18
+204 features grouped as &#39;Others&#39; in the output
 </pre>
 </div>
 </div>
@@ -13259,7 +13259,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Remove correlations below 0.3. (Usually this should be set at 0.6 or similar, but this example data has no strong correlations)</p>
+<p>Remove correlations below 0.6.</p>
 
 </div>
 </div>
@@ -13269,7 +13269,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.3</span><span class="p">,</span> <span class="p">]</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.6</span><span class="p">,</span> <span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13314,22 +13314,39 @@ div#notebook {
 <table>
 <thead><tr><th></th><th scope=col>Source</th><th scope=col>Target</th><th scope=col>Cor</th><th scope=col>Weight</th><th scope=col>Sign</th></tr></thead>
 <tbody>
-	<tr><th scope=row>1622</th><td>ASV_20   </td><td>ASV_120  </td><td>0.3028239</td><td>0.3028239</td><td>Positive </td></tr>
-	<tr><th scope=row>4482</th><td>ASV_344  </td><td>ASV_431  </td><td>0.3325956</td><td>0.3325956</td><td>Positive </td></tr>
-	<tr><th scope=row>6086</th><td>ASV_101  </td><td>ASV_521  </td><td>0.3230301</td><td>0.3230301</td><td>Positive </td></tr>
-	<tr><th scope=row>7705</th><td>ASV_92   </td><td>ASV_653  </td><td>0.3124427</td><td>0.3124427</td><td>Positive </td></tr>
-	<tr><th scope=row>8248</th><td>ASV_120  </td><td>ASV_678  </td><td>0.3198945</td><td>0.3198945</td><td>Positive </td></tr>
-	<tr><th scope=row>9650</th><td>ASV_691  </td><td>ASV_775  </td><td>0.3066593</td><td>0.3066593</td><td>Positive </td></tr>
-	<tr><th scope=row>9734</th><td>ASV_124  </td><td>ASV_777  </td><td>0.3033164</td><td>0.3033164</td><td>Positive </td></tr>
-	<tr><th scope=row>10128</th><td>ASV_22   </td><td>ASV_802  </td><td>0.3140431</td><td>0.3140431</td><td>Positive </td></tr>
-	<tr><th scope=row>11515</th><td>ASV_467  </td><td>ASV_941  </td><td>0.3145360</td><td>0.3145360</td><td>Positive </td></tr>
-	<tr><th scope=row>11806</th><td>ASV_672  </td><td>ASV_952  </td><td>0.3007031</td><td>0.3007031</td><td>Positive </td></tr>
-	<tr><th scope=row>13690</th><td>ASV_626  </td><td>ASV_1103 </td><td>0.3108115</td><td>0.3108115</td><td>Positive </td></tr>
-	<tr><th scope=row>15431</th><td>ASV_483  </td><td>ASV_1226 </td><td>0.3144590</td><td>0.3144590</td><td>Positive </td></tr>
-	<tr><th scope=row>16003</th><td>ASV_777  </td><td>ASV_1252 </td><td>0.3000040</td><td>0.3000040</td><td>Positive </td></tr>
-	<tr><th scope=row>16607</th><td>ASV_20   </td><td>ASV_1307 </td><td>0.3175703</td><td>0.3175703</td><td>Positive </td></tr>
-	<tr><th scope=row>17289</th><td>ASV_62   </td><td>ASV_1373 </td><td>0.3590512</td><td>0.3590512</td><td>Positive </td></tr>
-	<tr><th scope=row>17359</th><td>ASV_848  </td><td>ASV_1373 </td><td>0.3318028</td><td>0.3318028</td><td>Positive </td></tr>
+	<tr><th scope=row>6310</th><td>2dc26dda3a7735af9bf29c6bc37c2ecc</td><td>f5ab8244460d1988b40f85a9347297c7</td><td>0.6010385                       </td><td>0.6010385                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>7561</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>8036a70608aff1a11c728ceaeabb7342</td><td>0.6428284                       </td><td>0.6428284                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>7897</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>0978d7032689ab3eeef2fc60e4490e11</td><td>0.7690596                       </td><td>0.7690596                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>8919</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>b6592341b951857fdd6c3889f7c90e92</td><td>0.6100780                       </td><td>0.6100780                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9129</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>b6b05223adf86d071fd279f79dc2533c</td><td>0.6830970                       </td><td>0.6830970                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9143</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>b6b05223adf86d071fd279f79dc2533c</td><td>0.6361042                       </td><td>0.6361042                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9353</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>0.7671811                       </td><td>0.7671811                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9367</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>0.6951679                       </td><td>0.6951679                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9378</th><td>b6b05223adf86d071fd279f79dc2533c</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>0.6468734                       </td><td>0.6468734                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10025</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>0.7413874                       </td><td>0.7413874                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10036</th><td>8036a70608aff1a11c728ceaeabb7342</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>0.6081522                       </td><td>0.6081522                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10039</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>0.6446276                       </td><td>0.6446276                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10052</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>0.6741227                       </td><td>0.6741227                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10697</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>57face48ec571894748b66cab7c52d5e</td><td>0.6161806                       </td><td>0.6161806                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10809</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>0.7764203                       </td><td>0.7764203                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10823</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>0.6286443                       </td><td>0.6286443                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10836</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>0.7074352                       </td><td>0.7074352                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10842</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>0.6622997                       </td><td>0.6622997                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10848</th><td>57face48ec571894748b66cab7c52d5e</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>0.6170107                       </td><td>0.6170107                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11145</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>7ce4e4dc201a6701bff5771bfcfa6d29</td><td>0.6463964                       </td><td>0.6463964                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11159</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>7ce4e4dc201a6701bff5771bfcfa6d29</td><td>0.6315947                       </td><td>0.6315947                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11172</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>7ce4e4dc201a6701bff5771bfcfa6d29</td><td>0.6259473                       </td><td>0.6259473                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11593</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>bfe0ef267b9437cc26842e05f6c3e13e</td><td>0.6855413                       </td><td>0.6855413                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11607</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>bfe0ef267b9437cc26842e05f6c3e13e</td><td>0.6877867                       </td><td>0.6877867                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11620</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>bfe0ef267b9437cc26842e05f6c3e13e</td><td>0.6606211                       </td><td>0.6606211                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11633</th><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>bfe0ef267b9437cc26842e05f6c3e13e</td><td>0.6652148                       </td><td>0.6652148                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11817</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.7637661                       </td><td>0.7637661                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11831</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.7170273                       </td><td>0.7170273                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11842</th><td>b6b05223adf86d071fd279f79dc2533c</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.6155295                       </td><td>0.6155295                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11844</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.6880714                       </td><td>0.6880714                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11850</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.6944623                       </td><td>0.6944623                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11857</th><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.7311514                       </td><td>0.7311514                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11864</th><td>bfe0ef267b9437cc26842e05f6c3e13e</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>0.6149376                       </td><td>0.6149376                       </td><td>Positive                        </td></tr>
 </tbody>
 </table>
 
@@ -13386,7 +13403,7 @@ div#notebook {
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">net_df</span> <span class="o">&lt;-</span> <span class="nf">as.data.frame.table</span><span class="p">(</span><span class="n">net</span><span class="p">)</span>
 <span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="n">net_df</span><span class="o">$</span><span class="n">Var1</span> <span class="o">!=</span> <span class="n">net_df</span><span class="o">$</span><span class="n">Var2</span><span class="p">,</span> <span class="p">]</span>
-<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.3</span><span class="p">,</span> <span class="p">]</span>
+<span class="n">net_df</span> <span class="o">&lt;-</span> <span class="n">net_df</span><span class="p">[</span><span class="nf">abs</span><span class="p">(</span><span class="n">net_df</span><span class="o">$</span><span class="n">Freq</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0.6</span><span class="p">,</span> <span class="p">]</span>
 </pre></div>
 
     </div>
@@ -13431,38 +13448,28 @@ div#notebook {
 <table>
 <thead><tr><th></th><th scope=col>Source</th><th scope=col>Target</th><th scope=col>Cor</th><th scope=col>Weight</th><th scope=col>Sign</th></tr></thead>
 <tbody>
-	<tr><th scope=row>303</th><td>ASV_430  </td><td>ASV_22   </td><td>0.3142544</td><td>0.3142544</td><td>Positive </td></tr>
-	<tr><th scope=row>496</th><td>ASV_981  </td><td>ASV_24   </td><td>0.3035461</td><td>0.3035461</td><td>Positive </td></tr>
-	<tr><th scope=row>1209</th><td>ASV_1373 </td><td>ASV_62   </td><td>0.3239744</td><td>0.3239744</td><td>Positive </td></tr>
-	<tr><th scope=row>1396</th><td>ASV_521  </td><td>ASV_101  </td><td>0.3232395</td><td>0.3232395</td><td>Positive </td></tr>
-	<tr><th scope=row>2215</th><td>ASV_626  </td><td>ASV_143  </td><td>0.3667985</td><td>0.3667985</td><td>Positive </td></tr>
-	<tr><th scope=row>3544</th><td>ASV_431  </td><td>ASV_344  </td><td>0.3312334</td><td>0.3312334</td><td>Positive </td></tr>
-	<tr><th scope=row>3825</th><td>ASV_516  </td><td>ASV_353  </td><td>0.4125093</td><td>0.4125093</td><td>Positive </td></tr>
-	<tr><th scope=row>4323</th><td>ASV_22   </td><td>ASV_430  </td><td>0.3142544</td><td>0.3142544</td><td>Positive </td></tr>
-	<tr><th scope=row>4482</th><td>ASV_344  </td><td>ASV_431  </td><td>0.3312334</td><td>0.3312334</td><td>Positive </td></tr>
-	<tr><th scope=row>5353</th><td>ASV_952  </td><td>ASV_467  </td><td>0.3006734</td><td>0.3006734</td><td>Positive </td></tr>
-	<tr><th scope=row>5969</th><td>ASV_353  </td><td>ASV_516  </td><td>0.4125093</td><td>0.4125093</td><td>Positive </td></tr>
-	<tr><th scope=row>5998</th><td>ASV_653  </td><td>ASV_516  </td><td>0.3030857</td><td>0.3030857</td><td>Positive </td></tr>
-	<tr><th scope=row>6086</th><td>ASV_101  </td><td>ASV_521  </td><td>0.3232395</td><td>0.3232395</td><td>Positive </td></tr>
-	<tr><th scope=row>6694</th><td>ASV_848  </td><td>ASV_535  </td><td>0.3407589</td><td>0.3407589</td><td>Positive </td></tr>
-	<tr><th scope=row>6702</th><td>ASV_950  </td><td>ASV_535  </td><td>0.3442057</td><td>0.3442057</td><td>Positive </td></tr>
-	<tr><th scope=row>7219</th><td>ASV_685  </td><td>ASV_616  </td><td>0.3629121</td><td>0.3629121</td><td>Positive </td></tr>
-	<tr><th scope=row>7307</th><td>ASV_143  </td><td>ASV_626  </td><td>0.3667985</td><td>0.3667985</td><td>Positive </td></tr>
-	<tr><th scope=row>7740</th><td>ASV_516  </td><td>ASV_653  </td><td>0.3030857</td><td>0.3030857</td><td>Positive </td></tr>
-	<tr><th scope=row>8559</th><td>ASV_616  </td><td>ASV_685  </td><td>0.3629121</td><td>0.3629121</td><td>Positive </td></tr>
-	<tr><th scope=row>8875</th><td>ASV_1090 </td><td>ASV_702  </td><td>0.3390034</td><td>0.3390034</td><td>Positive </td></tr>
-	<tr><th scope=row>9682</th><td>ASV_1072 </td><td>ASV_775  </td><td>0.3101569</td><td>0.3101569</td><td>Positive </td></tr>
-	<tr><th scope=row>10580</th><td>ASV_535  </td><td>ASV_848  </td><td>0.3407589</td><td>0.3407589</td><td>Positive </td></tr>
-	<tr><th scope=row>11605</th><td>ASV_1379 </td><td>ASV_941  </td><td>0.3057805</td><td>0.3057805</td><td>Positive </td></tr>
-	<tr><th scope=row>11660</th><td>ASV_535  </td><td>ASV_950  </td><td>0.3442057</td><td>0.3442057</td><td>Positive </td></tr>
-	<tr><th scope=row>11785</th><td>ASV_467  </td><td>ASV_952  </td><td>0.3006734</td><td>0.3006734</td><td>Positive </td></tr>
-	<tr><th scope=row>12154</th><td>ASV_24   </td><td>ASV_981  </td><td>0.3035461</td><td>0.3035461</td><td>Positive </td></tr>
-	<tr><th scope=row>12273</th><td>ASV_1304 </td><td>ASV_981  </td><td>0.3189079</td><td>0.3189079</td><td>Positive </td></tr>
-	<tr><th scope=row>13032</th><td>ASV_775  </td><td>ASV_1072 </td><td>0.3101569</td><td>0.3101569</td><td>Positive </td></tr>
-	<tr><th scope=row>13431</th><td>ASV_702  </td><td>ASV_1090 </td><td>0.3390034</td><td>0.3390034</td><td>Positive </td></tr>
-	<tr><th scope=row>16561</th><td>ASV_981  </td><td>ASV_1304 </td><td>0.3189079</td><td>0.3189079</td><td>Positive </td></tr>
-	<tr><th scope=row>17289</th><td>ASV_62   </td><td>ASV_1373 </td><td>0.3239744</td><td>0.3239744</td><td>Positive </td></tr>
-	<tr><th scope=row>17501</th><td>ASV_941  </td><td>ASV_1379 </td><td>0.3057805</td><td>0.3057805</td><td>Positive </td></tr>
+	<tr><th scope=row>261</th><td>95b523dacb244bb891da4c48923d8788</td><td>8e61d77c1f6555e76891ac27d58707c6</td><td> 0.6028116                      </td><td>0.6028116                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>4035</th><td>8e61d77c1f6555e76891ac27d58707c6</td><td>95b523dacb244bb891da4c48923d8788</td><td> 0.6028116                      </td><td>0.6028116                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>6343</th><td>0978d7032689ab3eeef2fc60e4490e11</td><td>f5ab8244460d1988b40f85a9347297c7</td><td> 0.6632213                      </td><td>0.6632213                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>6353</th><td>cde00646e8aecf8aaac49a9bb9c96729</td><td>f5ab8244460d1988b40f85a9347297c7</td><td>-0.6170330                      </td><td>0.0000000                       </td><td>Negative                        </td></tr>
+	<tr><th scope=row>6354</th><td>b6b05223adf86d071fd279f79dc2533c</td><td>f5ab8244460d1988b40f85a9347297c7</td><td> 0.6927975                      </td><td>0.6927975                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>6356</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>f5ab8244460d1988b40f85a9347297c7</td><td> 0.7786187                      </td><td>0.7786187                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>6362</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>f5ab8244460d1988b40f85a9347297c7</td><td> 0.7192486                      </td><td>0.7192486                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>6378</th><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>f5ab8244460d1988b40f85a9347297c7</td><td> 0.6727880                      </td><td>0.6727880                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>7897</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>0978d7032689ab3eeef2fc60e4490e11</td><td> 0.6632213                      </td><td>0.6632213                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9017</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>cde00646e8aecf8aaac49a9bb9c96729</td><td>-0.6170330                      </td><td>0.0000000                       </td><td>Negative                        </td></tr>
+	<tr><th scope=row>9129</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>b6b05223adf86d071fd279f79dc2533c</td><td> 0.6927975                      </td><td>0.6927975                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9156</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>b6b05223adf86d071fd279f79dc2533c</td><td> 0.6460149                      </td><td>0.6460149                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9353</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td> 0.7786187                      </td><td>0.7786187                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9378</th><td>b6b05223adf86d071fd279f79dc2533c</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td> 0.6460149                      </td><td>0.6460149                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>9386</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>9676d0bf5f8468ad67ed9525f3320aee</td><td> 0.6399607                      </td><td>0.6399607                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10025</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td> 0.7192486                      </td><td>0.7192486                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10052</th><td>9676d0bf5f8468ad67ed9525f3320aee</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td> 0.6399607                      </td><td>0.6399607                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10074</th><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td> 0.6288676                      </td><td>0.6288676                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>10858</th><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td> 0.6069013                      </td><td>0.6069013                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11817</th><td>f5ab8244460d1988b40f85a9347297c7</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td> 0.6727880                      </td><td>0.6727880                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11850</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td> 0.6288676                      </td><td>0.6288676                       </td><td>Positive                        </td></tr>
+	<tr><th scope=row>11857</th><td>62392dc20bb4fd6c46d3cb038b13cb9e</td><td>1c88ca8aa0ed62fb2fb8bebb8cb25670</td><td> 0.6069013                      </td><td>0.6069013                       </td><td>Positive                        </td></tr>
 </tbody>
 </table>
 
@@ -13508,6 +13515,13 @@ div#notebook {
   method    from
   plot.roc  pROC
   print.roc pROC
+
+Attaching package: &#39;SpiecEasi&#39;
+
+The following object is masked from &#39;package:MicEco&#39;:
+
+    clr
+
 </pre>
 </div>
 </div>

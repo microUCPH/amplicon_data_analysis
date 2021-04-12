@@ -13078,7 +13078,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Compositionality-and-rarefaction">Compositionality and rarefaction<a class="anchor-link" href="#Compositionality-and-rarefaction">&#182;</a></h1><p>Amplicon data is relative, AKA compositional. The number of reads for a given taxa in a given sample is in itself arbitrary and can only be interpreted relative to the rest of the taxa in the sample. Unless you have some quantitative estimate on microbial cells for your samples, for example by qPCR, flow cytometry, or an added reference culture in each sample, this compositional nature of the data has to be accounted for in the analysis.</p>
-<p>The issue of varying read depth (AKA library size) in different samples gives rise to two separate problems:</p>
+<p>The issue of varying read depth (AKA library size) in different samples also gives rise to two separate problems:</p>
 <h3 id="1)-Abundance-estimation">1) Abundance estimation<a class="anchor-link" href="#1)-Abundance-estimation">&#182;</a></h3><p>Let's assume 200 reads are assigned to taxa A in sample 1 and 200 reads are assigned to taxa A in sample 2. Taxa A is not necessarily equally abundant in these two samples, unless the read depth is similar in the two samples. The easy solution to this problem is to normalize (for example divide by) the total read depth of the sample.</p>
 <h3 id="2)-Detection-threshold">2) Detection threshold<a class="anchor-link" href="#2)-Detection-threshold">&#182;</a></h3><p>We will almost never detect all taxa in a given sample; if they are too rare they will go undetected. Samples with higher read depth will be more likely to include the rare taxa. Therefore, especially if we are interested in the presence/absence of certain taxa, varying read depth across samples can have a large impact.</p>
 
@@ -13095,7 +13095,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load phyloseq object and packages</span>
@@ -13119,7 +13119,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">MicEco</span><span class="p">)</span>
@@ -13127,6 +13127,1021 @@ div#notebook {
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |====                                                                  |   6%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |======                                                                |   8%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=======                                                               |  10%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |========                                                              |  12%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==========                                                            |  14%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===========                                                           |  16%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=============                                                         |  18%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==============                                                        |  20%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===============                                                       |  22%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=================                                                     |  24%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==================                                                    |  26%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |====================                                                  |  28%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=====================                                                 |  30%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |======================                                                |  32%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |========================                                              |  34%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=========================                                             |  36%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===========================                                           |  38%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |============================                                          |  40%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=============================                                         |  42%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===============================                                       |  44%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |================================                                      |  46%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==================================                                    |  48%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===================================                                   |  50%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |====================================                                  |  52%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |======================================                                |  54%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=======================================                               |  56%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=========================================                             |  58%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==========================================                            |  60%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===========================================                           |  62%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=============================================                         |  64%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==============================================                        |  66%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |================================================                      |  68%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=================================================                     |  70%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==================================================                    |  72%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |====================================================                  |  74%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=====================================================                 |  76%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=======================================================               |  78%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |========================================================              |  80%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |=========================================================             |  82%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===========================================================           |  84%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |============================================================          |  86%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==============================================================        |  88%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===============================================================       |  90%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |================================================================      |  92%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |==================================================================    |  94%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===================================================================   |  96%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |===================================================================== |  98%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>  |======================================================================| 100%</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Warning message in vegan::rarefy(otu, sample = subsamp[i], MARGIN = 2):
+&#34;requested &#39;sample&#39; was larger than smallest site maximum (2128)&#34;</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -13141,7 +14156,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">rc_data</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">Reads</span><span class="p">,</span> <span class="n">Richness</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">Sample</span><span class="p">))</span> <span class="o">+</span>
@@ -13168,402 +14183,419 @@ div#notebook {
 <div class="output_png output_subarea ">
 <img src="data:image/png;base64,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
-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
-YxN6gASQutWJvXZ9B9i1sQk9QAJI3WpEJIB0CkDqVAMkgHQKQOpUAySAdApA6lTzm1Y7D7Br
-YxN6gASQutUACSCdApA61X2d6M0am9ADJIDUrQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZI
-AOkUgNSpBkgA6RSA1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZIAOkUgNSp
-BkgA6RSA1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA
-1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA1KkGSADp
-FIDUqQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZIAOkUgNSpBkgA6RSA1KkGSADpFIDUqQZI
-AOkUgNSpBkgA6RSA1KkGSADplEEgfWGBD+CDU4aAZPw4sfS7GN+omsvq8ibVnGQcIA0pvVE1
-AdIS4wBpSOmNqgmQlhgfABIEAgFIEMgAAUgQyAABSBDIAAFIEMgAAUgQyADpBunjl2Tf90ql
-fgfGZMXrStvKyI1/CEsv9EG9E2qNC51Q8kGVE97QB70gfdgfifc/aKnU78CYrHhdaVuZmrrI
-Si/0Qb0TanxQ4YSSD6qc8I4+mAzSBykw2iP1/tMVDpT3oZU+qHZClQ8qnFDwQZ0T3tEHsyNS
-VSfShWJM8Sr/VTjwg/4ulF7tg7o+V9GJKpxQ9EG1E97MBwCJL25HxoLSq30wrxPJnVD0QbUT
-3swH24FU0UYt7+vEsKx4qRQtvdQHVU6o80GNE4o+qHXCu/ngrUHKl4r9N8n4ah+IndDiA6Hx
-og9qnfBuPtgNpIY+Jyv98XEH6fHGV/tA3okafCA0XvRBZavezgebgeSflXzxUimmah9TjC/0
-QYMT5D6oMV70QZ0T3s8He4EU9MxxfZ18RG5cWnqhD+Z3ImHxog+qnPCGPthqZ8OHTZHMWP82
-lRlvfKEP5q/qC4uXfFDjhHf0AfbaQSADBCBBIAMEIEEgAwQgQSADBCBBIAMEIEEgAwQgQSAD
-BCBBIAMEIL2BqFv+/FEo9lB9ILHA928gykqWJIC0UOD7N5CbkJ/f1TdBMcgKge/fQCwhrxc/
-/1Lqr5/nnz/+VOrj+/nqvz/Un9e7f3+ob/9bVM+vLADpDcSPSB/nGO988c813PtF0s9T9+dZ
-7PtLBZIeF4D0BuLNkf4+yfl+svJN/Z/W/174/KF//nG+Uuo//UPl92FDJghAegMxGP31rz7x
-ean+PH/+98/fL3y+/cJH/3e++lB//bO0rl9VANIbyGto98+vqHP9ccmvl3+YV9fY7/z5z69B
-3rf/Ftb1qwpAegO5OPl+keRA+kt9+98///kg/RrrfVMf+fUmyAQBSG8gd7Lhm/pbm6GdVf/0
-h3an/A958OcFLn8DucH4V6l/z8D0Xev/O6PTmXu4Ugx/qz9+6j+uOdKPX+WQbHhcANIbiIkw
-f59Z71eq+0bKDPLC9Pffa+v7FQUgvYHYodprcPffX0r98ZoFvV683vzvT7Mg+/1DfYCj5wUg
-QSADBCBBIAMEIEEgAwQgQSADBCBBIAMEIEEgAwQgQSADBCBBIAMEIEEgA+T/ASJ1GmhUgj9H
-AAAAAElFTkSuQmCC"
+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"
 >
 </div>
 
@@ -13603,7 +14635,7 @@ AAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">phy_r</span> <span class="o">&lt;-</span> <span class="nf">rarefy_even_depth</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">sample.size</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span> <span class="n">rngseed</span><span class="o">=</span><span class="m">42</span><span class="p">)</span>
@@ -13627,12 +14659,12 @@ AAAAAElFTkSuQmCC"
 Please record this for your records so others can reproduce.
 Try `set.seed(42); .Random.seed` for the full vector
 ...
-10 samples removedbecause they contained fewer reads than `sample.size`.
+20 samples removedbecause they contained fewer reads than `sample.size`.
 Up to first five removed samples are: 
 
-S_027S_039S_054S_059S_014
+S21S28S29S30S46
 ...
-5OTUs were removed because they are no longer 
+258OTUs were removed because they are no longer 
 present in any sample after random subsampling
 
 ...
@@ -13647,10 +14679,10 @@ present in any sample after random subsampling
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="2)-Include-read-depth-in-statistical-analysis">2) Include read depth in statistical analysis<a class="anchor-link" href="#2)-Include-read-depth-in-statistical-analysis">&#182;</a></h3><p>With this method you let the statistical analysis correct for the biases which varying read depth creates. For example, for alpha diversity you would include log10(read depth) in your ANOVA or linear model. For differential abundance there are multiple methods which accounts for read depth without discarding data (See for example the link above, or the notebook Differential abundance).</p>
+<h3 id="2)-Include-read-depth-in-statistical-analysis">2) Include read depth in statistical analysis<a class="anchor-link" href="#2)-Include-read-depth-in-statistical-analysis">&#182;</a></h3><p>With this method you let the statistical analysis correct for the biases which varying read depth creates. For example, for alpha diversity you would include log10(read depth) in your linear model. For differential abundance there are multiple methods which accounts for read depth without discarding data (See for example the link above, or the <a href="https://microucph.github.io/amplicon_data_analysis/html/da.html">notebook Differential abundance</a>).</p>
 <p><strong>Advantanges:</strong> Accurate analyses. Estimate effect of read depth on alpha diversity</p>
 <p><strong>Disadvantages:</strong> Can be more tedious. No simple solution for beta diversity</p>
-<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4><p>See notebooks on Alpha diversity and Differential Abundance analysis</p>
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4><p>See notebooks on <a href="https://microucph.github.io/amplicon_data_analysis/html/alpha.html">Alpha diversity</a> and <a href="https://microucph.github.io/amplicon_data_analysis/html/da.html">Differential Abundance analysis</a></p>
 
 </div>
 </div>
@@ -13668,7 +14700,7 @@ present in any sample after random subsampling
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">phy_r</span> <span class="o">&lt;-</span> <span class="nf">transform_sample_counts</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
@@ -13682,7 +14714,7 @@ present in any sample after random subsampling
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="3.2)-Centered-log-ratio-transformation-(CLR)">3.2) Centered log-ratio transformation (CLR)<a class="anchor-link" href="#3.2)-Centered-log-ratio-transformation-(CLR)">&#182;</a></h4><p>A dedicated compositional transformation, which uses log-ratio to the geometric mean of the relative abundance.</p>
+<h4 id="3.2)-Centered-log-ratio-transformation-(CLR)">3.2) Centered log-ratio transformation (CLR)<a class="anchor-link" href="#3.2)-Centered-log-ratio-transformation-(CLR)">&#182;</a></h4><p>A dedicated compositional transformation, which uses log-ratio to the geometric mean of the total abundance.</p>
 <p><strong>Advantanges:</strong> Normalizes data, such that common statistical analyses tools can be applied.</p>
 <p><strong>Disadvantages:</strong> Does not work well with any zeroes in the dataset, unless pseudocounts are added (change zeroes to an arbitrary small number)</p>
 <h5 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h5>
@@ -13691,12 +14723,12 @@ present in any sample after random subsampling
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Multiplicative replacement of zeroes:</span>
 <span class="c1"># If there is a 0, insert a 1</span>
-<span class="c1"># All non-zero values are corrected such that log-ratios before and after correction are the same</span>
+<span class="c1"># All non-zero values are corrected such that log-ratios before and after correction are the same for non-zero ASVs</span>
 <span class="n">phy_zc</span> <span class="o">&lt;-</span> <span class="nf">transform_sample_counts</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="nf">sapply</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">ifelse</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="p">(</span><span class="m">1</span><span class="o">-</span><span class="p">(</span><span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="o">==</span><span class="m">0</span><span class="p">)</span><span class="o">*</span><span class="m">1</span><span class="p">)</span><span class="o">/</span><span class="nf">sum</span><span class="p">(</span><span class="n">y</span><span class="p">))</span><span class="o">*</span><span class="n">x</span><span class="p">)))</span>
                                                           
 <span class="c1"># CLR transform</span>

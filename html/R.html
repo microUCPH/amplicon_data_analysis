@@ -13907,6 +13907,14 @@ Traceback:
 </div>
 
 </div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Click the &gt; to see the levels</p>
+
+</div>
+</div>
+</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
@@ -14311,6 +14319,14 @@ Traceback:
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We cannot convert strings to numbers, and the result is therefore NA (missing data):</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -15236,7 +15252,7 @@ Traceback:
 <span class="c1"># Lets load an external text file with data</span>
 <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read.table</span><span class="p">(</span><span class="s">&quot;data/mydata.csv&quot;</span><span class="p">,</span> <span class="n">header</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&quot;;&quot;</span><span class="p">)</span>
 <span class="c1"># header = TRUE means that the first line in our text file contains the names of the columns</span>
-<span class="c1"># sep = &quot;;&quot; is because semicolons seperate the columns</span>
+<span class="c1"># sep = &quot;;&quot; is because semicolons seperate the columns in the external file</span>
 <span class="nf">print</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </pre></div>
 
@@ -15365,7 +15381,15 @@ Traceback:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In data.frames strings are converted to factors, as you can see from the output above.</p>
+<p>When you read an external file into a data.frame in R strings are converted to factors, as you can see from the output above.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You should always check that the file has been loaded correctly, by running str() or running View() on the data.frame</p>
 
 </div>
 </div>
@@ -16041,7 +16065,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Packages">Packages<a class="anchor" id="packages" /><a class="anchor-link" href="#Packages">&#182;</a></h2><h4 id="Load-packages">Load packages<a class="anchor-link" href="#Load-packages">&#182;</a></h4><p>These contain convenient functions.</p>
+<h2 id="Packages">Packages<a class="anchor" id="packages" /><a class="anchor-link" href="#Packages">&#182;</a></h2><h4 id="Load-packages">Load packages<a class="anchor-link" href="#Load-packages">&#182;</a></h4><p>Packages contain convenient functions that can considerably ease or enhance you R coding.</p>
 <p>When library(package name) is run, we can use functions from the package</p>
 <p>It has to be run each time we start up R</p>
 
@@ -16120,7 +16144,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor" id="ggplot" /><a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>ggplot2 is a great packages for making neat plots. There is a notebook on the details of ggplot2, but below is described how to make a simple plot.</p>
+<h2 id="Simple-ggplotting">Simple ggplotting<a class="anchor" id="ggplot" /><a class="anchor-link" href="#Simple-ggplotting">&#182;</a></h2><p>ggplot2 is a great packages for making neat plots. There is a <a href="https://microucph.github.io/amplicon_data_analysis/html/ggplot2.html">notebook on the details of ggplot2</a>, but below is described how to make a simple plot.</p>
 <p>Let's make a similar scatterplot as above, but with ggplot2</p>
 <p>A ggplot is always made by starting with the ggplot(data, aes(...)) line</p>
 <ul>
@@ -16137,7 +16161,7 @@ CRgSkIAhAQkYEpDgP50atFGmvMGkAAAAAElFTkSuQmCC"
 <div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># First define and save the plot:</span>
+<div class=" highlight hl-r"><pre><span></span><span class="c1"># First define and save the plot as an object:</span>
 <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ggplot</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">var1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">var2</span><span class="p">))</span> <span class="o">+</span>
   <span class="nf">geom_point</span><span class="p">()</span>
 </pre></div>

@@ -13093,24 +13093,44 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load data and packages</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">phyloseq</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">vegan</span><span class="p">)</span>
 <span class="nf">library</span><span class="p">(</span><span class="n">MicEco</span><span class="p">)</span>
-<span class="nf">load</span><span class="p">(</span><span class="s">&quot;physeq.RData&quot;</span><span class="p">)</span>
+<span class="nf">load</span><span class="p">(</span><span class="s">&quot;../data/physeq.RData&quot;</span><span class="p">)</span>
 </pre></div>
 
     </div>
 </div>
 </div>
 
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Loading required package: permute
+Loading required package: lattice
+This is vegan 2.5-6
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Run UniFrac</span>
@@ -13124,7 +13144,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Run PERMANOVA</span>
@@ -13139,7 +13159,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Standard summary</span>
@@ -13172,10 +13192,10 @@ Number of permutations: 999
 Terms added sequentially (first to last)
 
            Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)    
-Time        2     1.187 0.59362  1.3849 0.01838  0.001 ***
-Patient    49    21.415 0.43704  1.0196 0.33146  0.132    
-Residuals  98    42.006 0.42863         0.65016           
-Total     149    64.608                 1.00000           
+Time        2     7.154  3.5770 21.3262 0.22406  0.001 ***
+Patient    49     8.337  0.1701  1.0144 0.26111  0.399    
+Residuals  98    16.437  0.1677         0.51482           
+Total     149    31.929                 1.00000           
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
@@ -13189,14 +13209,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The Time variable explains around 2% and is highly significant. However, the Patient variable explains 33%, but is not significant.</p>
+<p>The Time variable explains around 22% and is highly significant. However, the Patient variable explains 26%, but is not significant.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Add partial Omega-squared values</span>
@@ -13229,10 +13249,10 @@ Number of permutations: 999
 Terms added sequentially (first to last)
 
            Df SumsOfSqs MeanSqs F.Model      R2 parOmegaSq Pr(&gt;F)    
-Time        2     1.187 0.59362  1.3849 0.01838   0.005106  0.001 ***
-Patient    49    21.415 0.43704  1.0196 0.33146   0.006370  0.132    
-Residuals  98    42.006 0.42863         0.65016                      
-Total     149    64.608                 1.00000                      
+Time        2     7.154  3.5770 21.3262 0.22406   0.213228  0.001 ***
+Patient    49     8.337  0.1701  1.0144 0.26111   0.004679  0.399    
+Residuals  98    16.437  0.1677         0.51482                      
+Total     149    31.929                 1.00000                      
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
@@ -13246,7 +13266,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>With the Omega-squared values we see that the Patient effect is actually tiny.</p>
+<p>With the Omega-squared values we see that the Patient effect is actually tiny, and it was inflated due to the many degrees of freedom.</p>
 
 </div>
 </div>

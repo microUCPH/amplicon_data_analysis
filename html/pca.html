@@ -2,7 +2,7 @@
 <html>
 <head><meta charset="utf-8" />
 
-<title>stats2</title>
+<title>pca</title>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -13077,8 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Statistics-102">Statistics 102<a class="anchor-link" href="#Statistics-102">&#182;</a></h1><p>This notebook is a continuation of the Statistics 101</p>
-<h3 id="Getting-more-in-depth">Getting more in-depth<a class="anchor-link" href="#Getting-more-in-depth">&#182;</a></h3><p>The <a href="https://mb3is.megx.net/gustame">GUSTA ME website</a> contains descriptions of many multivariate analyses aimed at microbial ecologists using R.</p>
+<h1 id="PCA,-PCoA,-PERMANOVA">PCA, PCoA, PERMANOVA<a class="anchor-link" href="#PCA,-PCoA,-PERMANOVA">&#182;</a></h1><h3 id="Getting-more-in-depth">Getting more in-depth<a class="anchor-link" href="#Getting-more-in-depth">&#182;</a></h3><p>The <a href="https://mb3is.megx.net/gustame">GUSTA ME website</a> contains descriptions of many multivariate analyses aimed at microbial ecologists using R.</p>
 
 </div>
 </div>
@@ -13091,7 +13090,6 @@ div#notebook {
 <li><a href="#pca">PCA</a></li>
 <li><a href="#pcoa">PCoA</a></li>
 <li><a href="#permanova">PERMANOVA</a></li>
-<li><a href="#multiple">Multiple comparisons</a></li>
 </ul>
 
 </div>
@@ -13219,11 +13217,11 @@ This is vegan 2.5-6
 
 <div class="output_text output_subarea ">
 <pre>phyloseq-class experiment-level object
-otu_table()   OTU Table:         [ 1417 taxa and 150 samples ]
+otu_table()   OTU Table:         [ 1310 taxa and 150 samples ]
 sample_data() Sample Data:       [ 150 samples by 3 sample variables ]
-tax_table()   Taxonomy Table:    [ 1417 taxa by 7 taxonomic ranks ]
-phy_tree()    Phylogenetic Tree: [ 1417 tips and 1414 internal nodes ]
-refseq()      DNAStringSet:      [ 1417 reference sequences ]</pre>
+tax_table()   Taxonomy Table:    [ 1310 taxa by 7 taxonomic ranks ]
+phy_tree()    Phylogenetic Tree: [ 1310 tips and 1309 internal nodes ]
+refseq()      DNAStringSet:      [ 1310 reference sequences ]</pre>
 </div>
 
 </div>
@@ -13235,7 +13233,7 @@ refseq()      DNAStringSet:      [ 1417 reference sequences ]</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA-">PCA <a class="anchor" id="pca" /><a class="anchor-link" href="#PCA-">&#182;</a></h1><p>How would you display 4 axes on a graph? What about 1000 axes? Microbiome datasets are high-dimensional, with maybe hundreds of samples and thousands of taxa. But our vision 3-dimensional, and we use 2-dimensional screens and paper, which limits our view of this data.
+<h1 id="PCA-">PCA <a class="anchor" id="pca" /><a class="anchor-link" href="#PCA-">&#182;</a></h1><p>How would you display 4 axes on a graph? What about 1000 axes? Microbiome datasets are high-dimensional, with maybe hundreds of samples and thousands of taxa. But we use 2-dimensional screens and paper, which limits our view of this data.
 Principle component analysis (PCA) is a way of projecting your high-dimensional data into lower dimensions. While this sounds obscure, it is extremely powerful. Imagine a dataset with 20 samples and 1000 variables (e.g. ASVs), how would you make a plot showing whether your samples are different? PCA transforms the data, and creates new axes (known as principle components (PCs)), these PCs are created such that PC1 spans as much variation as posssible in the dataset, PC2 spans as much variance as possible while being orthogonal (90 degree angle) to PC1, PC3 spans as much variance as possible while being orthogonal to PC1 and PC2, and so on.</p>
 <p>The output from running a PCA is:</p>
 <ul>
@@ -13277,7 +13275,7 @@ Principle component analysis (PCA) is a way of projecting your high-dimensional 
 <div class=" highlight hl-r"><pre><span></span><span class="nf">str</span><span class="p">(</span><span class="n">pca</span><span class="p">)</span>
 <span class="c1"># pca$sdev contains the standard deviation of the PCs (used to calculate eigenvalues and thereby variance explained)</span>
 <span class="c1"># pca$x contains the PCs</span>
-<span class="c1"># pca$rotation contains loadings: How much the original variables contribute to each PCs</span>
+<span class="c1"># pca$rotation contains loadings: How much the original variables contribute to each PC</span>
 </pre></div>
 
     </div>
@@ -14046,11 +14044,24 @@ ASQAkQASgEgACUAkgAQgEkAC/gcqN4m9z1zvsQAAAABJRU5ErkJggg=="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PCoA">PCoA<a class="anchor" id="pcoa" /><a class="anchor-link" href="#PCoA">&#182;</a></h2><p>PCA is based on linear combinations of the variables, and therefore assumes that data is not too skewed, and relatively normally distributed. Principle Coordinate Analysis (PCoA) is a generalized version of PCA. The input is a dissimilarity matrix. If this dissimilarity matrix is based on euclidean distances between samples, the PCs are the same as the PCA. The strength with PCoA is that we can use any dissimilarity metric as input. Various dissimilarity metrics appropriate for amplicon data are explained in the Beta diversity notebook.</p>
+<h2 id="PCoA">PCoA<a class="anchor" id="pcoa" /><a class="anchor-link" href="#PCoA">&#182;</a></h2><p>PCA is based on linear combinations of the variables, and therefore assumes that data is not too skewed, and relatively normally distributed. Principle Coordinate Analysis (PCoA) is a generalized version of PCA. The input is a dissimilarity matrix. If this dissimilarity matrix is based on euclidean distances between samples, the PCs are the same as the PCA. The strength with PCoA is that we can use any dissimilarity metric as input. Various dissimilarity metrics appropriate for amplicon data are explained in the <a href="https://microucph.github.io/amplicon_data_analysis/html/beta.html">Beta diversity notebook</a>.</p>
 <h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3><p>Let's calculate the Bray-Curtis distance between samples, and then plot a PCoA</p>
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -14381,7 +14392,7 @@ CyIBCEAkAAGIBCAAkQAEIBKAAEQCEIBIAAIQCUDA/0IUVfzRRNsfAAAAAElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="PERMANOVA-">PERMANOVA <a class="anchor" id="permanova" /><a class="anchor-link" href="#PERMANOVA-">&#182;</a></h2><p>PERmutational Multivariate ANalysis Of VAriance (PERMANOVA) is a method to estimate the effect a variable has on the entire microbial community. For example, for our gut microbiome dataset, we could ask whether the microbial community is different at different time points. PERMANOVA does not tell us HOW the microbial communities differ; if we want to know specifically which taxa are different between different time points we would run a Differential Abundance analysis (see notebook on this topic).</p>
+<h2 id="PERMANOVA-">PERMANOVA <a class="anchor" id="permanova" /><a class="anchor-link" href="#PERMANOVA-">&#182;</a></h2><p>PERmutational Multivariate ANalysis Of VAriance (PERMANOVA) is a method to estimate the effect a variable has on the entire microbial community. For example, for our gut microbiome dataset, we could ask whether the microbial community is different at different time points. PERMANOVA does not tell us HOW the microbial communities differ; if we want to know specifically which taxa are different between different time points we would run a Differential Abundance analysis (<a href="https://microucph.github.io/amplicon_data_analysis/html/da.html">see notebook on this topic</a>).</p>
 <p>The input to PERMANOVA is a dissimilarity matrix. The results of the PERMANOVA is therefore very contingent on the dissimilarity metric that is used.</p>
 <p><strong>Note:</strong> The p-values are calculated by permutation, which is a random process, and will therefore vary a little each time you run it.</p>
 <h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3>
@@ -14429,9 +14440,9 @@ Number of permutations: 999
 Terms added sequentially (first to last)
 
            Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)    
-Time        2     1.187 0.59362  1.3759 0.01838  0.001 ***
-Residuals 147    63.421 0.43143         0.98162           
-Total     149    64.608                 1.00000           
+Time        2     7.154  3.5770  21.224 0.22406  0.001 ***
+Residuals 147    24.774  0.1685         0.77594           
+Total     149    31.929                 1.00000           
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
@@ -14445,7 +14456,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>We can see that <em>Time</em> has a significant effect (P-value = 0.001) on the microbial community (as summarized by unweighted UniFrac). The variance explained (R2) by the <em>Time</em> variable is 1.8%.</p>
+<p>We can see that <em>Time</em> has a significant effect (P-value = 0.001) on the microbial community (as summarized by unweighted UniFrac). The variance explained (R2) by the <em>Time</em> variable is 22.4%.</p>
 
 </div>
 </div>
@@ -14492,10 +14503,10 @@ Number of permutations: 999
 Terms added sequentially (first to last)
 
            Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)    
-Time        2     1.187 0.59362 1.37514 0.01838  0.001 ***
-Delivery    1     0.396 0.39592 0.91718 0.00613  0.802    
-Residuals 146    63.025 0.43168         0.97550           
-Total     149    64.608                 1.00000           
+Time        2     7.154  3.5770 21.5865 0.22406  0.001 ***
+Delivery    1     0.581  0.5813  3.5081 0.01821  0.002 ** 
+Residuals 146    24.193  0.1657         0.75773           
+Total     149    31.929                 1.00000           
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
@@ -14548,11 +14559,11 @@ Number of permutations: 999
 Terms added sequentially (first to last)
 
                Df SumsOfSqs MeanSqs F.Model      R2 Pr(&gt;F)    
-Time            2     1.187 0.59362 1.37401 0.01838  0.001 ***
-Delivery        1     0.396 0.39592 0.91642 0.00613  0.783    
-Time:Delivery   2     0.812 0.40603 0.93982 0.01257  0.829    
-Residuals     144    62.213 0.43203         0.96293           
-Total         149    64.608                 1.00000           
+Time            2     7.154  3.5770 22.1480 0.22406  0.001 ***
+Delivery        1     0.581  0.5813  3.5993 0.01821  0.001 ***
+Time:Delivery   2     0.936  0.4682  2.8988 0.02933  0.001 ***
+Residuals     144    23.257  0.1615         0.72840           
+Total         149    31.929                 1.00000           
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</pre>
 </div>
@@ -14562,672 +14573,6 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 </div>
 
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Multiple-correction">Multiple correction<a class="anchor" id="multiple" /><a class="anchor-link" href="#Multiple-correction">&#182;</a></h2><p>If we wanted to know which taxa were associated with a certain variable in our dataset, we could conduct a test for each taxa, one by one, and check the p-value. All the ones with low p-values (&lt;0.05) we would call significantly associated with our variable. The problem is that the p-value is misleading when conducting multiple statistical tests. If the Null Hypothesis is true the p-value is expected to be anywhere between 0 and 1 (uniform distribution). As such, if enough statistical tests are conducted, some (~5%) of the p-values will, by chance, be lower than 0.05, even if there are no true associations in the data.</p>
-<h3 id="Getting-in-depth:">Getting in-depth:<a class="anchor-link" href="#Getting-in-depth:">&#182;</a></h3><p><a href="https://www.nature.com/articles/nmeth.2900">This paper</a> explains the concept more in-depth for a non-statistical reader</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Simulation">Simulation<a class="anchor-link" href="#Simulation">&#182;</a></h3><p>Let's try to simulate some random data, and see how the p-value look like.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># We use the rnorm() function to generate random normally distributed data with a mean of 0 and standard deviation of 1</span>
-<span class="c1"># Here is an example with 20 random (normallly distributed) numbers:</span>
-<span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-<ol class=list-inline>
-	<li>-0.956880048909165</li>
-	<li>-1.13980877547642</li>
-	<li>-0.416120334189525</li>
-	<li>0.447074417938439</li>
-	<li>-0.38988438769114</li>
-	<li>-0.897696631620389</li>
-	<li>-1.38457242197039</li>
-	<li>-1.71605413733603</li>
-	<li>-0.0595660479544636</li>
-	<li>0.154441460976544</li>
-	<li>0.777831911274738</li>
-	<li>0.200307384441532</li>
-	<li>1.579521840361</li>
-	<li>-0.46794102319041</li>
-	<li>1.58605663527227</li>
-	<li>1.37183129947577</li>
-	<li>-0.96602217992481</li>
-	<li>1.66245251591231</li>
-	<li>-1.31708909934423</li>
-	<li>-0.0862365409669867</li>
-</ol>
-
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>If we do a t-test comparing two randomlly created sets of numbers, they should not be significantly different.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">))</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_text output_subarea ">
-<pre>
-	Welch Two Sample t-test
-
-data:  rnorm(20) and rnorm(20)
-t = 0.58998, df = 29.079, p-value = 0.5598
-alternative hypothesis: true difference in means is not equal to 0
-95 percent confidence interval:
- -0.4035951  0.7308973
-sample estimates:
- mean of x  mean of y 
-0.18300344 0.01935233 
-</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>As expected, not significant. However, let's try to do this 10000 times, and plot a histogram of the p-values:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Set seed (for reproducibility)</span>
-<span class="nf">set.seed</span><span class="p">(</span><span class="m">42</span><span class="p">)</span>
-
-<span class="c1"># 10000 t-tests with random data</span>
-<span class="n">random_ttests</span> <span class="o">&lt;-</span> <span class="nf">sapply</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10000</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">t.test</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">))</span><span class="o">$</span><span class="n">p.value</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Histogram</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">random_ttests</span><span class="p">,</span> <span class="n">breaks</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-rxb06vHp+8L6Sx59IF592T18/zsOsVePT/vJ5u+T3dKaTOfB21PCXz+j9OqB+gNeffl0PX9k
-stWoscKOozfpbrpeEYT0mH+UruePTDat6s/F7tRyVlfT3A0qoOsVQUiP+Ufpev7IZHW1+Dq9
-qOrMjSmk6xVBSDf8H29D9erxaTvZyVLoaP9O16EI6W/9LXr1+HhG+jvfd7pePkJa77aRZsvd
-KdtIr0rXy0dIW8aN17qjVfIm3U3XD7SQ/tbfolePzwPvI0137yPVk/fO3kfque87XS8fIfWE
-rh/oV152W7pePkLqCV0/0K+87LZ0vXy6PjIlygMv7bo/RKjnvu90vXy69lHaTuYQISG9uo/y
-wO5vhwjd8H2n6+XTtY/iDdkH/KPcGP9Rut4G6buP0nayG4cIPWV96fqB6PsD3fXt77uP8oRn
-JCG19I/y6nvV+r58I5MVHCIkpJb+Ubq+/X33UVpPdv8hQkJq6W8x9GeMrpdvEe0nu/sQISG1
-9Lfo+vb13j/4i6aIJ1QrpJb+Fl3fvqH7IoTUX3+Lrm/f0H0RDw72MaqqyexPp2g/8Kv7W3R9
-+4bui2g72P4F5mGPw/UDG4TU0t+i69s3dF/EQyFNq+lqvV5Oq4+/mOL2bRi4v0XXt2/ovoiH
-Qqqr3X7vVTX6iylu34aB+1t0ffuG7ot4KKTjDsTrOxKF1NLfouvbN3RfxEMhvR1DcojQX/hb
-dH37hu6LaB/S5P1jVn1uTq6mDhH6E3+Lrm/fn/uOj9woon1IX/elqmqHCP2Fv0XXt2/ovojW
-gy0WHx+TyW6Xw/T6f+MSUkt/i65v39B9EX+2lj9hiq4XdNcPZNe3b+i+CCH119+i69s3dF9E
-lyF1vTHZuf/f73/PfRGdhtT2ijz/BF+EkHg+gJB4PoCQeuxtQ3XqixASzwcQEs8HEBLPBxAS
-zwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwfodUiOfuY79EX0OiSe79AX
-ISSeDyAkng8w6JBsY/EP+CIGHRLPP+CLEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxAS
-zwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8H
-EBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxAS
-zwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8HEBLPBxASzwcQEs8H
-EBLPB2g/2Px9Um2ZTOctp+h6QfF8jLaDrUbVN+N2U3S9oHg+RtvBplX9udidWs7qatpqiq4X
-FM/HaDtYXS2+Ti+qutUUXS8ono/RdrCquvTD/VN0vaB4PoZnJJ4P8MA20my5O2UbiR+mL6L1
-YOPGXrvRqtUUXS8ono/RfrD5dPc+Uj159z4SP0RfRHSwwim6XlA8H0NIPB/ggZd2DhHiB+2L
-aDuYQ4T4ofsi2g7mECF+6L6ItoN5Q5Yfui+i7WA3DhGqmrSdm+e79EV4RuL5AA9sIzlEiB+0
-L6L1YA4R4gfui2g/mEOE+GH7IqKDFU7R9YLi+RhC4vkAjw92/c9jr03R9YLi+RhC4vkAbQer
-qrvec706RdcLiudjtB1sXguJH7YvovVgq0k13r0j66UdP0xfxAODfVbV51pI/FB9EY8MthxX
-k5WQ+IH6Ih4b7L2qZ0Lih+mLeHCwxejGnoZrU3S9oHg+xsODvQmJH6YvIjpY4RRdLyiejyEk
-ng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4P
-ICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAk
-ng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4P
-ICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAk
-ng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4PICSeDyAkng8gJJ4P
-ICSeD9AcbPS+TA59bor7BM/3wBfRHKyqqr9oSUj8S/oimoOtPt/+oiUh8S/pi/g52Px9dGdL
-8/dJtWUynZdNcVvwfA98EWcGW9SbPD5uXG81qr4Zl05xQ/B8D3wRvwebje+IYz2t6s/F7tRy
-VlfTsiluCZ7vgS/ix2Cr983T0Wi22tQ0uXq9ulp8nV5UdcEUdwie74Ev4mSw+XZnw3RfSHV9
-mhN9/bJC4l/SF9EcbLub4WN1FFefZTwj8YP3RZw8sUxmd19vs4002+/as43ED9MX0RxsdfFS
-Zxg39tqNrl5TSPxL+iJOBltNt6/R6uldRc2nu/eR6sm795H4IfoimoMt691eg00c0WMbhMS/
-pC+iOdi4ets+F62mN3Z9PzDFfYLne+CLONnZUP08cQ2HCPHD9kU0B6ur/cbR6o6QHCLED90X
-0RxsWo23Ty7z8fXd2YfLOkSIH7Yv4mSw8V3PMDu8IcsP3RdxOtjndrNnfOvI7931zm5cNc5p
-cN/cPN8vX0TbwTwj8UP3RbQdzCFC/NB9Ea0Hc4gQP3BfxMlg76NbmzUNHCLED9sX0Rzs/fb+
-gUenuE/wfA98Ec3B6pv/qeHhKe4TPN8DX0RzsDZPRB91NbqRn5D4l/RFNAebVAV/kbSYVPXH
-4dWgQ4T4AfoimoMt6/GN/QbfLHYFTbfHiy8n118SCol/SV/E6Uu7+3c2vG3fO5ru34ldVaN7
-p7hP8HwPfBFtQ9pf5PCHS/6LED9AX0TbwfbtfO5f0zlEiB+gL6LtYG/7v6bdsnpziBA/QF/E
-6WCzyfaZZnLHv2xY1Y2/p73+L/CExL+kL+JksPF+8+i+f34yPeZT3/gzQCHxL+mLaA72UY13
-f2X+Ub391RT3CZ7vgS+iOdj2fzYc/iHXX01xn+D5HvgimoPtXtYJiefLaQ42OjwjLa6/wfrI
-FPcJnu+BL+LMNtIsfBS4kPiX9EWcDDa5/78ItZ3iLsHzPfBFnA62fR+pmnwmJxAS/6K+iOhg
-hVN0vaB4PoaQeD6AkHg+QHOwkj+jaDnFfYLne+CLEBLPBzgz2Hwc/ZwxIfGv6Ys4N9jKQas8
-X8bZwby04/kyzg32ceMv9QJTXBc83wNfxPmdDe9/NcV9gud74Is4F9Ktf536wBT3CZ7vgS8i
-OljhFF0vKJ6PISSeD3B+Gyn6pqyQ+Jf0RQiJ5wOcDPZezzZf57U/7OP5MpqDvR8+qXxRRY8R
-EhL/kr6I05d2P0/Ep7hP8HwPfBHNweqvZyT/RYjni2gONq1220j+ixDPl3Iy2Piwv+7GP/N+
-ZIq7BM/3wBdxOtjn7r8IzZITCIl/UV9EdLDCKbpeUDwfQ0g8H+B0sPs/aKz1FPcInu+BL+L3
-zob1nR801m6KuwTP98AX0RzMB43xfEuag/mgMZ5vSXMwHzTG8y1pDuaDxni+JWe2kRwixPOl
-nAzmg8Z4vh2ng/mgMZ5vRXSwwim6XlA8H6M52CR71Pe5Ke4TPN8DX0RzsOxe77NT3Cd4vge+
-iOZg293ff4CQ+Jf0RTQHW03G8+TYZ6a4T/B8D3wRpy/tfGIfz7dCSDwf4G/2L9w3RdcLiudj
-CInnAxwH+6Nd380p7hc83wNfxGlIf5KTkPiX9EUIiecDCInnAwiJ5wMIiecDCInnA3yH9Ccf
-e9mc4n7B8z3wRQiJ5wP8xWu5e6foekHxfAwh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwA
-IfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfID2g83f9x85O5ne+AgLIfEv6YtoO9hq
-1Ph72usf3iwk/iV9EW0Hm1b152J3ajmrq6ufmSkk/iV9EW0Hq6vF1+lFVbeaousFxfMx2g52
-8v9Rrv+zFCHxL+mL8IzE8wEe2EaaLXenbCPxw/RFtB5s3NhrN7r6aehC4l/SF9F+sPl09z5S
-PXn3PhI/RF9EdLDCKbpeUDwfQ0g8H+CBl3YOEeIH7YtoO5hDhPih+yLaDuYQIX7ovoi2g3lD
-lh+6L6LtYDcOEbrrw5a6XlA8H8MzEs8HeGAbySFC/KB9Ea0Hc4gQP3BfRPvBHCLED9sXER2s
-cIquFxTPxxASzwdoPdjqrarGs8MgV0cREv+Svoi2g63q/YF2+0GExA/PF9F2sGn1sanpo94d
-ZickfoC+iLaD1fsrLuvRUkj8IH0RbQc7trMaj4XED9IX0XawUXV8E3Y0FhI/RF9E28E+qrfD
-qWU1FhI/QF9E68GmX/XMrhzgfXWKrhcUz8doP9hicjy1fBMSPzxfRHSwwim6XlA8H0NIPB9A
-SDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8
-H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9A
-SDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8
-H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9A
-SDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8H0BIPB9ASDwfQEg8
-H0BIPB9ASDwfQEg8H0BIPB9ASDwfoP1g8/dJtWUynbecousFxfMx2g62GlXfjNtN0fWC4vkY
-bQebVvXnYndqOauraaspul5QPB+j7WB1tfg6vajqVlN0vaB4Pkbbwarq0g/3T9H1guL5GJ6R
-eD7AA9tIs+XulG0kfpi+iNaDjRt77UarVlN0vaB4Pkb7webT3ftI9eTd+0j8EH0R0cEKp+h6
-QfF8DCHxfIAHXto5RIgftC+i7WAOEeKH7otoO5hDhPih+yLaDuYNWX7ovoi2g904RKhq0nZu
-nu/SF+EZiecDPLCN5BAhftC+iNaDOUSIH7gvov1gDhHih+2LiA5WOEXXC4rnYwiJ5wMIiecD
-CInnAwiJ5wO0Hayq7jp44eoUXS8ono/RdrAPIfED90W0HmxRX//jiTum6HpB8XyM9oMtrh8Y
-dMcUXS8ono/xwGAfjeNWW03R9YLi+RjRwQqn6HpB8XwMIfF8ACHxfAAh8XwAIfF8ACHxfAAh
-8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8
-ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh
-8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8
-ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh
-8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8
-ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8ACHxfAAh8XwAIfF8gPaDzd8n
-1ZbJdN5yiq4XFM/HaDvYalR9M243RdcLiudjtB1sWtWfi92p5ayupq2m6HpB8XyMtoPV1eLr
-9KKqW03R9YLi+RhtB6uqSz8czmlweQygQ1qu++dX5pbXK3hGAobPA9tIs+Xu1M1tJGD4tH56
-GzeeIker5E0CXo8H3kea7t5HqifvN95HAobPE45sAIaPkIAAQgICCAkIICQggJCAAEICAggJ
-CCAkIICQgABCAgIICQggJCCAkIAAQgICCAkIICQggJCAAF2G1NE/YQL2RFfm5GAvNLf5zS8k
-85u/b/MLyfzm79tgLzS3+c0vJPObv2/zC8n85u/bYC80t/nNLyTzm79v8wvJ/Obv22AvNLf5
-zS8k85u/b/MLyfzm79tgwP+KkIAAQgICCAkIICQggJCAAEICAggJCCAkIICQgABCAgIICQgg
-JCCAkIAAQgICCAkI8PSQpnVVT1fXznjy/B+jbuffMH/io/Br/sVbVb0tO5t/9eTHf/OAny7t
-0PzPDmm8+xiA0ZUznjz/dHdG/axH8tzdXdXPexR+zT/r9v4v6/38zyt5cfopFKn178khzat6
-sV7U1fziGU+ef1G9rba/pN46mn/LJPsBI2Xz15szVpNq2tH8b7uZp89a/uvt5M2lHVv/nhzS
-tJptvn5W7xfPePL8k/0CeNaqfO7ufoY/qado/s/diryq6o7mr567/De/Mscnc8XWvyeHNKm2
-z+GLanLxjCfPf+BZD+SZ+Zc/Htrnzv9WLZ4199n5D69qnxXyevN742Rpx9a/J4f06xfQk38j
-XZhuVY07m39cLZ8X0q/5R9X6vd69vO1m/vfDS7snvSJZL348+LH1T0hbPnZP8J3M/159Pu+F
-zbnlP9lt7Hc1//pju7eh/njS/D8mF1Js/h3L+kmvLH/Pv3tR0WlI250Nb896Rjj3i2TLs56Q
-fkwupNj8W1b1k17YnXtptd3x3GlI222k5bPef/g1/8f2pd0m5Cc+JQ0ipPrn7f51xpPn3zJ+
-2rtYv+Z/272mfF5Iv+7/k3+R/Zp/VG03z1bPeyPxx32NrX+d7LVb/txrt3zuXruT6Zaj8fPe
-Dfw5/998VP398z979/+v+Z+9+/vnXLH178khve9+A8++3//7dcaT59+cftrrujPzPzukC8t/
-+ayF8Gv+/TPC097H2nKyrGPr3/9+ZMPTVqEL8+/o8MiGzdbRaruN8tnR/NNqe5zb9Fm/SLcM
-4siGzWviLbuVd3+HGmd0Mf/bc58Rft//01PPn/+92+V/ONbtmb/Njks7u/49O6T9wb77qasf
-Z3Qx/5NfWv2+/6enOph/Nu5y+R+Ovn7a/OufIaXWv2eHBAwSIQEBhAQEEBIQQEhAACEBAYQE
-BBASEEBIQAAhAQGEBAQQEhBASEAAIQEBhAQEEBIQQEhAACEBAYQEBBASEEBIQAAhAQGEBAQQ
-EhBASEAAIQEBhAQEEBIQQEhAACEBAYQEBBASEEBIQAAh9ZyCT/ObNb5euQD+AiH1nPtDGlXf
-X69cAH+CZdtz7g9pf8krl3/iR9X+f1i2PUdIr4Fl2yVVtRpVk83Gy6Q6fLR2VS0nVf2+s9O6
-mh7W/o9RNfrY+/X7zk+ravpjrO1ns399QvvmGvXuGtuPLa/Gs/WXOv6MJELqkqqabHt4363j
-uzA2QW1Pbksab09Mduv+7mQ13vndhWfj4xUaYzVDmnxd42M/+MdRff2MJELqks2qvtp9+1yv
-P3cB7M75qEbbn+vFelFvzz2e/Pzy+6/1j8G+v862F1iNq80TT10ttiOMjur7ZwQRUpdU1bz5
-w9c525OT3anZ/uRsd3L87ZfrX9s8zZAm1TbQ1fZlY1XNflzAy7o/QEhd8pXCcvY+PoR0PP/g
-zp48u1/hVB3YbUxNFotv9f0zggipS44pjI9r/R+EtH7fbnXVy6/Lf/2MIELqksOq/VaNPmbL
-bEhNM5uOvreRvn9GECF1SaOQ9c+Q9htG8+Y20uTukCY/N4QaPTZnRgrLs0u+QpqvFz+3kWYX
-9tqt1xdDWn593V1j/bFNb7TfJTg6qu+fEURIXXJIYXrYoJmfJLJ7K+jt1/tI6/WFkEbVdn/4
-/uvhGtstoc+vsffq+2cEEVKXHFPY5DKe/3rp9t44sqH+PrJhfSGk+Wjbyf7r7siG6m23R2F3
-JMP86wLfPyOIkIAAQgICCOmlqarmO0boDsv/pRFSX7D8gQBCAgIICQggJCCAkIAAQgICCAkI
-ICQggJCAAEICAggJCCAkIICQgABCAgIICQggJCCAkIAAQgICCAkIICQggJCAAEICAggJCCAk
-IICQgABCAgIICQjwDydjPo8JkI/4AAAAAElFTkSuQmCC"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's count how many of the p-values are below 0.05:</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">sum</span><span class="p">(</span><span class="n">random_ttests</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">)</span><span class="o">/</span><span class="nf">length</span><span class="p">(</span><span class="n">random_ttests</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-0.0483
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Around 5% of the p-values are lower than 0.05</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="FDR-correction">FDR correction<a class="anchor-link" href="#FDR-correction">&#182;</a></h3><p>The most common way to adjust the p-values for this problem in the microbiome field is to use the False Discovery Rate (FDR) method developed by Benjamini and Hochberg (BH), see details on this method in the paper linked above. Assuming a cutoff of 0.05 for assigning statistical significance, then for the orginal p-values we accept a 5% chance of falsely denoting <strong>a single test</strong> significant even though it is not. With the FDR we accept that 5% of <strong>all the tests we call significant</strong> are not truely significant. The difference is subtle, but crucial.</p>
-<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="n">adjusted_pvals</span> <span class="o">&lt;-</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">random_ttests</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;BH&quot;</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Histogram</span>
-<span class="nf">hist</span><span class="p">(</span><span class="n">adjusted_pvals</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAAMFBMVEUAAABNTU1oaGh8fHyM
-jIyampqnp6eysrK9vb3Hx8fQ0NDZ2dnh4eHp6enw8PD////QFLu4AAAACXBIWXMAABJ0AAAS
-dAHeZh94AAAatklEQVR4nO3diXbaOhRAUZl55v//traZx6RwjaWw93qrjxCwFOoTwKiQtsDb
-Ut8TgL9ASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBA
-SBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBA
-SBBASBBASBBASBBASBBASBBASI+klC5Pnc44N/7IZKZVSj+M9HSWV55s6lfX7+TKZfvaH/xH
-vwppWX3kBpzWY8eF9HTSQnrN1/7gP/pVSB/acwYprX66zO9DenoRIb3ma3/wH92E9PxCH5rL
-e5f5xSWF9Jqv/cF/9OgeaTMd1qdG89056XCxxbh59LXYX2VdfzWcnV1zPUiT+tR8VJ8eTNaH
-7c0GabDcbmdVGi4vh7/Y3vUOer6ZeqwqDWZXszxc4+mkN5MqVfutXG3m5qaoZ5rGzUWXhweZ
-9QSXd36ky9G+hpAeeRDSutrvicOLfXK4Pz1qr7HcX+R0zUF7hcOl2j1wf4E6ssnxvKPz7Z33
-evHN9iq3Y53P/tmkD+cu70z5+qYYtd+tmlyq46ar67ncjvY1hPTIg5Dq38P1b9pNvf/MzvbJ
-0WF32pVUHb88XDM1V5vV+9Zmu51c9FHvj+cN7lxs7zqky83cjnU++2eTPlyzujPl65tib7Bt
-x23uKBepuY+9+ZGuRvsaQnokndufsfuz+bW82e1U+2/VO1WabeqHNKndyeb1ztn8rzpds9nb
-mmMG64st1efOmt1z1f7vNPbV9q4eb11sZj/WokpPQro76V0Dm91uf72Z65uiWu6+WV9mtXts
-t3tkd/Mj3Yz2JYT0yIOQmj3t+FTosE+OD798J+1ONtrt/s3eebjm4mrTuz+XF/87XeBqew+e
-xLfnHsZaPAvp7qTra252X45uN3M90Hz/zWY2g+aKV5mch3Q52pcQ0iMPQpruztjvKKdvtfvk
-dt2ecXgWcfPt+gLzyTCd73V3D1tfbe82pNNm0u1Y55t7Pum96nYz1zfF4cRgt7V580ti+uBH
-uhztSwjpkdMedblvTg573/rmW4dTD3bu+i5qcFbm85AuTl3t3eeb+VVIjyb9eDP3b4rdiXVz
-GGG4f0x370e6GO1LCOmRRyFtN/PdkarhxbeO9yDV3Xuk9svmod5gPFv91z1Sdf3Ny838LqR7
-k66uRrz+se9MZ//NelOr/SO7uz/SxWhfQkiPPAyp0b7Kczpv9ONzpPa7g/35P4Y0evoc6WIz
-D8ba7/vL55M+Pfi63sz1TdFOZ7E/tDhvD4fPHv5IF6N9iS/6Uf/Tg5AGx6foh7uKzcOjdun+
-3cPP90jPj9pdbGZ2e4Sw+V/VHpxeVk8mPd8di5u3dxzXm7m+KZqjDc1Ru7aeTXt3s3n0I12O
-9iWE9MiDkOp9fLhun1A3KxWa/a75//Flyd2r/vdf22kuNTkdYn4S0vX2br55tpn7Y40vzr0/
-6eM1l7ebub4p9vZlNFsfPvyRLkf7EkJ65EFIx2fS7Y503KMOe/5u9cxif5GrSJaH3bHdd5+F
-dLW9y29ebmb/1ehyO+vduZNnk97Pcre7X23m+qbYbeBw9KC55vzxj3Qx2pcQ0iOPQto9+B/u
-X7QfHdsZV2dHfFfNWrvFTSTN2dV4tT4sWLiz9YOL7V1982Izt+v6TjOYP5/0ZlI/Chvtx7jc
-zM1NMR+karI5O2fz+Ee6HO07CKlDmx6eJdwLIcdt/jVuoQ7sH/ishpcL6D7h7sqEdwnpZ26h
-DpwOFaTPvrrfPjl5v910QUi/4RbqwPHfEXz6sNUopl0h/T+3UBc202aXrj6+2qwedRDwz+mE
-9P/cQhBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBA
-SBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBBASBDg9ZCW7ScupDSaLAPnA0V6NaTN
-4OyDP77pQ3fhnldDmqRqvmpPrRfVN30MPNzzakhVWh1Prz7/kcOQl1dDuvgMNx/oxrdzjwQB
-3niOtFi3pzxHgtcPfw/PjtoNNpFTgvK88TrSpH0dqRpNvY7E13OYAAIICQJYIgQBLBGCAJYI
-QQAvyEIAS4QggHskCGCJEASwRAgCWCIEARwmgABCggCWCEEAS4QggCVCEMALshCgoyVC6dyL
-Q0A5PnCPJCT+vg8sERISH5V+K3TQV6/4+yVCQuKjfrvD5RHS75cICYmPKiyknIaAEyFBgMJC
-+vUSISHxUUWF9B9LhITERxUV0n8sERISH1VUSF6QJVdFhfQf7yIkJD6qqJDcI5GrokKyRIhc
-FRWSJULkqqyQLBEiU4WFlNMQcCIkCCAkCCAkCCAkCFBUSP/xj3aFxEcVFdJMSGSqqJC2q+q3
-768qJD6qrJC2q9++v6qQ+KjCQqof3a1+vtB7Q8D/Ky2kjIaAEyFBACFBACFBACFBACFBACFB
-ACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFB
-ACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFB
-ACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFBACFB
-ACFBACFBACFBACFBACFBACFBACFBgMJCWk5HqTGaLLsaAl5QVEibQToZdjIEvKSokCapmq/a
-U+tFlSZdDAEvKSqkKq2Op1ep6mIIeElRIaX06IuwIeAlRYXkHolcFRVS/RxpsW5PeY5EXooK
-aTs8O2o32HQyBLyirJC2y0n7OlI1mnodiZwUFlJOQ8CJkCBAYSFZIkSeigrJEiFyVVRIlgiR
-q6JC8oIsuSoqJEuEyFVRIblHIldFhWSJELkqKiRLhMhVWSFZIkSmCgsppyHg5C+FlM51MwTc
-V1hIlgiRp6JCskSIXBUVkiVC5KqokLwgS66KCskSIXJVVEjukchVUSFZIkSuigrJEiFyVVZI
-lgiRqcJCymkIOBESBCgrpPU4VdPtdjZI1dNDDULiw4oKaVM1T5BmU0uEyE1RIU2aQ96TKo03
-283E4W8yUlRIVXvFlNoD316QJSNFhZTS6U9LhMhJUSFVZyFt3CORkaJCOjxHmmz2p+OHgJcU
-FZKjduSqqJC8jkSuygopqyHgREgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ
-QEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ
-QEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ
-QEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ
-QEgQQEgQQEgQQEgQQEgQQEgQoLCQltNRaowmy66GgBcUFdJmkE6GnQwBLykqpEmq5qv21HpR
-pUkXQ8BLigqpSqvj6VWquhgCXlJUSCk9+iJsCHhJUSG5RyJXRYVUP0darNtTniORl6JC2g7P
-jtoNNp0MAa8oK6TtctK+jlSNpl5HIieFhZTTEHAiJAhQWEiWCJGnokKyRIhcFRWSJULkqqiQ
-vCBLrooKyRIhclVUSO6RyFVRIVkiRK6KCskSIXJVVkiWCJGpwkLKaQg4+UshpXPdDAH3FRaS
-JULkqaiQLBEiV0WFZIkQuSoqJC/IkquiQrJEiFwVFZJ7JHJVVEiWCJGrokKyRIhclRWSJUJk
-qrCQchoCTnoPaTBdR2763hDQud5Dap7t/LqlzaQ5VDcdpDSc/34I6FzvIW3m41+3tK5S2m4q
-S4TITu8hNZbNfcwvWhqn0ab+Y1xfcD12+JuMZBFSbdXcz8x+ul7a7P+o78m8IEtGMglpMfzF
-w7XdqqAqnX3xH0NAh3IIaTOt744Gi01d0+jp9cbNEqHpbp3Q5nl1QuKj+g9p2RxsmOwW0f3w
-D1tXqaovOKrqCy8GafHrIaBrvYfUHGaYHVb7PH/eU+dTnZYITX89BHSu95DS6Ok9y7X5uP1X
-sqOfDvEJiY/qPaSnS09jhoDO9R7SfrVCNYktSkh8VO8htasVmsMMVeiaOyHxUb2HNEzj5r5o
-M/nh0PcbQ0Dneg/peMQ79j0dhcRH9R5StVvxs90IiYL1HtIkDZt/7LocPl+E+s4Q0LneQzq+
-D8MP6+zeGQK61n9I23nzNgzDn1Z+vzUEdCyDkDohJD5KSBBASBCg/5Cmx89q6WwI6FrvIU27
-+ZA9IfFRvYdU/fhODW8PAZ3rPaSOPu1VSHxU7yGNUif/IklIfFTvIa2r4Q/vh//2ENC53kNK
-DjbwBwgJAvQeUkeExEcJCQJkENJi1DyqG8V+TJKQ+Kj+Qxrunh558xNK1ntIszRs/5X5LI27
-GgI613tIzXs27N+Qq6shoHO9h9Q+rBMShes9pMH+HmmVBl0NAZ3rPaT9c6RF8CpwIfFRvYe0
-HXkXIcrXf0jt60hpNI8cQEh8WAYhdUJIfJSQIICQIEDvIflnFPwFQoIAvYe0txyGfs6YkPis
-XELabixapWDZhGStHSXLJqRZqroeAjrTe0inYw3TroaAzmUT0iD2nYuFxEf1HlJHhMRHCQkC
-9B5SutTFENA5IUGA3kPaTqtF/eey8g/7KFjvIU3Tqv3/KoWuERISH9V7SMdHc1Y2ULDeQ6qO
-90jeRYhy9R7SJLXPkbyLEEXrPaTde3/XJpEjCInP6j+k7bx9F6FF5ABC4sMyCKkTQuKjhAQB
-MgjJB41Rvv5D8kFj/AG9h+SDxvgLeg/JB43xF/Qekg8a4y/oPSQfNMZf0HtIPmiMv6D3kHzQ
-GH9B/yH5oDH+gAxC6oSQ+KjeQxrFrvq+NwR0rveQYo963x0COtd7SM3h7w4IiY/qPaTNaLiM
-3PadIaBzvYfkE/v4C4QEAXoPqSNC4qOEBAF6Den/H80tp7sVRaPJD0cohMRHZRDS73PaDM6e
-UT1fmyckPqqokCapmu/el3W9qJ6/EZ6Q+KiiQjq8vXFj9fzDm4XERxUV0sUln19NSHxUUSG5
-RyJXRYXUvOH+7k27PEciLz2H9J8fezk8u/Tg6WJXIfFRZYW0XU7a15Gq0dTrSOTEygYIICQI
-UFhIlgiRp6JCskSIXBUVkiVC5KqokLwgS66KCskSIXJVVEjukchVUSFZIkSuigrJEiFyVVZI
-lgiRqcJCymkIOPlLIf3vClgIU1hIlgiRp6JCskSIXBUVkiVC5KqokLwgS66KCskSIXJVVEju
-kchVUSFZIkSuigrJEiFyVVZIlgiRqcJCymkIOBESBCg0pB/X0gmJjxISBCgqpP94i2Mh8VFF
-hbSshESeigppuxmlYfuKrId25KWskLbbeUrzrZDITWkhbdfDNNoIicwUF9J2O03VQkjkpcCQ
-tqvBz+/JICQ+qsSQttuxkMhLmSFlMQScCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkC
-CAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkC
-CAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkC
-CAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkC
-CAkCCAkCCAkCCAkCCAkCCAkCCAkCFBbScjpKjdFk2dUQ8IKiQtoM0smwkyHgJUWFNEnVfNWe
-Wi+qNOliCHhJUSFVaXU8vUpVF0PAS4oKKaVHX4QNAS8pKiT3SOSqqJDq50iLdXvKcyTyUlRI
-2+HZUbvBppMh4BVlhbRdTtrXkarR1OtI5KSwkHIaAk6EBAEKC8kSIfJUVEiWCJGrokKyRIhc
-FRWSF2TJVVEhWSJErooKyT0SuSoqJEuEyFVRIVkiRK7KCskSITJVWEg5DQEnfymkdK6bIeC+
-wkKyRIg8FRWSJULkqqiQLBEiV0WF5AVZclVUSJYIkauiQnKPRK6KCskSIXJVVEiWCJGrskKy
-RIhMFRZSTkPAiZAgQFkhbcYpDRf7jTj8TT6KCmlT7Rba7TYiJPJRVEiTNKtrmlXtMjshkZGi
-Qqp2V1xXg7WQyEpRIR3a2QyHQiIrRYU0SIcXYQdDIZGTokKapfH+1DoNhURGigppOznWs/jh
-X5MLiY8qK6TtanQ4tR4LiXwUFlJOQ8CJkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCA
-kCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCA
-kCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCA
-kCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCA
-kCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCA
-kCCAkCCAkCCAkCCAkCCAkCCAkCBAYSEtp6PUGE2WXQ0BLygqpM0gnQw7GQJeUlRIk1TNV+2p
-9aJKky6GgJcUFVKVVsfTq1R1MQS8pKiQUnr0xf6cM4+3AT16cd+/vzO/eL3/uEeCv++N50iL
-dXvqx+dI8Pe9fPc2PLuLHGwipwTleeN1pEn7OlI1mv7wOhL8fQ6pQQAhQQAhQQAhQQAhQQAh
-QQAhQQAhQQAhQQAhQQAhQQAhQQAhQQAhQQAhQQAhQQAhQQAhQYA+Q+rpTZhgJ3RnjtxYQWP/
-hvm956vmJ6THzO89XzU/IT1mfu/5qvkJ6THze89XzU9Ij5nfe75qfkJ6zPze81XzE9Jj5vee
-r5qfkB4zv/d81fyE9Jj5veer5iekx8zvPV81PyE9Zn7v+ar5Cekx83vPV80v9x8WiiAkCCAk
-CCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCCAkCPDxkCZVqiabszNmg6sz
-+nUzv9oyo183N/NbjVMar3ubz7Xr+W3u3aC9ml3+bQbN79O7yLD9GIDB6YxJe0aVyy19M7/a
-psonpJv5LfK+/dbVbn75lL66/BSKe3/hr/jwLrJM1Wq7qtLycMYqjTfNL4nxZ+fxyM38GqPY
-DwB5x+38qvqMzShNepzUmZv5jduZTXL5+902kzv/27z7F/6KD+8ik7So/5yn6eGM0W4Cueyq
-N/Nrv8pldnfmN2931E2q+pvTuZv5pbz+futf2cOLudz7C3/Jh3/AUWru41dpdD2NTG7oO/Nb
-X930vbqZ3zitepzOjZv57R8V5xL6tv69c/G3+WiH/P8Nv7uB/xzu/i+oTRp+dh6P3JnfMK3z
-CelmfoO0nVbtw+Ms3Mxvun9o9/Zv/CCrq50v7B4zj5Bm7R1sBm7nN03zbO4v78wvpVH7ZL63
-GV26vf1mzdGGatbXhO74wyGtq7fvWYPczK+90886pOZgwziX3/j3fhE1Mple6++GtKkyeWB3
-76FTc2A565Ca50jrgOO3IW7mN2se2tWhZ3SX9CdCqu7Ne5jJXrC9nd+4fcyZT0g3t19mR8Vu
-5jdIzdO3TS6hNy5uq7s75EtbfXcD/2d3kGR9cVRsMMzn1brr+XXzUfKvu7n9Mnv54GZ+mYXe
-uHPUbl3cUbtp+xt+cfb64SKXA3at6/nlFtLN7bc7Y53LjXgzv91v/Gxe52pc/F3e7pCvbvXd
-DfyfmxeSs9kFdu6/0J1LRndvv8GmeQ4y73NWJzfzm6RmHdskl5UXjT+xsqF+zNxo42l/oHFe
-v/Fv5re9PNW7m/lNT2fk4GZ+w7zmtz39be7+Pwia36d3kd1i4N3QaXv22OnD83jken5Xp3p3
-O7/F8HBGDm7ndzojE5chbYLml88uAgUTEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQ
-EgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQ
-EgQQEgQQEgQQEgQQUk6aD5F7+PGAi8fX+b8R6IDbNSfPQho8OF9IWXC75uTZbv7oe0LKgts1
-J0Iqltu1R4tROn6i9qRKk+NDu93u3v65GKY0XOw//r05dzZI1ezqOmfqLyftRjdp0J4xSJuz
-gS62SRwh9WfaxpHaHXzYnBrdhjTbXWZ2DGnUnhheXudMStP9BYZpXX+9rk+eDXSxTeIIqT8p
-zbfbeRvCPFWr7aq6DalKq+a7g8N5izTcbDfDtLi4zsVGd+fO6+9Pt02ti/OBLrdJGCH1bX8/
-s9w2ldyElNLi/HL1BTfb5mHb6OI6F5tbtOfWF2hTOR3sO4Z02iZhhNSn9WI6PO7f21NEp5Am
-9YO31Wq7PZ23d3GdM2fnjuvHduvdI8eLgU7bJIyQejQ8NPE4pO20fuyWqvUrIS3rx3aT9m7r
-aqDjNgkjpP6M02C2WP8QUv0wbTI4PUc6y+bHkLbVoPnv3kD7bRJGSP1pd+r1/jlS87RleRHS
-8pTIKa7R6fnN2XUuNrp75jTeNo/hZu0Bh7OBLrdJGLdmf5p9frV76rK4PGo3SLPm0Fx7an48
-atc8FmsP1W1nzbGExdOjdk1kdTvtsYmzgS63SRgh9Weyf7rT3IW0Lw+NDyHNjq8QzY8XGdSJ
-bA9Pd9onOKfrnElp9/JS+8Vg94LT2UCX2ySMkHpURzBcLnY7/fR8ZUPz1fhsFUKzzy8HbUjN
-yoY03h0omN5f2TCqnxLtvpjvHwieBrrcJmGElJs3n7t46tMPN3tm1kIqkps9L/XTmfF/Xymd
-CKknbva8jNLw/18oFVL/3OwQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ
-QEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQQEgQ4B8lW5XfnEgZ7AAA
-AABJRU5ErkJggg=="
->
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>All adjusted p-values are close to 1 (not significant)</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h5 id="Let's-try-to-add-a-single-t-test-which-should-be-significant-and-check-if-it-is-still-significant-after-adjustment">Let's try to add a single t-test which should be significant and check if it is still significant after adjustment<a class="anchor-link" href="#Let's-try-to-add-a-single-t-test-which-should-be-significant-and-check-if-it-is-still-significant-after-adjustment">&#182;</a></h5>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[27]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="c1"># Low p-value</span>
-<span class="n">ttest_sig</span> <span class="o">&lt;-</span> <span class="nf">t.test</span><span class="p">(</span><span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">0</span><span class="p">),</span> <span class="nf">rnorm</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="n">mean</span> <span class="o">=</span> <span class="m">2</span><span class="p">))</span><span class="o">$</span><span class="n">p.value</span>
-
-<span class="c1"># Append to the 10000 p-values</span>
-<span class="n">random_ttests_plus1</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">random_ttests</span><span class="p">,</span> <span class="n">ttest_sig</span><span class="p">)</span>
-
-<span class="c1"># Adjust p-values</span>
-<span class="n">adjusted_pvals_plus1</span> <span class="o">&lt;-</span> <span class="nf">p.adjust</span><span class="p">(</span><span class="n">random_ttests_plus1</span><span class="p">,</span> <span class="n">method</span> <span class="o">=</span> <span class="s">&quot;BH&quot;</span><span class="p">)</span>
-
-<span class="c1"># Print</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;Original p-value:&quot;</span><span class="p">)</span>
-<span class="n">ttest_sig</span>
-<span class="nf">print</span><span class="p">(</span><span class="s">&quot;FDR-adjusted p-value:&quot;</span><span class="p">)</span>
-<span class="n">adjusted_pvals_plus1</span><span class="p">[</span><span class="nf">length</span><span class="p">(</span><span class="n">adjusted_pvals_plus1</span><span class="p">)]</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1] &#34;Original p-value:&#34;
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-2.80758682963605e-09
-</div>
-
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>[1] &#34;FDR-adjusted p-value:&#34;
-</pre>
-</div>
-</div>
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-2.80786758831901e-05
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>The p-value is higher, but still significant.</p>
-
-</div>
-</div>
 </div>
     </div>
   </div>

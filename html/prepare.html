@@ -13077,8 +13077,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Prepare-reads-and-database">Prepare reads and database<a class="anchor-link" href="#Prepare-reads-and-database">&#182;</a></h1><p>Before we can cluster our reads into Amplicon Sequence Variants (ASVs) or Operational Taxonomical Units (OTUs) we have prepare a few things. First, we have to remove the primer sequences from the reads. Second, we have to download the taxonomic database.</p>
-<p><strong>Note</strong> that the following code is run in shell, not in R. Shell is a command-line program which is usually run through a terminal, and is the common interface for working with servers and computing clusters.</p>
+<h1 id="Prepare-reads-and-database">Prepare reads and database<a class="anchor-link" href="#Prepare-reads-and-database">&#182;</a></h1><p>Before we can cluster our reads into Amplicon Sequence Variants (ASVs) or Operational Taxonomical Units (OTUs) we have to prepare a few things. First, we have to remove the primer sequences from the reads. Second, we have to download the taxonomic database.</p>
+<p><strong>Note</strong> that the following code is run in shell, not in R. Shell (bash) is a command-line program which is usually run through a terminal, and is the common interface for working with servers and computing clusters.</p>
 <p>The '%' or '!' means that it is a shell command. If this was actually run through a terminal these prefixes would not be needed.</p>
 
 </div>
@@ -13317,7 +13317,7 @@ SRX2198606
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a>.</p>
+<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a>. Remember to always check if a newer version has been published.</p>
 <p>First we download the database:</p>
 
 </div>
@@ -13487,19 +13487,6 @@ gzip: stdout: Broken pipe
 </div>
 </div>
 
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
 </div>
 </div>
 

@@ -13104,7 +13104,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Load packages</span>
@@ -13126,7 +13126,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">data</span><span class="p">(</span><span class="n">mtcars</span><span class="p">)</span>
@@ -13147,7 +13147,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Set seed (for reproducibility when doing things that involves randomness)</span>
@@ -13176,21 +13176,21 @@ div#notebook {
 </li>
 <li><p>Samples come from a population that have an approximately normal shape. It is quite robust to deviations, but will have higher chance of false positives/negatives with highly non-normal distributions. Transformations (e.g. log transform) can sometimes solve this problem.</p>
 </li>
-<li><p>Variance is equal in the two samples. The t-test is however very robust to deviations from this assumption. In R the default t-test is the Welch variant, which solves the problem of unequal variances from unequal sample sizes.</p>
+<li><p>Variance is equal in the two samples. The t-test is however robust to deviations from this assumption. In R the default t-test is the Welch variant, which solves the problem of unequal variances from unequal sample sizes.</p>
 </li>
 </ol>
 <h3 id="In-R">In R<a class="anchor-link" href="#In-R">&#182;</a></h3><p>Let's compare the engine displacement of cars with automatic transmission (am = 1) compared to manual transmission (am = 0)</p>
-<p>First plot histograms:</p>
+<p>First plot boxplots:</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">disp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">facet_grid</span><span class="p">(</span><span class="n">am</span> <span class="o">~</span> <span class="n">.</span><span class="p">)</span> <span class="o">+</span> <span class="nf">geom_histogram</span><span class="p">(</span><span class="n">bins</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">am</span><span class="p">),</span> <span class="n">disp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span>
 </pre></div>
 
     </div>
@@ -13209,158 +13209,140 @@ div#notebook {
 
 
 <div class="output_png output_subarea ">
-<img src="data:image/png;base64,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
-QopjsEZkahshxTFYIzK1jZDiGKwRmdpGSHEM1ohMbSOkOAZrRKa2EVIcgzUiU9sIKY7BGpGp
-bYQUx2CNyNQ2QopjsEZkahshxTFYIzK1jZDiGKwRmdpGSHEM1ohMbSOkOAZrRKa2EVIcgzUi
-U9sIKY7BGpGpbYQUx2CNyNQ2QopjsEZkattP6fxBSFKZ8WhNZFmvSH+EQ3qZlJBSyDwVNOZr
-P1+5yCtSCiu/+fyIwe+HyNS2C3+OlMLKnf2IwRqRqW2EFMdgjcjUNkKKY7BGZGobIcUxWCMy
-tY2Q4hisEZnaRkhxDNaITG0jpDgGa0SmthFSHIM1IlPbCCmOwRqRqW2EFMdgjcjUNkKKY7BG
-ZGobIcUxWCMytY2Q4hisEZnaRkhxDNaITG0jpDgGa0SmthFSHIM1IlPbCCmOwRqRqW2EFMdg
-jcjUNkKKY7BGZGobIcUxWCMytY2Q4hisEZnaRkhxDNaITG0jpDgGa0SmthFSHIM1IlPbCCmO
-wRqRqW2EFMdgjcjUNkKKY7BGZGobIcUxWCMytY2Q4hisEZnaRkhxDNaITG0jpDgGa0SmthFS
-HIM1IlPbCCmOwRqRqW2EFMdgjcjUNkKKY7BGZGobIcUxWCMytY2Q4hisEZnaRkhxDNaITG0j
-pDgGa0SmthFSHIM1IlPbCCmOwRqRqW2EFMdgjcjUNkKKY7BGZGobIcUxWCMytY2Q4hisEZna
-RkhxDNaITG0jpDgGa0SmthFSHIM1IlPbCCmOwRqRqW2EFMdgjcjUNkKKY7BGZGobIcUxWCMy
-tS0npPsjhJSD7xPWRCYM6f78AyF52ZCdshFSHIM1IlPb8j5HIqQcfJ+wJjKPkF498tKvfHhQ
-55PMyweG6qSFdNE3G1JY+R1siO9v1U1k4lckQkrC9wlrItOG9E1HhBTC9wlrIpOG9G1HhBTC
-9wlrIpN+Qfa7n708kfrJT2bl4of4PmFNZMqvI92/+9aGlydSP/nJrFz8EN8nrIlM/fY3r0g5
-+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xi
-h/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl
-4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj
-5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQk
-Y+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSE
-JGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1k
-hCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFN
-ZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5h
-TWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+
-YU1khCRj5eKH+D5hTWSEJGPl4of4PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWSEJGPl4of4
-PmFNZIQkY+Xih/g+YU1khCRj5eKH+D5hTWQ+Ib2M+slPJvNqYqhv4hn1RRyHV6QEVn4HGxL6
-3VV9E8/sPeZWmc8r0ssTqdeczMrFDyGkeQipBisXP4SQ5iGkGqxc/BBCmoeQarBy8UMIaR5C
-qsHKxQ8hpHkIqQYrFz+EkOYhpBqsXPwQQpqHkGqwcvFDCGkeQqrBysUPIaR5CKkGKxc/hJDm
-IaQarFz8EEKah5BqsHLxQwhpHkKqwcrFDyGkeQipBisXP4SQ5iGkGqxc/BBCmoeQarBy8UMI
-aR5CqsHKxQ8hpHkIqQYrFz+EkOYhpBqsXPwQQpqHkGqwcvFDCGkeQqrBysUPIaR5CKkGKxc/
-hJDmIaQarFz8EEKah5BqsHLxQwhpHkKqwcrFDyGkeQipBisXP4SQ5iGkGqxc/BBCmoeQarBy
-8UMIaR5CqsHKxQ8hpHkIqQYrFz+EkOYhpBqsXPwQQpqHkGqwcvFDCGkeQqrBysUPIaR5CKkG
-Kxc/hJDmIaQarFz8EEKah5BqsHLxQwhpHkKqwcrFDyGkeQipBisXP4SQ5iGkGqxc/BBCmoeQ
-arBy8UMIaR5CqsHKxQ8hpHkIqQYrFz+EkOYhpBqsXPwQQpqHkGqwcvFDCGkeQqrBysUPIaR5
-CKkGKxc/hJDmIaQarFz8EEKah5BqsHLxQwhpHkKqwcrFDyGkeQipBisXP4SQ5iGkGqxc/BBC
-moeQarBy8UMIaZ4yId0fIaQcCGmeKiHdn38gpDCENA8h1WDl4ocQ0jyEVIOVix9CSPMUDOnV
-I7/5lQA10bwirdBEZjxaE5nHKxIhWdmQnbIRkpnMeLQmMkIqITMerYmMkErIjEdrIrvSdzas
-0ERmPFoT2ZW+126FJjLj0ZrICKmEzHi0JjJCKiEzHq2JjJBKyIxHayIjpBIy49GayAiphMx4
-tCYyQiohMx6tiYyQSsiMR2siI6QSMuPRmsgIqYTMeLQmMkIqITMerYnMJ6Q9+P7BW9/JjEfz
-nWzzaIQ0xHcy49F8JyMkFb6TGY/mOxkhqfCdzHg038mqhwRQAUICSICQABIgJIAECAkgAUIC
-SEAW0ue/nujp7yn6/u8rUvLjRD6TOY/29He3+U12/zLL7tFUId2//qV595/+Bj0hP07kM5nz
-aF/26TjZ/Zt/7BxNFNL9gZBmMR7tyz49J/v6j4IhPbiG9AnTp/UjnqN9mcZzsq//JKTDeD6t
-n/AczTikp0+RHh4I6TSmz8Snp+LBcbT7g+2lHft4mJB+xvSZ+ITjK9LzIHaTfYGQJPhO9mAa
-0v3LB1B2k32BkBTcv/7oNdmxj1KWMH1F4kM7Ffdv/mE4GSHNcezTN76z4Xvup74SvgDf2bDA
-qUvje+0AEiAkgAQICSABQgJIgJAAEiAkgAQICSABQgJIgJB8ud0+/w9cAPbkCyFdCPbkCxFd
-CHZlyfs3t7dfX5H+ut9e//3w6Sdvb2/eq4eDX0BIjny43263t08hvbt95O+PP/nz8V/uH9Tj
-wc8QkiPvbm8ePrx5Cul2e//wz+3+8V/efHh4c3unHg9+hpAcef2YzsP7p5Dutz//++k/327/
-fvzPr8XTwS8gJEc+v83wFNJ/Hz/Qe/3+u/8MbrAUR74P6eHh39e3+z+E5AxLceT7D+0+8vfT
-J0uP//mNdjj4FYTkyF+f31V4/hzpn4d/v7zZ8PE9iL/U48HPEJIjv3r7+69PIX18+1s9HfwC
-QrLk/dtvvyD77n67f3wZevzQ7s3tT74g6wghXQjeZvCF1VwIQvKF1VwIQvKF1VwIQvKF1QAk
-QEgACRASQAKEBJAAIQEk8H8uBIvHNyYczwAAAABJRU5ErkJggg=="
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAANlBMVEUAAAAzMzNNTU1oaGh8
+fHyMjIyampqnp6eysrK9vb3Hx8fQ0NDZ2dnh4eHp6enr6+vw8PD////agy6EAAAACXBIWXMA
+ABJ0AAASdAHeZh94AAAbgklEQVR4nO3djXZTyRFF4WthMAzg2O//slFLvi6jUCDHXa1TZ/a3
+VviLwlJ31R7ZRkO2ZwAftt36CQAOCAmYgJCACQgJmICQgAkICZiAkIAJCAmY4KMh/ceN34mE
+2F0uIaX8TiTE7nIJKeV3IiF2l0tIKb8TCbG7XEJK+Z1IiN3lElLK70RC7C6XkFJ+JxJid7mE
+lPI7kRC7yyWklN+JhNhdLiGl/E4kxO5yCSnldyIhdpdLSCm/Ewmxu1xCSvmdSIjd5RJSyu9E
+Quwul5BSficSYne5hJTyO5EQu8slpJTfiYTYXS4hpfxOJMTucgkp5XciIXaXS0gpvxMJsbtc
+Qkr5nUiI3eUSUsrvRELsLpeQUn4nEmJ3uYSU8juRELvLJaSU34mE2F0uIaX8TiTE7nIJKeV3
+IiF2l0tIKb8TCbG7XEJK+Z1IiN3lElLK70RC7C6XkFJ+JxJid7mElPI7kRC7yyWklN+JhNhd
+LiGl/E4kxO5yCSnldyIhdpdLSKm7Wz8BZ3brQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKk
+QnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipk
+ty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbr
+QkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6E
+lCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgp
+Qipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrQkgpQipkty6ElCKkQnbrMi8kO3e3fgJoiVek
+C7wiFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JK
+EVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQh
+FbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIh
+u3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJb
+F0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3Uh
+pBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JK
+EVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQh
+FbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIh
+u3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJb
+F0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3Uh
+pBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbF0JK
+EVIhu3UhpBQhFbJbF0JKEVIhu3UhpBQhFbJbl3eGdDh9c/T2e0LCe9mty/tCOoVzeClq/56Q
+8G526/KukA7PhIQp7NblPSG9xENI+DC7dZkS0t3w1/95N34nwgp/DenwzCsSJrFbl+tDeu2G
+kPBhduvyjpDOCAkT2K3L9SG9viwREj7Mbl0IKUVIhezW5f8IiXc24MPs1uWdIf3BrU8yHSEV
+slsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7
+dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsX
+QkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGk
+FCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoR
+UiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEV
+slsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7
+dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsX
+QkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGk
+FCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsX1ZDuMMy9VCGEtCqkDz4bD4TU
+RgyNkPQQUhsxNELSQ0htxNAISQ8htRFDIyQ9hNRGDI2Q9BBSGzE0QtJDSG3E0AhJDyG1EUMj
+JD2E1EYMjZD0EFIbMTRC0kNIbcTQCEkPIbURQyMkPbYh+b0fN4ZGSHrctm1n+M72GBoh6TFb
+tp3jvyMSQyMkPV679oqQ/mTu8yKkwWvXXhHSOoQ0uN7CqaNbP4kqvCLp8fqH9htur0d8aKfN
+bdsCf46Umvu8CGkgpDZiaISkh5DaiKERkh5CaiOGRkh6CKmNGBoh6SGkNmJohKSHkNqIoRGS
+HkJqI4ZGSHoIqY0YGiHpIaQ2YmiEpIeQ2oihEZIeQmojhkZIegipjRgaIekhpDZiaISkh5Da
+iKERkh5CaiOGRkh6CKmNGBoh6SGkNmJohKSHkNqIoRGSHkJqI4ZGSHoIqY0YGiHpIaQ2YmiE
+pIeQ2oihEZIeQmojhkZIegipjRgaIekhpDZiaISkh5DaiKERkh5CaiOGRkh6CKmNGBoh6SGk
+NmJohKSHkNqIoRGSHkJqI4ZGSHoIqY0YGiHpIaQ2YmiEpIeQ2oihEZIeQmojhkZIegipjRga
+IekhpDZiaISkh5DaiKERkh5CaiOGRkh6CKmNGBoh6SGkNmJohKSHkNqIoRGSHkJqI4ZGSHoI
+qY0YGiHpIaQ2YmiEpIeQ2oihEZIeQmojhkZIegipjRgaIekhpDZiaISkh5DaiKERkh5CaiOG
+Rkh6CKmNGBoh6SGkNmJohKSHkNqIoRGSHkJqI4ZGSHoIqY0YGiHpIaQ2YmiEpIeQ2oihEZIe
+QmojhkZIegipjRgaIekhpDZiaISkh5DaiKERkh5CaiOGRkh6CKmNGBoh6SGkNmJohKSHkNqI
+oRGSHkJqI4ZGSHoIqY0YGiHpIaQ2YmiEpIeQ2oihEZIeQmojhkZIegipjRgaIekhpDZiaISk
+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
+QkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGk
+FCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoR
+UiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEV
+slsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7
+dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsX
+QkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGk
+FCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoR
+UiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEV
+slsXQkoRUiG7dSGkFCEVslsXQkoRUiG7dSGkFCEVslsXQkr5hnSHYeqdElLKOKQPjtoDIS1C
+SN4IaRFC8kZIixCSN0JahJC8EdIihOSNkBYhJG+EtAgheSOkRQjJGyEtQkjeCGkRQvJGSIsQ
+kjdCWoSQvBHSIoTkjZAWISRvhLQIIXkjpEUIyZtqSHZ81833ZO9RdQu8Il3gFcmb6ivS1Kel
+gJC8EdIihOSNkBYhJG+EtAgheSOkRQjJGyEtQkjeCGkRQvJGSIsQkjdCWoSQvBHSIoTkjZAW
+ISRvhLQIIXkjpEUIyRshLUJI3ghpEULyRkiLEJI3QlqEkLwR0iKE5I2QFiEkb4S0CCF5I6RF
+CMkbIS1CSN4IaRFC8kZIixCSN0JahJC8EdIihOSNkBYhJG+EtAgheSOkRQjJGyEtQkjeCGkR
+QvJGSIsQkjdCWoSQvBHSIoTkjZAWISRvhLQIIXkjpEUIyRshLUJI3ghpEULyRkiLEJI3QlqE
+kLwR0iKE5I2QFiEkb4S0CCF5I6RFCMkbIS1CSN4IaRFC8kZIixCSN0JahJC8EdIixiFhmHqn
+hJTyO9Hu1hssYuqdElLK70S7W2+wiKl3SkgpvxPt+BxpIKRF/E60I6SBkBbxO9GOkAZCWsTv
+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
+rkJggg=="
 >
 </div>
 
@@ -13380,7 +13362,7 @@ QEgACRASQAKEBJAAIQEk8H8uBIvHNyYczwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">t.test</span><span class="p">(</span><span class="n">disp</span> <span class="o">~</span> <span class="n">am</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mtcars</span><span class="p">)</span>
@@ -13447,7 +13429,7 @@ mean in group 0 mean in group 1
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">wilcox.test</span><span class="p">(</span><span class="n">disp</span> <span class="o">~</span> <span class="n">am</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">mtcars</span><span class="p">)</span>
@@ -13506,7 +13488,7 @@ alternative hypothesis: true location shift is not equal to 0
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Paired-two-sample-tests-">Paired two sample tests <a class="anchor" id="paired" /><a class="anchor-link" href="#Paired-two-sample-tests-">&#182;</a></h1><p>If samples are paired, a paired test should be used. This should be used to for example before and after measurements on the same subjects. See the above two sections for assumptions.</p>
+<h1 id="Paired-two-sample-tests-">Paired two sample tests <a class="anchor" id="paired" /><a class="anchor-link" href="#Paired-two-sample-tests-">&#182;</a></h1><p>If samples are paired, a paired test should be used. This should be used with for example before and after measurements on the same subjects. See the above two sections for assumptions.</p>
 <p>In R it is crucial that the observations are in correct order, as the samples are paired according to the input order.</p>
 <h3 id="Ordering-data-in-R">Ordering data in R<a class="anchor-link" href="#Ordering-data-in-R">&#182;</a></h3>
 </div>
@@ -13522,7 +13504,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">pairedData</span>
@@ -13587,7 +13569,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">pairedDataOrder</span> <span class="o">&lt;-</span> <span class="n">pairedData</span><span class="p">[</span><span class="nf">order</span><span class="p">(</span><span class="n">pairedData</span><span class="o">$</span><span class="n">subject</span><span class="p">),</span> <span class="p">]</span>
@@ -13652,7 +13634,7 @@ alternative hypothesis: true location shift is not equal to 0
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">before</span> <span class="o">&lt;-</span> <span class="n">pairedDataOrder</span><span class="p">[</span><span class="n">pairedDataOrder</span><span class="o">$</span><span class="n">sampletime</span> <span class="o">==</span> <span class="s">&quot;before&quot;</span><span class="p">,</span> <span class="s">&quot;measurement&quot;</span><span class="p">]</span>
@@ -13701,14 +13683,14 @@ mean of the differences
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The average difference between before and after measurements is -0.71 (-2.21 to 0.79, 95% CI) and this is not statistically significant, p-value = 0.3107.</p>
-<p>Also notice that we only have 9 degrees of freedom, despite having 20 observations in the input data.frame. This is because we have repeated measurements within subjects, and we actually only have 10 independent measurements. A paired t-test is therefore equivalent to finding the difference between before and after measuremnts and then running a one-sample t-test:</p>
-
+<p>Also notice that we only have 9 degrees of freedom, despite having 20 observations in the input data.frame. This is because we have repeated measurements within subjects, and we actually only have 10 independent measurements. A paired t-test is therefore equivalent to finding the difference between before and after measuremnts and then running a one-sample t-test.</p>
+<h4 id="Let's-try-the-same-analysis-with-a-one-sample-t-test:">Let's try the same analysis with a one-sample t-test:<a class="anchor-link" href="#Let's-try-the-same-analysis-with-a-one-sample-t-test:">&#182;</a></h4>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Find the difference</span>
@@ -13754,7 +13736,7 @@ mean of the differences
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># One-sample t-test</span>
@@ -13808,7 +13790,15 @@ sample estimates:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Correlation-">Correlation <a class="anchor" id="correlation" /><a class="anchor-link" href="#Correlation-">&#182;</a></h1><p>It is advised to read <a href="https://www.nature.com/articles/nmeth.3587">this excellent introduction to the difference between correlation, association, and causation</a>.</p>
+<h3 id="Challenge:">Challenge:<a class="anchor-link" href="#Challenge:">&#182;</a></h3><p>Try to run the above analysis with a Wilcoxon Signed Rank test instead of the paired t-test.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Correlation-">Correlation <a class="anchor" id="correlation" /><a class="anchor-link" href="#Correlation-">&#182;</a></h1><p>It is advised to read <a href="https://www.nature.com/articles/nmeth.3587">this excellent introduction on the difference between correlation, association, and causation</a>.</p>
 <p>As the above paper states: <em>two variables are correlated when they display an increasing or decreasing trend</em></p>
 <p>Correlation values range between 1 for perfect positive trend, 0 for no trend, to -1 for perfect negative trend. There are two types of correlation metrics that are typically used. Pearson's <em>r</em> and and Spearman's <em>rho</em>. Pearsons is used for linear trends. See collection of scatter plots and associated pearson correlations:</p>
 
@@ -13828,7 +13818,8 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Assumptions">Assumptions<a class="anchor-link" href="#Assumptions">&#182;</a></h3><p>Pearsons assume linearity between variables, and Spearmans assume monotonic trend between variables. Pearsons further assume that both variables are (somewhat) normally distributed and homoscedastic. See <a href="#variance">this section</a> for details</p>
+<h3 id="Assumptions">Assumptions<a class="anchor-link" href="#Assumptions">&#182;</a></h3><p>Pearsons assume linearity between variables that both variables are (somewhat) normally distributed and homoscedastic. See <a href="#variance">this section</a> for details.</p>
+<p>Spearmans assumes a monotonic trend between variables. A non-monotonic trend is for example a U-shape or ∩-shape when plotting the two variables in scatter plot as above.</p>
 
 </div>
 </div>
@@ -13850,7 +13841,7 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">)</span>
@@ -13890,7 +13881,7 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">)</span>
@@ -13930,7 +13921,7 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;spearman&quot;</span><span class="p">)</span>
@@ -13970,7 +13961,7 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor</span><span class="p">(</span><span class="nf">rank</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">),</span> <span class="nf">rank</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">))</span>
@@ -14010,7 +14001,7 @@ and Spearmans is used for monotonic trends. See the below graph from the Wikiped
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">plot</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">)</span>
@@ -14169,7 +14160,7 @@ ICQIEBIECAkC/gOBwx6H+lktwwAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor.test</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">)</span>
@@ -14213,7 +14204,7 @@ sample estimates:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">cor.test</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">disp</span><span class="p">,</span> <span class="n">mtcars</span><span class="o">$</span><span class="n">hp</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s">&quot;spearman&quot;</span><span class="p">)</span>
@@ -14267,6 +14258,14 @@ sample estimates:
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Challenge:">Challenge:<a class="anchor-link" href="#Challenge:">&#182;</a></h3><p>Spearmans is based on ranked data. Run the rank() function on the data to understand what this does to the data. Why is Spearman better suited than Pearson to data with outliers?</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Linear-regression-">Linear regression <a class="anchor" id="regression" /><a class="anchor-link" href="#Linear-regression-">&#182;</a></h1>
 </div>
 </div>
@@ -14296,7 +14295,7 @@ sample estimates:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Save the model in the fit object</span>
@@ -14352,42 +14351,10 @@ F-statistic: 50.13 on 1 and 30 DF,  p-value: 7.143e-08
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The important output here are the coefficients and Adjusted R-squared (variance explained). There are two coefficients, one for the Intercept and one for the Y variable (disp). The Estimates are the <em>estimated</em> values of the coefficients. As such the model ($Y = a*X + b$) here is estimated as: $hp = 0.4375 * disp + 45.7345$. Our estimate for the horsepower for a car with an engine displacement of 200 is therefore:</p>
+<p>The important output here are the coefficients and Adjusted R-squared (variance explained). There are two coefficients, one for the Intercept and one for the Y variable (disp). The Estimates are the <em>estimated</em> values of the coefficients. As such the model ($Y = a*X + b$) here is estimated as: $hp = 0.4375 * disp + 45.7345$.</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[21]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="m">0.4375</span><span class="o">*</span><span class="m">200</span> <span class="o">+</span> <span class="m">45.7345</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-<div class="output_html rendered_html output_subarea ">
-133.2345
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -14401,6 +14368,14 @@ F-statistic: 50.13 on 1 and 30 DF,  p-value: 7.143e-08
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The p-values (Pr(&gt;|t|)) tests the hypothesis that the Estimate is zero. A low p-value therefore suggests that the Estimate is unlikely to be zero, given the assumptions of the linear regression. We can therefore see that the engine displacement is significantly associated with the horsepower. Also notice that the p-value is similar to the one from Pearson correlation. The adjusted R-squared tells us that our model <em>explains</em> 61.3% of the variance in the horsepower variable.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Challenge:">Challenge:<a class="anchor-link" href="#Challenge:">&#182;</a></h3><p>Based on the above linear model, what would our estimate of horsepower be for a car with an engine displacement of 200?</p>
 
 </div>
 </div>
@@ -14422,7 +14397,7 @@ F-statistic: 50.13 on 1 and 30 DF,  p-value: 7.143e-08
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">))</span> <span class="c1"># Plot in a 2x2 grid</span>
@@ -14735,8 +14710,15 @@ BAABEAkAAiASAARAJAAIgEgAEACRACAAIgFAAEQCgID/ARFDPF9Xv1OiAAAAAElFTkSuQmCC
 residuals_simulated &lt;- rnorm(n_samples)
 qqnorm(residuals_simulated)
 qqline(residuals_simulated)</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="Scale-Location">Scale-Location<a class="anchor-link" href="#Scale-Location">&#182;</a></h4><p>This plot should be used to check that residuals are <a href="#variance">homoscedastistic</a>. The points should have an equal spread across the range of fitted values. If, for example, points were further from each other at high fitted values than lower fitted values, it could help re-running the model with a log-transformed response variable.</p>
-<h4 id="Residuals-vs-Leverage">Residuals vs Leverage<a class="anchor-link" href="#Residuals-vs-Leverage">&#182;</a></h4><p>This plot should be used to identify outliers. The Cook's distance (dotted lines) measures the impact of a data point on a model, specifically how much the predicted estiamte of y would change if the data point was omitted from the model. An outlier is a data point which has a substantially higher Cook's distance than most of the other observations. We can see that the data point with the <em>Maserati Bora</em> is maybe an outlier, and removing it could have an effect on the fit.</p>
+<h4 id="Residuals-vs-Leverage">Residuals vs Leverage<a class="anchor-link" href="#Residuals-vs-Leverage">&#182;</a></h4><p>This plot should be used to identify outliers. The Cook's distance (dotted lines) measures the impact of a data point on a model, specifically how much the predicted estiamte of y would change if the data point was omitted from the model. An outlier is a data point which has a substantially higher Cook's distance than most of the other observations. We can see that the data point with the <em>Maserati Bora</em> is maybe an outlier, but Cook's distances below 1 are usually not a problem.</p>
 <p>If the above is unclear, details can be found in <a href="https://www.nature.com/articles/nmeth.3854">this article</a></p>
 
 </div>
@@ -14768,7 +14750,7 @@ qqline(residuals_simulated)</code></p>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">mtcars</span><span class="o">$</span><span class="n">gear</span> <span class="o">&lt;-</span> <span class="nf">as.factor</span><span class="p">(</span><span class="n">mtcars</span><span class="o">$</span><span class="n">gear</span><span class="p">)</span>
@@ -14821,6 +14803,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h4 id="Multiple-predictors-in-ANOVA">Multiple predictors in ANOVA<a class="anchor-link" href="#Multiple-predictors-in-ANOVA">&#182;</a></h4><p>It is possible to add multiple predictors to ANOVA's (they can be added with +'s on the right-hand side of the formula). It important to note that the default ANOVA in R is using Type I Sums of Squares (SS), hence the order of the predictors will produce different results (unless the design is fully factorial). See <a href="https://mcfromnz.wordpress.com/2011/03/02/anova-type-iiiiii-ss-explained/">this excellent blog</a> for details on differences between Type I/II/III SS in ANOVA.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h4 id="TukeyHSD-post-hoc">TukeyHSD post-hoc<a class="anchor-link" href="#TukeyHSD-post-hoc">&#182;</a></h4><p>We can run a TukeyHSD to get all pairwise comparisons</p>
 
 </div>
@@ -14828,10 +14818,11 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<div class=" highlight hl-r"><pre><span></span><span class="n">fitTukey</span> <span class="o">&lt;-</span> <span class="nf">TukeyHSD</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
+<span class="n">fitTukey</span>
 </pre></div>
 
     </div>
@@ -14873,191 +14864,10 @@ $gear
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>and we can see that cars with 4 gears have lower horsepower than cars with 3 or 5 gears.</p>
-<p>Let's make a plot to check:</p>
+<h3 id="Challenge:">Challenge:<a class="anchor-link" href="#Challenge:">&#182;</a></h3><p><em>p adj</em> are the P-values (TukeyHSD is adjusting them internally, hence the adj). Try to plot the <em>fitTukey</em> object to understand the remainder of the output. For example, how can we see in this output that cars with 4 gears have lower horsepower than those with 3 or 5 gears?</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[25]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span><span class="nf">ggplot</span><span class="p">(</span><span class="n">mtcars</span><span class="p">,</span> <span class="nf">aes</span><span class="p">(</span><span class="n">gear</span><span class="p">,</span> <span class="n">hp</span><span class="p">))</span> <span class="o">+</span> <span class="nf">geom_boxplot</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-
-
-<div class="output_png output_subarea ">
-<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAA0gAAANICAMAAADKOT/pAAAANlBMVEUAAAAzMzNNTU1oaGh8
-fHyMjIyampqnp6eysrK9vb3Hx8fQ0NDZ2dnh4eHp6enr6+vw8PD////agy6EAAAACXBIWXMA
-ABJ0AAASdAHeZh94AAAehElEQVR4nO3c63Zc141F4VKJlnyJ1eL7v2yLpGy41UoCEJezamN+
-P2wnY5xhYIOzfe3cngGk3a4eADgBIQEFCAkoQEhAAUICChASUICQgAKEBBTIhvQ/YuQGarZs
-X7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZV
-W5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1
-CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQ
-TrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekU
-y/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/b9cPUAPyCk
-Uyzbl5CmyA3UbNm+hDRFbqBmy/YlpClyAzVbti8hTZEbqNmyfQlpitxAzZbtS0hT5AZqtmxf
-QpoiN1CzZfsS0hS5gZot25eQpsgN1GzZvoQ0RW6gZsv2JaQpcgM1W7YvIU2RG6jZsn0JaYrc
-QM2W7UtIU+QGarZsX0KaIjdQs2X7EtIUuYGaLduXkKbIDdRs2b6ENEVuoGbL9iWkKXIDNVu2
-LyFNkRuo2bJ9CWmK3EDNlu1LSFPkBmq2bF9CmiI3ULNl+xLSFLmBmi3bl5CmyA3UbNm+hDRF
-bqBmy/YlpClyAzVbti8hTZEbqNmyfQlpitxAzZbtS0hT5AZqtmxfQpoiN1CzZfsS0hS5gZot
-25eQpsgN1GzZvoQ0RW6gZsv2JaQpcgM1W7YvIU2RG6jZsn0JaYrcQM2W7UtIU+QGarZsX0Ka
-IjdQs2X7EtIUuYGaLduXkKbIDdRs2b6ENEVuoGbL9iWkKXIDNVu2LyFNkRuo2bJ9CWmK3EDN
-lu1LSFPkBmq2bF9CmiI3ULNl+xLSFLmBmi3bl5CmyA3UbNm+hDRFbqBmy/YlpClyAzVbti8h
-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
-t//89eb9f6/gpa9FSEWKQ/rl9vXtv35y/v556WsRUpHqv9nw6enPlz+1e+KvkX5ESG57zmvf
-/78/tfsnx++fl74WIRUhpCmE5LbnvPY9/5sNXoTktue89j0heRGS257z2vc/hvT57v/Tuhe8
-9LUIqUhxSJ8jf330gpe+FiEVKQ7pfvP/a3aveOlrEVKRnn+zwY+XvhYhFSn/U7uvsd8/L30t
-QipS/TcbfnH/Ow1veOlrEVKRypCi/zD2BS99LUIqQkhTCMltz3nte/6BrBchue05r31PSF6E
-5LbnvPY9IXkRktue89r3hORFSG57zmvfE5IXIbntOa99T0hehOS257z2PSF5EZLbnvPa94Tk
-RUhue85r3xOSFyG57TmvfU9IXoTktue89j0heRGS257z2veE5EVIbnvOa98Tkhchue05r31P
-SF6E5LbnvPY9IXkRktue89r3hORFSG57zmvfE5IXIbntOa99T0hehOS257z2PSF5EZLbnvPa
-94TkRUhue85r3xOSFyG57TmvfU9IXoTktue89j0heRGS257z2vcXhfSI3rdqM0IqQkhj3rdq
-M0IqQkhj3rdqM0Iq8qAhJX+vVyAktz3nte8JyYuQ3Pac174nJC9CcttzXvuekLwIyW3Pee17
-QvIiJLc957XvCcmLkNz2nNe+JyQvQnLbc177npC8CMltz3nte0LyIiS3Pee17wnJi5Dc9pzX
-vickL0Jyu/pf5nqXd21qPx6E5EVIblc38S7v2tR+PAjJi5Dcrm7iXd61qf14EJIXIbntOa99
-T0hehOS257z2PSF5EZLbnvPa94TkRUhue85r3xOSFyG57TmvfU9IXoTktue89j0heRGS257z
-2veE5EVIbnvOa98Tkhchue05r31PSF6E5LbnvPY9IXkRktue89r3hORFSG57zmvfE5IXIbnt
-Oa99T0hehOS257z2PSF5EZLbnvPa94TkRUhue85r3xOSFyG57TmvfU9IXoTktue89j0heRGS
-257z2veE5EVIbnvOa98Tkhchue05r31PSF6E5LbnvPY9IXkRktue89r3hORFSG57zmvfE5IX
-IbntOa99T0hehOS257z2PSF5EZLbnvPa94TkRUhue85r3xOSFyG57TmvfU9IXoTktue89j0h
-eRGS257z2veE5EVIbnvOa98Tkhchue05r31PSF6E5LbnvPY9IXkRktue89r3hORFSG57zmvf
-E5IXIbntOa99T0hehOS257z2PSF5EZLbnvPa94TkRUhue85r3xOSFyG57TmvfU9IXoTktue8
-9j0heRGS257z2veE5EVIbnvOa98Tkhchue05r31PSF6E5LbnvPY9IXkRktue89r3hORFSG57
-zmvfE5IXIbntOa99T0hehOS257z2PSF5EZLbnvPa94TkRUhue85r3xOSFyG57TmvfU9IXoTk
-tue89j0heRGS257z2veE5EVIbnvOa98Tkhchue05r31PSF6E5LbnvPY9IXkRktue89r3hORF
-SG57zmvfZ0N659SP6JKXekiP+FTZma/5I1IfzT9u9JE7wIuHDOldm9r3hPTY5A7wgpDiik+Q
-RkgCCCmu+ARphCSAkOKKT5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgC
-CCmu+ARphCSAkOKKT5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu
-+ARphCSAkOKKT5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARp
-hCSAkOKKT5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSA
-kOKKT5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKK
-T5BGSAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKKT5BG
-SAIIKa74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKKT5BGSAII
-Ka74BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKKT5BGSAIIKa74
-BGmEJICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKKT5BGSAIIKa74BGmE
-JICQ4opPkEZIAggprvgEaYQkgJDiik+QRkgCCCmu+ARphCSAkOKKT5BGSAIIKa74BGmEJICQ
-4opPkEZIAggprvgEadtCktyXkOKKT5Am+YPVSHJfQoorPkGa5A9WI8l9CSmu+ARpkj9YjST3
-JaS44hOkSf5gNZLcl5Diik+QJvmD1UhyX0KKKz5BmuQPViPJfQkprvgEaZI/WI0k9yWkuOIT
-pEn+YDWS3JeQ4opPkCb5g9VIcl9Ciis+QZrkD1YjyX0JKa74BGmSP1iNJPclpLjiE6RJ/mA1
-ktyXkOKKT5Am+YPVSHJfQoorPkGa5A9WI8l9CSmu+ARpkj9YjST3JaS44hOkSf5gNZLcl5Di
-ik+QJvmD1UhyX0KKKz5BmuQPViPJfQkprvgEaZI/WI0k9yWkuOITpEn+YDWS3JeQ4opPkCb5
-g9VIcl9Ciis+QZrkD1YjyX0JKa74BGmSP1iNJPclpLjiE6RJ/mA1ktyXkOKKT5Am+YPVSHLf
-D4/oXZsS0imW7au2LiGdYtm+ausS0imW7au2LiGdYtm+ausS0imW7au2LiGdYtm+ausS0qyr
-/9buu1z9aD+jNhQhzdrzTyibqQ1lz0VIEwipiNpQ9lyENIGQiqgNZc9FSBMIqYjaUPZchDSB
-kIqoDWXPRUgTCKmI2lD2XIQ0gZCKqA1lz0VIEwipiNpQ9lyENIGQiqgNZc9FSBMIqYjaUPZc
-hDSBkIqoDWXPRUgTCKmI2lD2XIQ0gZCKqA1lz0VIEwipiNpQ9lyENIGQiqgNZc9FSBMIqYja
-UPZchDSBkIqoDWXPRUgTCKmI2lD2XIQ0gZCKqA1lz0VIEwipiNpQ9lyekO5vv/zmn79+c/Um
-P1J76TeEVERtKHsuR0jf+/n+C/sPr67e5EdqL/2GkIqoDWXP9d9Duj8TUhYhFVEbyp7L/ad2
-hJRASEXUhrLnSoT0+r8iWH6/JLmBXmlO9Z9Jziw51Cv+iDRB9/7/nuRLqg1lz0VIEwipiNpQ
-9lyENIGQiqgNZc9FSBMIqYjaUPZchDSBkIqoDWXPxb/ZMIGQiqgNZc912r9rJzfQK0IqojaU
-PRchTSCkImpD2XMR0gRCKqI2lD0XIU0gpCJqQ9lzEdIEQiqiNpQ9FyFNIKQiakPZcxHSBEIq
-ojaUPRchTfjwiK5+tJ9RG4qQZl3dxLtc/Wg/ozYUIc26uol3ufrRfkZtKEKaxV8jFVEbyp6L
-kCYQUhG1oey5CGkCIRVRG8qei5AmEFIRtaHsuQhpAiEVURvKnouQJhBSEbXz2nMR0gRCKqJ2
-XnsuQppASEXUzmvPRUgTCKmI2nntuQhpAiEVUTuvPRchTSCkImrntecipAmEVETtvPZchDSB
-kIqondeei5AmEFIRtfPacxHSBEIqonZeey5CmkBIRdTOa89FSBMIqYjaee25CGkCIRVRO689
-FyFNIKQiaue15yKkCYRURO289lyENIGQiqid156LkCYQUhG189pzEdIEQiqidl57LkKaQEhF
-1M5rz0VIEwipiNp57bkIaQIhFVE7rz0XIU0gpCJq57XnIqQJhFRE7bz2XIQ0gZCKqJ3XnouQ
-JhBSEbXz2nMR0gRCKqJ2XnsuQppASEXUzmvPRUgTCKmI2nntuQhpAiEVUTuvPRchTSCkImrn
-tecipAmEVETtvPZchDSBkIqondeei5AmEFIRtfPacxHSBEIqonZeey5CmkBIRdTOa89FSBMI
-qYjaee25CGkCIRVRO689FyFNIKQiaue15yKkCYRURO289lyENIGQiqid156LkCYQUhG189pz
-EdIEQiqidl57LkKaQEhF1M5rz0VIEwipiNp57bkIaQIhFVE7rz0XIU0gpCJq57XnIqQJhFRE
-7bz2XIQ0gZCKqJ3XnouQJhBSEbXz2nMR0gRCKqJ2XnsuQppASEXUzmvPRUgTCKmI2nntuQhp
-AiEVUTuvPRchTSCkImrntecipAmEVETtvPZchDSBkIqondeei5AmEFIRtfPacxHSBEIqonZe
-ey5CmkBIRdTOa89FSBMIqYjaee25CGkCIRVRO689FyFNIKQiaue15yKkCYRURO289lyENOHD
-I7r60X5G7byEdArJH/c+auclpFMQ0qUI6RSEdClCOgUhXYqQTkFIlyKkUxDSpQjpFIR0KUI6
-BSFdipBOQUiXIqRTENKlCOkUhHQpQjoFIV2KkE5BSJcipFMQ0qUI6RSEdClCOgUhXYqQTkFI
-lyKkUxDSpQjpFIR0KUI6BSFdipBOQUiXIqRTENKlCOkUhHQpQjoFIV2KkE5BSJcipFMQ0qUI
-6RSEdClCOgUhXYqQTkFIlyKkUxDSpQjpFIR0KUI6BSFdipBOQUiXIqRTENKlCOkUy/ZVW5eQ
-TrFsX7V1CekUy/ZVW5eQTrFsX7V1CekUy/ZVW7cuJADP/BHp0S3bV21dQjrFsn3V1iWkUyzb
-V21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V
-1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21d
-QjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWk
-UyzbV21dQjrFsn3V1iWkUyzbV21dQjrFsn3V1iWkUyzbV23dupDUfLh6gGHL9tVdl5Ae27J9
-ddclpMe2bF/ddQnpsS3bV3fd00ICLkFIQAFCAgoQElCAkIAChAQUOCuk+zdXzzBs07534fse
-FdL971+sIfuD1UF5V0J6aPdV6yrvelRIr5Rfu9p91brSqxLSI1sWkvBfIp0WkvBLN7g/7wrp
-718IOiykZ92Xrif9g9VFdV9Celz3u/Sf7PRQXfeokDb+n+hF60qfl5Ae3KJ1pf+S8KiQ+Dcb
-zqZ83rNCAi5CSEABQgIKEBJQgJCAAoQEFCAkoAAhAQUICShASEABQgIKEBJQgJAey5en28c/
-bi9X+/rpdvv09eW/+9cvt9v987ffuN3+vD9dO99ahPRQvt5vr7795utvffz2G3+8/VefX0J6
-un26esSlCOmh/Hp7ev769BLSry/lfL799vz88fb78/OfL//da024BCE9lI+3L9/+9O4lmo+v
-l7v98vLLL3/8+vQW0pdrx1uMkB7K7fbXL2+3v/8k7+mv37pxzcvw9A/lZyF9un387Y8vhHQt
-nv6h/Pindi/e/h4eIV2Lp38on29Pr38q9/Jbn5+ff3/5j7fbv77/DQhCug5P/1Dsb39//60/
-X5Lir5Gux9M/lpd/IPv7azBfPt1uT/96+e9ef4OQrsXTP6Cb7P8o1V6E9FBe/nro25/L8a8v
-yCGkh/L9r4f4565yCOmx/PbxdvtER3oICShASEABQgIKEBJQgJCAAoQEFCAkoAAhAQX+F/H8
-WcJq7X7yAAAAAElFTkSuQmCC"
->
-</div>
-
-</div>
-
-</div>
-</div>
-
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -15086,7 +14896,7 @@ WcJq7X7yAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Define model</span>
@@ -15158,7 +14968,7 @@ F-statistic: 11.42 on 2 and 29 DF,  p-value: 0.0002196
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[28]:</div>
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">multcomp</span><span class="p">)</span>
@@ -15172,6 +14982,27 @@ F-statistic: 11.42 on 2 and 29 DF,  p-value: 0.0002196
 <div class="output_wrapper">
 <div class="output">
 
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Loading required package: mvtnorm
+Loading required package: survival
+Loading required package: TH.data
+Loading required package: MASS
+
+Attaching package: &#39;TH.data&#39;
+
+The following object is masked from &#39;package:MASS&#39;:
+
+    geyser
+
+</pre>
+</div>
+</div>
 
 <div class="output_area">
 
@@ -15192,8 +15023,8 @@ Fit: lm(formula = hp ~ gear, data = mtcars)
 Linear Hypotheses:
            Estimate Std. Error t value Pr(&gt;|t|)    
 4 - 3 == 0   -86.63      20.53  -4.219  &lt; 0.001 ***
-5 - 3 == 0    19.47      27.38   0.711  0.75632    
-5 - 4 == 0   106.10      28.22   3.760  0.00206 ** 
+5 - 3 == 0    19.47      27.38   0.711  0.75635    
+5 - 4 == 0   106.10      28.22   3.760  0.00207 ** 
 ---
 Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 (Adjusted p values reported -- single-step method)
@@ -15217,14 +15048,15 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Multiple-predictors">Multiple predictors<a class="anchor-link" href="#Multiple-predictors">&#182;</a></h4><p>In the linear model, we can include multiple predictors (as long as they do not correlate too much with each other). Let's include "disp" and "drat"</p>
+<h4 id="Multiple-predictors">Multiple predictors<a class="anchor-link" href="#Multiple-predictors">&#182;</a></h4><p>In the linear model, we can include multiple predictors (as long as they do not correlate too much with each other). It is important to stress that the estimate and p-value of a predictor can change depending on if/which other predictors are included in the model. A model should therefore be interepreted as a whole.</p>
+<p>Let's include "disp" and "drat" in the above model</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Define model</span>
@@ -15290,7 +15122,7 @@ F-statistic: 24.65 on 4 and 27 DF,  p-value: 1.125e-08
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[30]:</div>
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">car</span><span class="o">::</span><span class="nf">vif</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
@@ -15338,7 +15170,7 @@ F-statistic: 24.65 on 4 and 27 DF,  p-value: 1.125e-08
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[31]:</div>
+<div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="nf">anova</span><span class="p">(</span><span class="n">fit</span><span class="p">)</span>
@@ -15388,7 +15220,7 @@ F-statistic: 24.65 on 4 and 27 DF,  p-value: 1.125e-08
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[32]:</div>
+<div class="prompt input_prompt">In&nbsp;[28]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="c1"># Simulate heteroscedastic data</span>
@@ -15563,7 +15395,7 @@ fz6ZEgZUAAAAAElFTkSuQmCC"
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[33]:</div>
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">fit</span> <span class="o">&lt;-</span> <span class="nf">aov</span><span class="p">(</span><span class="n">Value</span> <span class="o">~</span> <span class="n">Group</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span>
@@ -15751,7 +15583,7 @@ bxBSGVbz3+/TiVZIcxt2rxMSBBASBBASBPg/7U3wdO0GXnkAAAAASUVORK5CYII="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="prompt input_prompt">In&nbsp;[30]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-r"><pre><span></span><span class="n">fit_log</span> <span class="o">&lt;-</span> <span class="nf">aov</span><span class="p">(</span><span class="nf">log10</span><span class="p">(</span><span class="n">Value</span><span class="p">)</span> <span class="o">~</span> <span class="n">Group</span><span class="p">,</span> <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">)</span>
