@@ -36,6 +36,7 @@ This section contains notebooks for more specific and/or advanced data presentat
 * [Differential abundance - Extended](html/da2.html)
 * [Microbial association networks](html/network.html)
 * [Supervised machine learning](html/superlearn.html)
+* [Clustering](html/cluster.html)
 * [PERMANOVA effect sizes](html/omegasq.html)
 
 ##### Plotting
