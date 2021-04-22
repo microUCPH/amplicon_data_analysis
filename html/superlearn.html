@@ -13085,8 +13085,13 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook covers some basic supervised learning techniques, which can be used in microbiome science.</p>
-<p>The following methods can be used to find features (for example ASVs) that can predict some outcome of interest, for example whether a sample comes from a control or treatment group, or some other metadata associated with the samples. In some sense the methods have the same outcome as in <a href="https://microucph.github.io/amplicon_data_analysis/html/da.html">Differential abundance analysis</a>, but with these methods the purpose is not of inference (based on p-values), but it is prediction.</p>
-<p>If you want to learn more about machine learning I can highly recommend <a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">The Elements of Statistical Learning</a> by Hastie, Tibshirani, and Friedman.</p>
+<p>The following methods can be used to find features (for example ASVs) that can predict some outcome of interest, for example whether a sample comes from a control or treatment group, or some other metadata associated with the samples. In some sense, the methods have the same outcome as in <a href="https://microucph.github.io/amplicon_data_analysis/html/da.html">Differential abundance analysis</a>, but with supervised machine learning the purpose is not of inference (based on p-values), but it is prediction.</p>
+<h3 id="Getting-in-depth">Getting in-depth<a class="anchor-link" href="#Getting-in-depth">&#182;</a></h3><p>If you want to learn more about machine learning I can highly recommend <a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">The Elements of Statistical Learning</a> by Hastie, Tibshirani, and Friedman.</p>
+<h4 id="Short-primers:">Short primers:<a class="anchor-link" href="#Short-primers:">&#182;</a></h4><ul>
+<li><a href="https://www.nature.com/articles/nmeth.4526">Paper on machine learning in general</a></li>
+<li><a href="https://www.nature.com/articles/nmeth.4551">Paper on supervised learning</a></li>
+<li><a href="https://www.nature.com/articles/nmeth.4642">Paper on statistics versus machine learning</a></li>
+</ul>
 
 </div>
 </div>
@@ -13114,7 +13119,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's load our test dataset</p>
+<p>Let's load our example dataset</p>
 
 </div>
 </div>
@@ -13136,10 +13141,10 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Train,-validate,-and-test">Train, validate, and test<a class="anchor" id="train" /><a class="anchor-link" href="#Train,-validate,-and-test">&#182;</a></h2><p>To ensure our model is not overfitting (making a good fit in our dataset, but cannot be generalized to similar datasets), we need to split our dataset into 3(2) parts to ensure proper fitting. The train part of the dataset is used to train a specific model, the validation part is used compare models to choose hyperparameters of the model, and the test set is used only to check how good our final model works.</p>
+<h2 id="Train,-validate,-and-test">Train, validate, and test<a class="anchor" id="train" /><a class="anchor-link" href="#Train,-validate,-and-test">&#182;</a></h2><p>To ensure our model is not overfitting (having a good fit in our dataset, but cannot be generalized to other similar datasets), we need to split our dataset into 3 parts to ensure proper fitting. The <strong>train</strong> set of the dataset is used to train a specific model, the <strong>validation</strong> set is used compare models to choose hyperparameters of the model, and the <strong>test</strong> set is used only to check how good our final model works.</p>
 <h3 id="Cross-validation">Cross-validation<a class="anchor-link" href="#Cross-validation">&#182;</a></h3><p>A widely used method for choosing hyperparameters is to use cross-validation. With cross-validation the train and validation datasets are combined and are split into k parts. Then the model is fit k times using a different part of the dataset each time as validation set, and the remainder as train set.</p>
-<h3 id="To-use-a-test-set-or-not">To use a test set or not<a class="anchor-link" href="#To-use-a-test-set-or-not">&#182;</a></h3><p>If you actually want to know how good your model is, you should use a test set which has not been used for training at all. It's uncommon to see a test set in microbiome science, but because it is best practice we will use it in this notebook</p>
-
+<h3 id="To-use-a-test-set-or-not">To use a test set or not<a class="anchor-link" href="#To-use-a-test-set-or-not">&#182;</a></h3><p>If you want to know how good your model is, you should use a test set which has not been used for training at all. It's actually uncommon to see a test set in microbiome science, but because it is best practice we will use it in this notebook</p>
+<h4 id="In-depth-paper-on-overfitting"><a href="https://www.nature.com/articles/nmeth.3968">In-depth paper on overfitting</a><a class="anchor-link" href="#In-depth-paper-on-overfitting">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -13252,12 +13257,12 @@ refseq()      DNAStringSet:      [ 1310 reference sequences ]</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Sparse-regularized-linear-models">Sparse regularized linear models<a class="anchor" id="lasso" /><a class="anchor-link" href="#Sparse-regularized-linear-models">&#182;</a></h2><p>A simple supervised learning method would be to use multiple linear regression, and simply add all features as independent variables. However, the problem with microbiome datasets is that we usually have many more features than samples (p &gt; n problem), which means we cannot fit these models. A way to fix this problem is to use sparse regularization; the idea is that we penalize the model when it adds features, meaning that we try to force the model to only use features that are <em>important</em> enough for the prediction.</p>
-<h3 id="L1---LASSO">L1 - LASSO<a class="anchor-link" href="#L1---LASSO">&#182;</a></h3><p>L1 penalty or LASSO, is a penalty which sets the estimates of "non-important" features to zero, that is, it selectes which features are most important for predicting the outcome. If there are highly correlating features, it will choose randomly among these.</p>
+<h4 id="In-depth-paper-on-regularization"><a href="https://www.nature.com/articles/nmeth.4014">In-depth paper on regularization</a><a class="anchor-link" href="#In-depth-paper-on-regularization">&#182;</a></h4><h3 id="L1---LASSO">L1 - LASSO<a class="anchor-link" href="#L1---LASSO">&#182;</a></h3><p>L1 penalty or LASSO, is a penalty which sets the estimates of "non-important" features to zero, that is, it selectes which features are most important for predicting the outcome. If there are highly correlating features, it will choose randomly among these.</p>
 <h3 id="L2---Ridge">L2 - Ridge<a class="anchor-link" href="#L2---Ridge">&#182;</a></h3><p>L2 penalty or Ridge, is a penalty which reduces the estimates of all features as more features are added. It will therefore not select features (all estimates will be non-zero), but it will regularize the model. It is better fitted than LASSO if highly correlated features are included in the model</p>
 <h3 id="Elastic-net">Elastic net<a class="anchor-link" href="#Elastic-net">&#182;</a></h3><p>Elastic net is a generalized penalty which introduces an <em>alpha</em> parameter. When <em>alpha=1</em> it is a LASSO penalty, when <em>alpha=0</em> it is Ridge, and with <em>alpha</em> between 0 and 1 it is a mix of the two.</p>
 <h3 id="Hyperparameters">Hyperparameters<a class="anchor-link" href="#Hyperparameters">&#182;</a></h3><p>All these sparse regularization methods needs a <em>lamda</em> hyperparameter, which controls how strong the penalty is. Elastic net additionally needs the <em>alpha</em> hyperparameter.</p>
-<h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3><p>Let's fit a LASSO model. We use logistic regression as we want to predict whether or sample comes from a child which has been born by C-section (1) or vaginal birth (0).</p>
-
+<h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3><p>Let's fit a LASSO model. We use logistic regression as we want to predict whether our sample comes from a child which has been born by C-section (1) or vaginal birth (0).</p>
+<h4 id="In-depth-paper-on-logistic-regression"><a href="https://www.nature.com/articles/nmeth.3904">In-depth paper on logistic regression</a><a class="anchor-link" href="#In-depth-paper-on-logistic-regression">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -13608,7 +13613,8 @@ AElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>If we start readning the plot from the left, we have many features in the model (84), as lambda increases (moving to the right), we get fewer features and the deviance is getting smaller. At some point the deviance starts rising again as we get even fewer features. The first vertical line denotes the best model (lowest deviance), the second vertical line denotes the simplest model of which the deviance is within 1 standard error of the mean of the best model.</p>
+<p>If we start reading the plot from the left, we have many features in the model (84), as lambda increases (moving to the right), we get fewer features and the deviance is getting smaller. At some point the deviance starts rising again as we get even fewer features. The first vertical line denotes the best model (lowest deviance), the second vertical line denotes the simplest model of which the deviance is within 1 standard error of the mean of the best model.</p>
+<h4 id="Why-is-the-deviance-curve-U-shaped?">Why is the deviance curve U-shaped?<a class="anchor-link" href="#Why-is-the-deviance-curve-U-shaped?">&#182;</a></h4><p>With few features in the model (high lambda, right in the plot) we simply don't have enough information to make good predictions. With many features (low lambda, left in the plot) we start overfitting; features are added that only contributes variance to the model, so they might correlate with the outcome in the training set, but not in the validation set, and are therefore probably noise.</p>
 <p>Let's see the coefficients of the simplest (but still good) model:</p>
 
 </div>
@@ -13685,8 +13691,8 @@ AElFTkSuQmCC"
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Above we have our chosen features and associated estimates for the model. As glmnet by default is standardizing the features, the estimates can be compared directly, and the highest estimate (in absolute terms) can be said to be most important for the prediction. 
-Let's check how good the model is on the test set</p>
+<p>Above we have our chosen features and associated estimates for the model. As glmnet by default is standardizing the features, the estimates can be compared directly, and the highest estimate (in absolute terms) can be said to be most important for the prediction. Positive estimates would mean that higher abundance results in increase odds of being in the 1 group (C-section) compared to the 0 group (vaginal birth), and <em>vice versa</em> for negative estimates. This a strength of linear models compared to for example decision trees (e.g. random forest) where the associations can be non-linear and therefore not necesarrily easily interpretable.</p>
+<p>Let's check how good the model is on the test set</p>
 
 </div>
 </div>
@@ -13812,11 +13818,12 @@ y    0  1
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Random-forests">Random forests<a class="anchor" id="rf" /><a class="anchor-link" href="#Random-forests">&#182;</a></h2><p>Random forests is a model based on an ensemble of decision trees based on bagging (bootstrap aggregating) and random subsets of the features.</p>
 <h4 id="Decision-tree">Decision tree<a class="anchor-link" href="#Decision-tree">&#182;</a></h4><p>A decision tree is a type of model that splits the samples into groups (leaves on the tree) based on the features. For example, a simple tree could contain a single split such that samples in which an ASV is less abundant than 1% are in branch A and samples in which this ASV is more abundant than 1% are in branch B. The decision trees can have multiple splits, such that they are based on multiple features.</p>
-<h4 id="Bootstrapping">Bootstrapping<a class="anchor-link" href="#Bootstrapping">&#182;</a></h4><p>With bootstrapping one does a random sampling with replacement of the samples. That is, instead of using the raw data as input to the model, the model randomly chooses the same number of samples, but the some samples can be included more than one time. Bootstrapping is crucial, as without bootstrapping the trees would be highly similar (correlated), which would bias the final model.</p>
-<h4 id="Random-feature-subset">Random feature subset<a class="anchor-link" href="#Random-feature-subset">&#182;</a></h4><p>To create more variation among the decision trees, only a random subset of features are used at each split.</p>
-<h4 id="In-essence">In essence<a class="anchor-link" href="#In-essence">&#182;</a></h4><p>So random forest is fitting multiple decision trees, each tree is trained on bootstrapped samples, and each split in the trees are using random subsets of the features. Each tree is actually a bad predictor, but aggregating a lot of trees will produce good predictions. For classification problems they are aggregated by majority vote, and for regression problems the aggregation is simply the mean predictions across all trees.</p>
-<h4 id="Hyperparameters">Hyperparameters<a class="anchor-link" href="#Hyperparameters">&#182;</a></h4><p>There are 2 hyperparameters for random forests, the number of trees, and the number of randomly chosen features at each split (AKA mtry). The last one has some widely used recommendations; sqrt(n_features) for classification problems and n_features/3 for regression problems. As for the number of trees, a few hundred usually works well, but this number could also be tuned through cross-validation.</p>
-<h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3>
+<h4 id="In-depth-paper-on-decision-trees"><a href="https://www.nature.com/articles/nmeth.4370">In-depth paper on decision trees</a><a class="anchor-link" href="#In-depth-paper-on-decision-trees">&#182;</a></h4><h4 id="Bootstrapping">Bootstrapping<a class="anchor-link" href="#Bootstrapping">&#182;</a></h4><p>With bootstrapping one does a random sampling with replacement of the samples. That is, instead of using the raw data as input to the model, the model randomly chooses the same number of samples, but the some samples can be included more than one time (and some might be excluded). Bootstrapping is crucial, as without bootstrapping the trees would be highly similar (correlated), which would bias the final model.</p>
+<h4 id="In-depth-paper-in-the-bootstrap"><a href="https://www.nature.com/articles/nmeth.3414">In-depth paper in the bootstrap</a><a class="anchor-link" href="#In-depth-paper-in-the-bootstrap">&#182;</a></h4><h4 id="Random-feature-subset">Random feature subset<a class="anchor-link" href="#Random-feature-subset">&#182;</a></h4><p>To create more variation among the decision trees, only a random subset of features are used at each split.</p>
+<h4 id="In-essence">In essence<a class="anchor-link" href="#In-essence">&#182;</a></h4><p>Random forest is fitting multiple decision trees, each tree is trained on bootstrapped samples, and each split in the trees are using random subsets of the features. Each tree is actually a bad predictor, but aggregating a lot of trees will produce good predictions. For classification problems they are aggregated by majority vote, and for regression problems the aggregation is simply the mean predictions across all trees.</p>
+<h4 id="In-depth-paper-on-bagging-and-random-forest"><a href="https://www.nature.com/articles/nmeth.4438">In-depth paper on bagging and random forest</a><a class="anchor-link" href="#In-depth-paper-on-bagging-and-random-forest">&#182;</a></h4><h4 id="Hyperparameters">Hyperparameters<a class="anchor-link" href="#Hyperparameters">&#182;</a></h4><p>There are 2 main hyperparameters for random forests, the number of trees, and the number of randomly chosen features at each split (AKA mtry). The last one has some widely used recommendations; sqrt(n_features) for classification problems and n_features/3 for regression problems. As for the number of trees, a few hundred usually works well, but this number could also be tuned through cross-validation.</p>
+<h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3><p>Below we simply use the default parameters for random forest, and we therefore only have a training and test set.</p>
+
 </div>
 </div>
 </div>

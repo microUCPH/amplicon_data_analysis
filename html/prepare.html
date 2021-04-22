@@ -13079,7 +13079,6 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Prepare-reads-and-database">Prepare reads and database<a class="anchor-link" href="#Prepare-reads-and-database">&#182;</a></h1><p>Before we can cluster our reads into Amplicon Sequence Variants (ASVs) or Operational Taxonomical Units (OTUs) we have to prepare a few things. First, we have to remove the primer sequences from the reads. Second, we have to download the taxonomic database.</p>
 <p><strong>Note</strong> that the following code is run in shell, not in R. Shell (bash) is a command-line program which is usually run through a terminal, and is the common interface for working with servers and computing clusters.</p>
-<p>The '%' or '!' means that it is a shell command. If this was actually run through a terminal these prefixes would not be needed.</p>
 
 </div>
 </div>
@@ -13110,7 +13109,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">ls</span> -lh Seqs
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="o">-</span><span class="n">lh</span> <span class="n">Seqs</span>
 </pre></div>
 
     </div>
@@ -13160,7 +13159,7 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>head -n4 Seqs/SRX2198605_1.fastq
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">head</span> <span class="o">-</span><span class="n">n4</span> <span class="n">Seqs</span><span class="o">/</span><span class="n">SRX2198605_1</span><span class="o">.</span><span class="n">fastq</span>
 </pre></div>
 
     </div>
@@ -13218,7 +13217,7 @@ A1&gt;AABDDFBAAEEGEECEGGCHFHA1AF/111AA//A/BE//2D00//B1F2D@1//EE?/AG1E//&gt;EE?EC
 <div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>mkdir Seqs/Trimmed
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">mkdir</span> <span class="n">Seqs</span><span class="o">/</span><span class="n">Trimmed</span>
 </pre></div>
 
     </div>
@@ -13239,7 +13238,7 @@ A1&gt;AABDDFBAAEEGEECEGGCHFHA1AF/111AA//A/BE//2D00//B1F2D@1//EE?/AG1E//&gt;EE?EC
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">ls</span> Seqs | grep &quot;\.fastq$&quot; | sed &#39;s/_[1,2].fastq//&#39; | sort | uniq &gt; samples.txt
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="n">Seqs</span> <span class="o">|</span> <span class="n">grep</span> <span class="s2">&quot;\.fastq$&quot;</span> <span class="o">|</span> <span class="n">sed</span> <span class="s1">&#39;s/_[1,2].fastq//&#39;</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">|</span> <span class="n">uniq</span> <span class="o">&gt;</span> <span class="n">samples</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 
     </div>
@@ -13260,7 +13259,7 @@ A1&gt;AABDDFBAAEEGEECEGGCHFHA1AF/111AA//A/BE//2D00//B1F2D@1//EE?/AG1E//&gt;EE?EC
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">%</span><span class="k">cat</span> samples.txt
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cat</span> <span class="n">samples</span><span class="o">.</span><span class="n">txt</span>
 </pre></div>
 
     </div>
@@ -13306,7 +13305,11 @@ SRX2198606
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span><span class="k">for</span> i in <span class="k">$(</span>cat samples.txt<span class="k">)</span><span class="p">;</span> <span class="k">do</span> cutadapt -g GTGCCAGCMGCCGCGGTAA -G GGACTACHVGGGTWTCTAAT --discard-untrimmed -o Seqs/Trimmed/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_1.fastq -p Seqs/Trimmed/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_2.fastq Seqs/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_1.fastq Seqs/<span class="si">${</span><span class="nv">i</span><span class="si">}</span>_2.fastq &gt; cutadapt_<span class="si">${</span><span class="nv">i</span><span class="si">}</span>.log<span class="p">;</span> <span class="k">done</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="err">$</span><span class="p">(</span><span class="n">cat</span> <span class="n">samples</span><span class="o">.</span><span class="n">txt</span><span class="p">)</span>
+    <span class="n">do</span> <span class="n">cutadapt</span> <span class="o">-</span><span class="n">g</span> <span class="n">GTGCCAGCMGCCGCGGTAA</span> <span class="o">-</span><span class="n">G</span> <span class="n">GGACTACHVGGGTWTCTAAT</span> <span class="o">--</span><span class="n">discard</span><span class="o">-</span><span class="n">untrimmed</span> \
+        <span class="o">-</span><span class="n">o</span> <span class="n">Seqs</span><span class="o">/</span><span class="n">Trimmed</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_1</span><span class="o">.</span><span class="n">fastq</span> \
+        <span class="o">-</span><span class="n">p</span> <span class="n">Seqs</span><span class="o">/</span><span class="n">Trimmed</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_2</span><span class="o">.</span><span class="n">fastq</span> <span class="n">Seqs</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_1</span><span class="o">.</span><span class="n">fastq</span> <span class="n">Seqs</span><span class="o">/</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="n">_2</span><span class="o">.</span><span class="n">fastq</span> <span class="o">&gt;</span> <span class="n">cutadapt_</span><span class="err">$</span><span class="p">{</span><span class="n">i</span><span class="p">}</span><span class="o">.</span><span class="n">log</span> 
+<span class="n">done</span>
 </pre></div>
 
     </div>
@@ -13317,7 +13320,7 @@ SRX2198606
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomies to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a>. Remember to always check if a newer version has been published.</p>
+<h2 id="Taxonomic-database">Taxonomic database<a class="anchor" id="tax" /><a class="anchor-link" href="#Taxonomic-database">&#182;</a></h2><p>For assigning a taxonomy to our sequence data later we need to download and prepare a taxonomic database. There are <a href="https://benjjneb.github.io/dada2/training.html">many different ones</a>, but here we will use <a href="https://www.nature.com/articles/nbt.4229">GTDB</a>. Remember to always check if a newer version has been published.</p>
 <p>First we download the database:</p>
 
 </div>
@@ -13328,7 +13331,7 @@ SRX2198606
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>wget https://zenodo.org/record/3266798/files/GTDB_bac120_arc122_ssu_r89.fa.gz
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">wget</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">zenodo</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">record</span><span class="o">/</span><span class="mi">3266798</span><span class="o">/</span><span class="n">files</span><span class="o">/</span><span class="n">GTDB_bac120_arc122_ssu_r89</span><span class="o">.</span><span class="n">fa</span><span class="o">.</span><span class="n">gz</span>
 </pre></div>
 
     </div>
@@ -13367,7 +13370,7 @@ GTDB_bac120_arc122_ 100%[===================&gt;]   7.17M  19.3MB/s    in 0.4s
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Trim-the-database-with-same-primers">Trim the database with same primers<a class="anchor-link" href="#Trim-the-database-with-same-primers">&#182;</a></h4><p>This is so we only have the 16S rRNA gene region that was amplified in our samples, as the database contains the full length 16S rRNA gene sequences. Here we do not have read pairs as above, so we tell the software to look for the forward primer, then an unknown sequences (...), and then the reverse complement of the reverse primer. Only the sequence between the primers (...) will be saved.</p>
+<h4 id="Trim-the-database-with-same-primers">Trim the database with same primers<a class="anchor-link" href="#Trim-the-database-with-same-primers">&#182;</a></h4><p>We trim the database with the primers so we only have the 16S rRNA gene region that was amplified in our samples, as the database contains the full length 16S rRNA gene sequences. Here we do not have read pairs as above, so we tell the software to look for the forward primer, then an unknown sequences (...), and then the reverse complement of the reverse primer. Only the sequence between the primers (...) will be saved.</p>
 <p>The sequences removed will also indicate which bacteria/archaea that would not be targeted by our primers.</p>
 
 </div>
@@ -13378,7 +13381,8 @@ GTDB_bac120_arc122_ 100%[===================&gt;]   7.17M  19.3MB/s    in 0.4s
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>cutadapt -g GTGCCAGCMGCCGCGGTAA...ATTAGAWACCCBDGTAGTCC -o gtdb_trim.fa.gz GTDB_bac120_arc122_ssu_r89.fa.gz --discard-untrimmed &gt; cutadapt_gtdb.log
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">cutadapt</span> <span class="o">-</span><span class="n">g</span> <span class="n">GTGCCAGCMGCCGCGGTAA</span><span class="o">...</span><span class="n">ATTAGAWACCCBDGTAGTCC</span> \
+    <span class="o">-</span><span class="n">o</span> <span class="n">gtdb_trim</span><span class="o">.</span><span class="n">fa</span><span class="o">.</span><span class="n">gz</span> <span class="n">GTDB_bac120_arc122_ssu_r89</span><span class="o">.</span><span class="n">fa</span><span class="o">.</span><span class="n">gz</span> <span class="o">--</span><span class="n">discard</span><span class="o">-</span><span class="n">untrimmed</span> <span class="o">&gt;</span> <span class="n">cutadapt_gtdb</span><span class="o">.</span><span class="n">log</span>
 </pre></div>
 
     </div>
@@ -13399,7 +13403,7 @@ GTDB_bac120_arc122_ 100%[===================&gt;]   7.17M  19.3MB/s    in 0.4s
 <div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>head cutadapt_gtdb.log
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">head</span> <span class="n">cutadapt_gtdb</span><span class="o">.</span><span class="n">log</span>
 </pre></div>
 
     </div>
@@ -13454,7 +13458,7 @@ Reads written (passing filters):         8,469 (46.2%)
 <div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="o">!</span>gzip -dc gtdb_trim.fa.gz <span class="p">|</span> head
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">gzip</span> <span class="o">-</span><span class="n">dc</span> <span class="n">gtdb_trim</span><span class="o">.</span><span class="n">fa</span><span class="o">.</span><span class="n">gz</span> <span class="o">|</span> <span class="n">head</span>
 </pre></div>
 
     </div>

@@ -13085,8 +13085,8 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>This notebook covers some basic clustering techniques, which can be used in microbiome science.</p>
-<p>If you want to learn more about machine learning I can highly recommend <a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">The Elements of Statistical Learning</a> by Hastie, Tibshirani, and Friedman.</p>
-
+<h3 id="Getting-in-depth">Getting in-depth<a class="anchor-link" href="#Getting-in-depth">&#182;</a></h3><p>If you want to learn more about machine learning I can highly recommend <a href="https://web.stanford.edu/~hastie/Papers/ESLII.pdf">The Elements of Statistical Learning</a> by Hastie, Tibshirani, and Friedman.</p>
+<h4 id="TL;DR">TL;DR<a class="anchor-link" href="#TL;DR">&#182;</a></h4><h5 id="Paper-on-clustering"><a href="https://www.nature.com/articles/nmeth.4299">Paper on clustering</a><a class="anchor-link" href="#Paper-on-clustering">&#182;</a></h5>
 </div>
 </div>
 </div>
@@ -13111,7 +13111,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's load our test dataset</p>
+<p>Let's load our example dataset</p>
 
 </div>
 </div>
@@ -13134,7 +13134,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="PAM-clustering">PAM clustering<a class="anchor" id="pam" /><a class="anchor-link" href="#PAM-clustering">&#182;</a></h2><p>Partitioning around mediods (PAM) is a k-mediods clustering algorithm often used in microbiome sciences. The algorithm tries to cluster the data into k clusters that are centered around mediods, which are central data points. With PAM clustering you have to choose the number of clusters <em>a priori</em>. Therefore, the algorithm is often run across a range of clusters and the quality of clusters are compared to asses how many clusters are optimal for the dataset. The cluster quality is measured by silhoutte width, which is a measure of how close an observation is to other observations in the same cluster compared to its proximity to obsevations in the neighboring cluster. A silhoutte width of 1 means that clusters are well-defined, whereas a silhoutte width of 0 means that clusters are highly overlapping.</p>
-<h3 id="Input-data">Input data<a class="anchor-link" href="#Input-data">&#182;</a></h3><p>PAM clutering can be run directly on the abundances in which case dissimilarities are usually calculated by euclidian or manhattan distances. However, for microbiome data these distance metrics are usually biased due to the very skewed, non-normal, and zero-inflated data. Fortunately, PAM clustering can use any dissimilarity matrix as input, and we can therefore use any the commonly used beta diversity metrics.</p>
+<h3 id="Input-data">Input data<a class="anchor-link" href="#Input-data">&#182;</a></h3><p>PAM clutering can be run directly on the abundances in which case dissimilarities are usually calculated by euclidian or manhattan distances. However, for microbiome data these distance metrics are usually biased due to the very skewed, non-normal, and zero-inflated data. Fortunately, PAM clustering can use any dissimilarity matrix as input, and we can therefore use any of the commonly used beta diversity metrics.</p>
 <h3 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h3>
 </div>
 </div>
@@ -13342,7 +13342,7 @@ RU5ErkJggg=="
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>So 2 clusters is the best number of clusters. We cannot calculate silhoutte width for 1 cluster, so with silhoutte width don't know if the dataset can actually be clustered in a sensible way. We should therefore always visualize the data to check that we trust the clusters.</p>
+<p>So 2 clusters is the best number of clusters. We cannot calculate silhoutte width for 1 cluster, so with silhoutte width we don't know if the dataset can actually be clustered in a sensible way. We should therefore always visualize the data to check that we trust the clusters.</p>
 <p>Let's plot a PCoA:</p>
 
 </div>

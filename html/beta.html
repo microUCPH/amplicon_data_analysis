@@ -13162,8 +13162,7 @@ D_{jaccard} = 1 - \frac {|A \cap B|} {|A \cup B|}
 where A and B are the sets of taxa in the samples.</p>
 <p>If the two samples have the exact same taxa, Jaccard dissimilarity will be 0. If the two samples do not share any taxa, Jaccard dissimilarity will be 1.</p>
 <p>Note that as Jaccard is based on presence/absence of taxa, it is sensitive to the sequencing depth of the samples. If sequencing depths vary alot it is advised to rarefy before using the Jaccard dissimilarity, or in other ways account for the bias created by varying sequencing depths.</p>
-<p>In R:</p>
-
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -13256,8 +13255,8 @@ The remaining are quite high, showing that few taxa are shared across these samp
 D_{bray-curtis} = 1 - \frac {2*C_{ij}} {S_i + S_j}
 \end{equation*}
 where Si is the number of taxa in sample i, Sj is the number of taxa in sample j. To calculate Cij, all the shared taxa are found, then for each shared taxa the lowest relative abundance is found, and Cij is the sum of these relative abundances.</p>
-<p>We can see that with Bray-Curtis two samples can have a high dissimilarity, even though they share most taxa, if the shared taxa have low relative abundance in any of the two samples.</p>
-<p>Conversely, two samples can have a low Bray-Curtis dissimilarity, even though they share few taxa, if these shared taxa have high relative abundance in both samples.</p>
+<p>With Bray-Curtis, two samples can have a high dissimilarity even though they share most taxa, if the shared taxa have low relative abundance in any of the two samples.</p>
+<p>Conversely, two samples can have a low Bray-Curtis dissimilarity even though they share few taxa, if these shared taxa have high relative abundance in both samples.</p>
 <p>Bray-Curtis is therefore less sensitive to noise and sequencing depth than Jaccard dissimilarity.</p>
 <p>In R:</p>
 
@@ -13496,8 +13495,7 @@ where Si is the number of taxa in sample i, Sj is the number of taxa in sample j
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>In R:</p>
-<p>There is a convinient function which does the ordination and plotting for us. Here we ordinate the unweighted UniFrac matrix and color by Time. The ellipses highlight the time points.</p>
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4><p>There is a convinient function which does the ordination and plotting for us. Here we ordinate the unweighted UniFrac matrix and color by Time. The ellipses highlight the time points.</p>
 
 </div>
 </div>
@@ -13510,6 +13508,7 @@ where Si is the number of taxa in sample i, Sj is the number of taxa in sample j
 <div class=" highlight hl-r"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
 
 <span class="n">wuf_ord</span> <span class="o">&lt;-</span> <span class="nf">ordinate</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="s">&quot;PCoA&quot;</span><span class="p">,</span> <span class="s">&quot;UniFrac&quot;</span><span class="p">,</span> <span class="n">weighted</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">)</span>
+
 <span class="nf">plot_ordination</span><span class="p">(</span><span class="n">phy</span><span class="p">,</span> <span class="n">wuf_ord</span><span class="p">,</span> <span class="n">type</span><span class="o">=</span><span class="s">&quot;samples&quot;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&quot;Time&quot;</span><span class="p">)</span> <span class="o">+</span>
     <span class="nf">stat_ellipse</span><span class="p">()</span>
 </pre></div>
@@ -13828,8 +13827,7 @@ FIBIACgAkQBQ4P8BZsGavCvV4/wAAAAASUVORK5CYII="
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="PERMANOVA">PERMANOVA<a class="anchor" id="adonis" /><a class="anchor-link" href="#PERMANOVA">&#182;</a></h1><p>PERMANOVA is the most used method to test statistical hypothesis on beta diversities. See more details in the <a href="https://microucph.github.io/amplicon_data_analysis/html/pca.html">PCA, PCoA, PERMANOVA notebook</a>.</p>
-<p>In R:</p>
-
+<h4 id="In-R:">In R:<a class="anchor-link" href="#In-R:">&#182;</a></h4>
 </div>
 </div>
 </div>

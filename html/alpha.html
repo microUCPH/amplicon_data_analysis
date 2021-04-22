@@ -13229,7 +13229,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p><em>apply</em> in R does something on each row (MARGIN = 1) or column (MARGIN = 2) of a matrix. The otu_table(phy) we give as input contains counts of taxa with one column per sample. We therefore run the function on each sample. sum(x &gt; 0) means that we find all counts that are larger than zero and we sum (count) those. This is the observed richness; the number of taxa that are present (abundance &gt; 0) in a sample.</p>
+<h4 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h4><p><em>apply</em> in R does something on each row (MARGIN = 1) or column (MARGIN = 2) of a matrix. The otu_table(phy) we give as input contains counts of taxa with one column per sample. We therefore run the function on each sample. sum(x &gt; 0) means that we find all counts that are larger than zero and we sum (count) those. This is the observed richness; the number of taxa that are present (abundance &gt; 0) in a sample.</p>
 
 </div>
 </div>
@@ -13407,7 +13407,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p>As with the observed richness, we apply a function on each column (sample) of the otu_table. The function is the formula above, where x/sum(x) is a way to calculate the relative abundance. The log function will return NA for many taxa if their abundance is 0 (you cannot take the log of zero), and the na.rm = TRUE tells the function to ignore NA's in the final summation.</p>
+<h4 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h4><p>As with the observed richness, we apply a function on each column (sample) of the otu_table. The function is the formula above, where x/sum(x) is a way to calculate the relative abundance. The log function will return NA for many taxa if their abundance is 0 (you cannot take the log of zero), and the na.rm = TRUE tells the function to ignore NA's in the final summation.</p>
 
 </div>
 </div>
@@ -13415,7 +13415,7 @@ H' = - \sum_{i=1}^R p_i ln \left( p_i \right)
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor" id="pd" /><a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample through the shortest path in the tree.</p>
+<h2 id="Faith's-phylogenetic-diversity">Faith's phylogenetic diversity<a class="anchor" id="pd" /><a class="anchor-link" href="#Faith's-phylogenetic-diversity">&#182;</a></h2><p>Phylogenetic diversity (PD) is an alpha diversity metric which incorporates the phylogenetic tree of the taxa. Faith's PD is the sum of all the branch lengths that are connecting all taxa observed in the sample.</p>
 <p>In the tree below, the cyan circles marks the taxa present in a given sample. The red line is the path connecting these taxa (usually the root is also included if present). Faith's PD of this sample is then the branch length spanned by the red path; that is, all the red horizontal lines.</p>
 
 </div>
@@ -13523,7 +13523,7 @@ Loading required package: nlme
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h3><p>The <em>pd</em> function of course needs our phylogenetic tree as input, but it also needs the otu_table to know which taxa are present in which samples. The <em>picante</em> package assumes that input tables have samples as rows, we therefore have to transpose our otu_table with the t() function.</p>
+<h4 id="Note-on-R-code">Note on R code<a class="anchor-link" href="#Note-on-R-code">&#182;</a></h4><p>The <em>pd</em> function of course needs our phylogenetic tree as input, but it also needs the otu_table to know which taxa are present in which samples. The <em>picante</em> package assumes that input tables have samples as rows, we therefore have to transpose our otu_table with the t() function.</p>
 
 </div>
 </div>
@@ -14369,7 +14369,7 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Repeated-measures-(mixed-effect-model)">Repeated measures (mixed-effect model)<a class="anchor-link" href="#Repeated-measures-(mixed-effect-model)">&#182;</a></h2><p>In this dataset we have repeated measurements from the same patients; we have samples from the same children at 1 week, 1 month, and 1 year. It is therefore best practive to take this into account in our statistical model. This analysis is outside the scope of this notebook, but more information can be found in the <a href="https://ourcodingclub.github.io/tutorials/mixed-models/">Coding Club</a>.</p>
+<h2 id="Repeated-measures-(mixed-effect-model)">Repeated measures (mixed-effect model)<a class="anchor-link" href="#Repeated-measures-(mixed-effect-model)">&#182;</a></h2><p>In this dataset we have repeated measurements from the same patients; we have samples from the same children at 1 week, 1 month, and 1 year. It is therefore best practice to take this into account in our statistical model. This analysis is outside the scope of this notebook, but more information can be found in the <a href="https://ourcodingclub.github.io/tutorials/mixed-models/">Coding Club</a>.</p>
 
 </div>
 </div>

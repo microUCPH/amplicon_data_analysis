@@ -13077,7 +13077,7 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA,-PCoA,-PERMANOVA">PCA, PCoA, PERMANOVA<a class="anchor-link" href="#PCA,-PCoA,-PERMANOVA">&#182;</a></h1><h3 id="Getting-more-in-depth">Getting more in-depth<a class="anchor-link" href="#Getting-more-in-depth">&#182;</a></h3><p>The <a href="https://mb3is.megx.net/gustame">GUSTA ME website</a> contains descriptions of many multivariate analyses aimed at microbial ecologists using R.</p>
+<h1 id="PCA,-PCoA,-PERMANOVA">PCA, PCoA, PERMANOVA<a class="anchor-link" href="#PCA,-PCoA,-PERMANOVA">&#182;</a></h1><h3 id="Getting-further-into-multivariate-analysis">Getting further into multivariate analysis<a class="anchor-link" href="#Getting-further-into-multivariate-analysis">&#182;</a></h3><p>The <a href="https://mb3is.megx.net/gustame">GUSTA ME website</a> contains descriptions of many multivariate analyses aimed at microbial ecologists using R.</p>
 
 </div>
 </div>
@@ -14052,19 +14052,6 @@ ASQAkQASgEgACUAkgAQgEkAC/gcqN4m9z1zvsQAAAABJRU5ErkJggg=="
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-r"><pre><span></span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
 <div class="prompt input_prompt">In&nbsp;[13]:</div>
 <div class="inner_cell">
     <div class="input_area">
@@ -14573,6 +14560,14 @@ Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this last model we see that Time has a significant effect explaining 22.4% of the variance. Delivery mode also has a significant effect explaining 1.8% of the variance. Furthermore, there is a significant interaction between Time and Delivery explaining 2.9% of the variance. That there is an interaction means that the two variables are not having indepedent effects on the UniFrac dissimilariy. In other words, the effect of Delivery is dependent on the Time variable, and vice versa. This is probably because there is a large effect of delivery in the early time points, but small in the later time point. One could test this by running a PERMANOVA testing the effect of delivery separately for each time point.</p>
+
+</div>
+</div>
 </div>
     </div>
   </div>
