@@ -29,6 +29,9 @@ Analysis workflow:
 * [Beta diversity](html/beta.html)
 * [Differential abundance - Basics](html/da.html)
 
+Troubleshooting
+* [Common errors and problems](html/errors.html)
+
 ### Extra analysis
 This section contains notebooks for more specific and/or advanced data presentations or analyses. 
 
