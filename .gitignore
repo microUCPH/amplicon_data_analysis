@@ -1,1 +1,10 @@
 .ipynb_checkpoints/
+ipynb/*exe
+ipynb/*png
+ipynb/*RData
+ipynb/*fasta
+ipynb/*csv
+ipynb/*nwk
+ipynb/Seqs/
+ipynb/mafft-win/
+ipynb/*gz
