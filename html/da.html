@@ -13078,28 +13078,6 @@ div#notebook {
     });
     </script>
     <!-- End of mathjax configuration --></head>
-
- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.9.1/jquery-ui.min.js"></script>
-
-<link rel="stylesheet" type="text/css" href="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/main.css">
-
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-<script src="https://rawgit.com/ipython-contrib/jupyter_contrib_nbextensions/master/src/jupyter_contrib_nbextensions/nbextensions/toc2/toc2.js"></script>
-
-<script>
-$( document ).ready(function(){
-
-            var cfg = {"base_numbering": 1, "nav_menu": {}, "number_sections": false, "sideBar": true, "skip_h1_title": false, "title_cell": "Table of Contents", "title_sidebar": "Contents", "toc_cell": false, "toc_position": {}, "toc_section_display": true, "toc_window_display": false};
-
-            // fire the main function with these parameters
-            require(['nbextensions/toc2/toc2'], function (toc2) {
-                toc2.table_of_contents(cfg);
-            });
-    });
-</script>
 <body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
     <div class="container" id="notebook-container">
@@ -13172,7 +13150,7 @@ $( document ).ready(function(){
 
 
 <div class="output_subarea output_stream output_stderr output_text">
-<pre>DAtest version 2.7.18
+<pre>DAtest version 2.8.0
 
 </pre>
 </div>
@@ -13467,6 +13445,117 @@ $( document ).ready(function(){
 </div>
 </div>
 
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="MetagenomeSeq-Featuretest">MetagenomeSeq Featuretest<a class="anchor" id="msf" /><a class="anchor-link" href="#MetagenomeSeq-Featuretest">&#182;</a></h2><p>MetagenomeSeq Featuretest was developed for microbiome data, and is usually the most powerful for finding differentially abundant taxa.</p>
+<p>Let's run MetagenomeSeq to test the effect of Delivery:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">res_msf</span> <span class="o">&lt;-</span> <span class="nf">DA.msf</span><span class="p">(</span><span class="n">phy_genus_pre</span><span class="p">,</span> <span class="n">predictor</span> <span class="o">=</span> <span class="s">&quot;Delivery&quot;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>Registered S3 method overwritten by &#39;gplots&#39;:
+  method    from  
+  plot.venn eulerr
+
+Default value being used.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-r"><pre><span></span><span class="n">res_msf</span><span class="p">[</span><span class="n">res_msf</span><span class="o">$</span><span class="n">pval.adj</span> <span class="o">&lt;=</span> <span class="m">0.05</span><span class="p">,</span> <span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<table class="dataframe">
+<caption>A data.frame: 17 × 19</caption>
+<thead>
+	<tr><th></th><th scope=col>Feature</th><th scope=col>+samples in group 0</th><th scope=col>+samples in group 1</th><th scope=col>counts in group 0</th><th scope=col>counts in group 1</th><th scope=col>logFC</th><th scope=col>se</th><th scope=col>pval</th><th scope=col>adjPvalues</th><th scope=col>pval.adj</th><th scope=col>ordering</th><th scope=col>Method</th><th scope=col>Kingdom</th><th scope=col>Phylum</th><th scope=col>Class</th><th scope=col>Order</th><th scope=col>Family</th><th scope=col>Genus</th><th scope=col>Species</th></tr>
+	<tr><th></th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;dbl&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th><th scope=col>&lt;chr&gt;</th></tr>
+</thead>
+<tbody>
+	<tr><th scope=row>4</th><td>08b21f8171b35ef001832ba1df9b8fbc</td><td>69</td><td>56</td><td>232864</td><td> 81668</td><td>-1.4441416</td><td>0.3083843</td><td>2.828047e-06</td><td>1.583706e-04</td><td>1.583706e-04</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_C  </span></td><td><span style=white-space:pre-wrap>Negativicutes      </span></td><td><span style=white-space:pre-wrap>Veillonellales    </span></td><td><span style=white-space:pre-wrap>Veillonellaceae          </span></td><td><span style=white-space:pre-wrap>Veillonella           </span></td><td>NA</td></tr>
+	<tr><th scope=row>9</th><td>107063e8453bf94891c4d7a17b00af07</td><td> 4</td><td>17</td><td><span style=white-space:pre-wrap>   319</span></td><td><span style=white-space:pre-wrap>  9511</span></td><td> 2.8937922</td><td>0.9705050</td><td>2.866166e-03</td><td>2.140070e-02</td><td>2.140070e-02</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_C  </span></td><td><span style=white-space:pre-wrap>Negativicutes      </span></td><td><span style=white-space:pre-wrap>Veillonellales    </span></td><td><span style=white-space:pre-wrap>Veillonellaceae          </span></td><td><span style=white-space:pre-wrap>Veillonella_A         </span></td><td>NA</td></tr>
+	<tr><th scope=row>10</th><td>11d9c9ed1d2d58a9cb0bbcdc93aa3e55</td><td> 3</td><td>26</td><td><span style=white-space:pre-wrap>    41</span></td><td> 27727</td><td> 4.7344448</td><td>1.2675331</td><td>1.875924e-04</td><td>3.082105e-03</td><td>3.082105e-03</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes    </span></td><td><span style=white-space:pre-wrap>Bacilli            </span></td><td><span style=white-space:pre-wrap>Lactobacillales   </span></td><td><span style=white-space:pre-wrap>Lactobacillaceae         </span></td><td><span style=white-space:pre-wrap>Lactobacillus_H       </span></td><td>NA</td></tr>
+	<tr><th scope=row>24</th><td>333fc718c6bccdbf0fd4e4f84d0dd38e</td><td>34</td><td>35</td><td>143352</td><td> 11880</td><td>-2.6786034</td><td>0.6048946</td><td>9.501622e-06</td><td>3.547272e-04</td><td>3.547272e-04</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Bacteroidota  </span></td><td><span style=white-space:pre-wrap>Bacteroidia        </span></td><td><span style=white-space:pre-wrap>Bacteroidales     </span></td><td><span style=white-space:pre-wrap>Bacteroidaceae           </span></td><td><span style=white-space:pre-wrap>Prevotella            </span></td><td>NA</td></tr>
+	<tr><th scope=row>29</th><td>44d9fc4de8898b6c82c69654435a9f0b</td><td>32</td><td>25</td><td> 26682</td><td><span style=white-space:pre-wrap>  6755</span></td><td>-1.8019516</td><td>0.5644906</td><td>1.412069e-03</td><td>1.757241e-02</td><td>1.757241e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes    </span></td><td><span style=white-space:pre-wrap>Bacilli            </span></td><td><span style=white-space:pre-wrap>Lactobacillales   </span></td><td><span style=white-space:pre-wrap>Lactobacillaceae         </span></td><td><span style=white-space:pre-wrap>Lactobacillus         </span></td><td>NA</td></tr>
+	<tr><th scope=row>30</th><td>45c4f6f269ec95ff0c8dd594104519e9</td><td>27</td><td>17</td><td>159140</td><td> 40544</td><td>-1.7996174</td><td>0.5901451</td><td>2.292617e-03</td><td>2.139776e-02</td><td>2.139776e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td>Proteobacteria</td><td>Gammaproteobacteria</td><td><span style=white-space:pre-wrap>Enterobacterales  </span></td><td><span style=white-space:pre-wrap>Enterobacteriaceae       </span></td><td><span style=white-space:pre-wrap>Citrobacter           </span></td><td>NA</td></tr>
+	<tr><th scope=row>48</th><td>6dbcf153b0182c45e43924e6a0814551</td><td> 9</td><td> 2</td><td><span style=white-space:pre-wrap>   378</span></td><td><span style=white-space:pre-wrap>     9</span></td><td>-3.8580086</td><td>1.3623484</td><td>4.627506e-03</td><td>3.092891e-02</td><td>3.092891e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_A  </span></td><td><span style=white-space:pre-wrap>Clostridia         </span></td><td><span style=white-space:pre-wrap>TANB77            </span></td><td><span style=white-space:pre-wrap>CAG-508                  </span></td><td><span style=white-space:pre-wrap>CAG-354               </span></td><td>NA</td></tr>
+	<tr><th scope=row>50</th><td>705da2e88a1aaa0c02b27eab4a642b72</td><td> 1</td><td>14</td><td><span style=white-space:pre-wrap>    14</span></td><td><span style=white-space:pre-wrap>  7183</span></td><td> 0.9738801</td><td>0.2600936</td><td>1.808657e-04</td><td>3.082105e-03</td><td>3.082105e-03</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td>Proteobacteria</td><td>Gammaproteobacteria</td><td><span style=white-space:pre-wrap>Enterobacterales  </span></td><td><span style=white-space:pre-wrap>Enterobacteriaceae       </span></td><td><span style=white-space:pre-wrap>Morganella            </span></td><td>NA</td></tr>
+	<tr><th scope=row>53</th><td>72bda5561e865a5539c4f19f992ee830</td><td>54</td><td>38</td><td>117888</td><td> 49799</td><td>-1.2485314</td><td>0.4173685</td><td>2.776685e-03</td><td>2.140070e-02</td><td>2.140070e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_A  </span></td><td><span style=white-space:pre-wrap>Clostridia         </span></td><td><span style=white-space:pre-wrap>Lachnospirales    </span></td><td><span style=white-space:pre-wrap>Lachnospiraceae          </span></td><td><span style=white-space:pre-wrap>Ruminococcus_B        </span></td><td>NA</td></tr>
+	<tr><th scope=row>64</th><td>87c2912f70537a375ec52d2e37479534</td><td>11</td><td>33</td><td><span style=white-space:pre-wrap>  1086</span></td><td> 33112</td><td> 2.4404307</td><td>0.7799554</td><td>1.754404e-03</td><td>1.882993e-02</td><td>1.882993e-02</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes    </span></td><td><span style=white-space:pre-wrap>Bacilli            </span></td><td>Erysipelotrichales</td><td>Erysipelatoclostridiaceae</td><td>Erysipelatoclostridium</td><td>NA</td></tr>
+	<tr><th scope=row>68</th><td>95b523dacb244bb891da4c48923d8788</td><td> 8</td><td> 6</td><td><span style=white-space:pre-wrap>   614</span></td><td><span style=white-space:pre-wrap>    42</span></td><td>-3.1603252</td><td>1.0470860</td><td>2.542727e-03</td><td>2.140070e-02</td><td>2.140070e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_A  </span></td><td><span style=white-space:pre-wrap>Clostridia         </span></td><td><span style=white-space:pre-wrap>Tissierellales    </span></td><td><span style=white-space:pre-wrap>Peptoniphilaceae         </span></td><td><span style=white-space:pre-wrap>Peptoniphilus_A       </span></td><td>NA</td></tr>
+	<tr><th scope=row>75</th><td>a3f2abd64e462dc86f8242a90d98ee66</td><td> 9</td><td> 1</td><td><span style=white-space:pre-wrap>  2353</span></td><td><span style=white-space:pre-wrap>    38</span></td><td>-0.5650041</td><td>0.1814742</td><td>1.849368e-03</td><td>1.882993e-02</td><td>1.882993e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_A  </span></td><td><span style=white-space:pre-wrap>Clostridia         </span></td><td><span style=white-space:pre-wrap>Oscillospirales   </span></td><td><span style=white-space:pre-wrap>DTU089                   </span></td><td><span style=white-space:pre-wrap>Eubacterium_R         </span></td><td>NA</td></tr>
+	<tr><th scope=row>76</th><td>a4ac1cd75e12a7e924dd49b96366a5df</td><td> 7</td><td>13</td><td><span style=white-space:pre-wrap>  1078</span></td><td> 11544</td><td> 2.7656828</td><td>0.8578603</td><td>1.264437e-03</td><td>1.757241e-02</td><td>1.757241e-02</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Bacteroidota  </span></td><td><span style=white-space:pre-wrap>Bacteroidia        </span></td><td><span style=white-space:pre-wrap>Bacteroidales     </span></td><td><span style=white-space:pre-wrap>Bacteroidaceae           </span></td><td><span style=white-space:pre-wrap>Bacteroides_A         </span></td><td>NA</td></tr>
+	<tr><th scope=row>90</th><td>ccc3cce7144df93b827dc9a9fd18dfaf</td><td>23</td><td>11</td><td> 18890</td><td><span style=white-space:pre-wrap>  1173</span></td><td>-2.2676607</td><td>0.6081984</td><td>1.926316e-04</td><td>3.082105e-03</td><td>3.082105e-03</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes    </span></td><td><span style=white-space:pre-wrap>Bacilli            </span></td><td><span style=white-space:pre-wrap>Lactobacillales   </span></td><td><span style=white-space:pre-wrap>Lactobacillaceae         </span></td><td><span style=white-space:pre-wrap>Lactobacillus_C       </span></td><td>NA</td></tr>
+	<tr><th scope=row>93</th><td>d20d3658de331c939f54d8acaed7c4c1</td><td>64</td><td>73</td><td>317989</td><td>773805</td><td> 1.8639949</td><td>0.3166625</td><td>3.947523e-09</td><td>4.421225e-07</td><td>4.421225e-07</td><td>Vaginal&gt;Sectio</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Bacteroidota  </span></td><td><span style=white-space:pre-wrap>Bacteroidia        </span></td><td><span style=white-space:pre-wrap>Bacteroidales     </span></td><td><span style=white-space:pre-wrap>Bacteroidaceae           </span></td><td><span style=white-space:pre-wrap>Bacteroides           </span></td><td>NA</td></tr>
+	<tr><th scope=row>103</th><td>efe2ef829cdc0a2cf36f8c27f96678d7</td><td>14</td><td>11</td><td><span style=white-space:pre-wrap>  3493</span></td><td><span style=white-space:pre-wrap>    68</span></td><td>-2.3365792</td><td>0.8264415</td><td>4.694566e-03</td><td>3.092891e-02</td><td>3.092891e-02</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td>Bacteria</td><td><span style=white-space:pre-wrap>Firmicutes_A  </span></td><td><span style=white-space:pre-wrap>Clostridia         </span></td><td><span style=white-space:pre-wrap>Tissierellales    </span></td><td><span style=white-space:pre-wrap>Helcococcaceae           </span></td><td><span style=white-space:pre-wrap>Anaerococcus          </span></td><td>NA</td></tr>
+	<tr><th scope=row>111</th><td><span style=white-space:pre-wrap>Others                          </span></td><td>73</td><td>70</td><td> 19298</td><td> 11601</td><td>-1.0546427</td><td>0.2418611</td><td>1.297471e-05</td><td>3.632920e-04</td><td>3.632920e-04</td><td>Sectio&gt;Vaginal</td><td>MgSeq Feature (msf)</td><td><span style=white-space:pre-wrap>NA      </span></td><td><span style=white-space:pre-wrap>NA            </span></td><td><span style=white-space:pre-wrap>NA                 </span></td><td><span style=white-space:pre-wrap>NA                </span></td><td><span style=white-space:pre-wrap>NA                       </span></td><td><span style=white-space:pre-wrap>NA                    </span></td><td>NA</td></tr>
+</tbody>
+</table>
+
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>16 significantly abundant genera with MetagenomeSeq!</p>
+
+</div>
+</div>
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
